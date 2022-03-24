@@ -4,20 +4,23 @@
     <div class="card">
         <div class="card-body">
 
-            <h1>List</h1>
+            <h1>News</h1>
 
-            <a href="{{route('report/create')}}" class="btn btn-success" style="margin-right: 20px">Add</a>
+            @error('image')<span style="color: red;">{{$message}}</span>@enderror
 
+            <div style="margin-bottom: 1rem;">
+                @if(session()->has('message'))
+                    <div style="padding: .75rem; background: #9ae6b4; color: #276749; border-radius: 0.25rem; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);" class="alert alert-success">
+                        {{session('message')}}
+                    </div>
+                @elseif(session()->has('deleteMessage'))
+                    <div style="padding: .75rem; background: #feb2b2; color: #9b2c2c; border-radius: 0.25rem; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);" class="alert alert-success">
+                        {{session('deleteMessage')}}
+                    </div>
+                @endif
+            </div>
 
-
-
-
-
-            @if (session()->has('message'))
-                <div class="alert alert-success">
-                    {{ session()->get('message') }}
-                </div>
-            @endif
+            <a href="{{route('news.create')}}" class="btn btn-success" style="margin-right: 20px">Add</a>
 
             <table style="font-family: arial, sans-serif;
                     border-collapse: collapse;
@@ -48,7 +51,7 @@
                     padding: 8px; width: 133px;">Action</th>
                 </tr>
                 <?php $num=1; ?>
-                @foreach($report as $rep)
+                @foreach($news as $rep)
                     <tr class="categoryShow">
                         <td >{{$num++}}</td>
                         <td >{{$rep->name_uz}}</td>
@@ -59,8 +62,9 @@
                         <td >{{$rep->description_ru}}</td>
                         <td >{{$rep->description_en}}</td>
 
-                        <td><a href="{{route('report.edite', $rep->id)}}" class="btn btn-primary">Edit</a>
-                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal{{ $rep->id }}">Delete</a>
+                        <td>
+                            {{-- <a href="{{route('news.edit', $rep->id)}}" class="btn btn-primary">Edit</a> --}}
+                            {{-- <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal{{ $rep->id }}">Delete</a> --}}
 
                         </td>
                         <div id="myModal{{ $rep->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -73,9 +77,9 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <a href="{{route('report.destroy', $rep->id)}}" method="post">
+                                        {{-- <a href="{{route('news.destroy', $rep->id)}}" method="post">
                                             <button type="submit" class="btn btn-danger">O'chirish</button>
-                                        </a>
+                                        </a> --}}
                                     </div>
                                 </div>
                             </div>

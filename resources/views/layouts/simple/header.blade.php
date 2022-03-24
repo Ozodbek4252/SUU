@@ -43,12 +43,14 @@
             </div>
             @php($user = auth()->user())
             <div class="dropdown d-inline-block">
+                @if($user)
                 <button type="button" class="btn header-item waves-effect" id="page-header-user-dropdown"
                         data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 
                     <span class="d-none d-xl-inline-block ms-1 fw-medium font-size-15">{{ $user->name }}</span>
                     <i class="uil-angle-down d-none d-xl-inline-block font-size-15"></i>
                 </button>
+                @endif
 
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->

@@ -22,7 +22,7 @@
             <!-- Left Menu Start -->
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
-                <li>
+                {{-- <li>
                     <a href="javascript: void(0);" class="has-arrow waves-effect">
                         <i class="uil-water-glass"></i>
                         <span>Продукты</span>
@@ -31,7 +31,7 @@
                         <li><a href="{{route('create')}}">Добавить</a></li>
                         <li><a href="{{route('list')}}">Лист</a></li>
                     </ul>
-                </li>
+                </li> --}}
                 <li>
                     <a href="/orders" >
                         <i class="uil-shopping-basket"></i>
@@ -46,9 +46,9 @@
                 </li>
 
                 <li>
-                    <a href="{{route('report')}}" >
+                    <a href="{{route('news')}}" >
                         <i class="uil-water-glass"></i>
-                        <span>Report</span>
+                        <span>News</span>
                     </a>
                 </li>
             </ul>
