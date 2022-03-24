@@ -82,7 +82,7 @@
 		</div>
 		<ul class="menu">
 			<li>
-				<a href="#main" data-menuanchor="main">
+				<a href="{{route('home')}}" data-menuanchor="main">
 					Главная
 				</a>
 			</li>
@@ -143,6 +143,7 @@
 
 
 	<!-- КОРЗИНА -->
+    <form action=""></form> 
 
 	<section class="basket">
 		<div class="container">

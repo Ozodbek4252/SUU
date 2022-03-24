@@ -8,12 +8,12 @@
         <nav class="header-menu">
             <ul class="menu">
                 <li>
-                    <a href="index.blade.php">
+                    <a href="{{route('home')}}">
                         Главная
                     </a>
                 </li>
                 <li>
-                    <a href="index.blade.php#about">
+                    <a href="{{route('about')}}">
                         О компании
                     </a>
                 </li>
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.blade.php#contact">
+                    <a href="#contact" data-menuanchor="contact">
                         Контакты
                     </a>
                 </li>
@@ -60,14 +60,16 @@
                 </div>
             </li>
             <li class="header-basket">
-                <div class="header-side__btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
-                    </svg>
-                </div>
-                <span>
-						16
-					</span>
+                <a href="{{route('korzina')}}">
+                    <div class="header-side__btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
+                        </svg>
+                    </div>
+                    <span>
+                            16
+                        </span>
+                </a>
             </li>
             <li class="header-profile">
                 <div class="header-side__btn">
@@ -76,7 +78,7 @@
                     </svg>
                 </div>
                 <div class="header-profile__dropdown header-side__dropdown">
-                    <a href="#" class="header-profile__login">Profile</a>
+{{--                    <a href="#" class="header-profile__login">Profile</a>--}}
                     <a href="#">Log out</a>
                 </div>
             </li>

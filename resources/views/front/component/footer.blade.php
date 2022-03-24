@@ -12,21 +12,27 @@
                 <li>
                     <a href="#">Главная</a>
                 </li>
+
                 <li>
-                    <a href="#">О компании</a>
+                    <a href="{{route('about')}}">О компании</a>
                 </li>
+
                 <li>
                     <a href="#">Продукция</a>
                 </li>
+
                 <li>
                     <a href="#">Услуги</a>
                 </li>
+
                 <li>
                     <a href="#">Новости</a>
                 </li>
+
                 <li>
                     <a href="#">Контакты</a>
                 </li>
+
             </ul>
             <div class="footer-info">
                 <div class="footer-info__item">
