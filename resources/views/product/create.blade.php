@@ -2,16 +2,6 @@
 
 @section('content')
 
-
-        @if ($errors->any())
-            <div class="alert alert-danger">
-                <ul>
-                    @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                    @endforeach
-                </ul>
-            </div>
-        @endif
     <!-- /.card-header -->
         <!-- form start -->
     <div class="card">
@@ -68,21 +58,7 @@
 {{--                    <input value="Add" class="bg-primary" style="width: 19%; height: 40px; font-size: 16px; color: #fff; border: none; border-radius: 5px;" type="submit">--}}
                 </div>
 
-                <div class="form-group container-fluid d-flex justify-content-between align-items-end" style="padding: 0px">
-                    <div class="" style="width: 80%;" >
-                        <label for="category_add">Description UZ</label>
-                        <textarea class="form-control" id="category_add" name="description_uz" placeholder="Add description ..."></textarea>
-                    </div>
-                    <div class="" style="width: 80%; padding: 0 5px;" >
-                        <label for="category_add">Description RU</label>
-                        <textarea class="form-control" id="category_add" name="description_ru" placeholder="Add description ..."></textarea>
-                    </div>
-                    <div class="" style="width: 80%; padding-right: 5px;" >
-                        <label for="category_add">Description EN</label>
-                        <textarea class="form-control" id="category_add" name="description_en" placeholder="Add description ..."></textarea>
-                    </div>
-                    {{--                    <input value="Add" class="bg-primary" style="width: 19%; height: 40px; font-size: 16px; color: #fff; border: none; border-radius: 5px;" type="submit">--}}
-                </div>
+
 
                 <div class="form-group container-fluid d-flex justify-content-between align-items-end" style="padding: 0px">
                     <div class="" style="width: 80%;" >
@@ -116,6 +92,26 @@
                     </div>
                     {{--                    <input value="Add" class="bg-primary" style="width: 19%; height: 40px; font-size: 16px; color: #fff; border: none; border-radius: 5px;" type="submit">--}}
                 </div>
+                <div class="form-group container-fluid d-flex justify-content-between align-items-end" style="padding: 0px">
+                    <div class="" style="width: 80%;" >
+                        <label for="category_add">Description UZ</label>
+                        <textarea class="form-control" id="category_add" name="description_uz" placeholder="Add description ..."></textarea>
+                    </div>
+                    <div class="" style="width: 80%; padding: 0 5px;" >
+                        <label for="category_add">Description RU</label>
+                        <textarea class="form-control" id="category_add" name="description_ru" placeholder="Add description ..."></textarea>
+                    </div>
+                    <div class="" style="width: 80%; padding-right: 5px;" >
+                        <label for="category_add">Description EN</label>
+                        <textarea class="form-control" id="category_add" name="description_en" placeholder="Add description ..."></textarea>
+                    </div>
+                    {{--                    <input value="Add" class="bg-primary" style="width: 19%; height: 40px; font-size: 16px; color: #fff; border: none; border-radius: 5px;" type="submit">--}}
+                </div>
+                <div class="" style="width: 25%;" >
+                    <label for="category_add">Price</label>
+                    <input type="text" class="form-control" id="category_add" name="price" placeholder="Add price ...">
+                </div>
+
 
                 <div>
                     <button type="submit" class="btn btn-primary" style="margin: 10px 10px 15px 20px">Submit</button>

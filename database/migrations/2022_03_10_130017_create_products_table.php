@@ -24,6 +24,7 @@ class CreateProductsTable extends Migration
             $table->text('description_ru')->nullable();
             $table->text('description_en')->nullable();
             $table->string('size')->nullable();
+            $table->string('price')->nullable();
             $table->timestamps();
         });
     }

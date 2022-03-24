@@ -17,6 +17,7 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->integer('order_id')->nullable();
             $table->string('name')->nullable();
+            $table->string('last_name')->nullable();
             $table->string('phone')->nullable();
             $table->text('message')->nullable();
             $table->timestamps();

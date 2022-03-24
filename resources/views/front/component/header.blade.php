@@ -8,32 +8,32 @@
         <nav class="header-menu">
             <ul class="menu">
                 <li>
-                    <a href="{{route('home')}}">
+                    <a href="index.blade.php">
                         Главная
                     </a>
                 </li>
                 <li>
-                    <a href="/#about">
+                    <a href="index.blade.php#about">
                         О компании
                     </a>
                 </li>
                 <li>
-                    <a href="/#products">
+                    <a href="index.blade.php#products">
                         Продукция
                     </a>
                 </li>
                 <li>
-                    <a href="/#services">
+                    <a href="index.blade.php#services">
                         Услуги
                     </a>
                 </li>
                 <li>
-                    <a href="/#news">
+                    <a href="index.blade.php#news">
                         Новости
                     </a>
                 </li>
                 <li>
-                    <a href="/#contact">
+                    <a href="index.blade.php#contact">
                         Контакты
                     </a>
                 </li>
@@ -95,4 +95,3 @@
         </div>
     </div>
 </header>
-

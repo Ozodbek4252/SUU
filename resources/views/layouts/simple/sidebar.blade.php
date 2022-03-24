@@ -39,7 +39,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="/messages" >
+                    <a href="{{route('message')}}" >
                         <i class="uil-envelope-alt"></i>
                         <span>Сообшении</span>
                     </a>

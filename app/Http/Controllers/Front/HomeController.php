@@ -18,4 +18,8 @@ class HomeController extends Controller
     public function  news(){
         return view('front.news');
     }
+
+    public function  korzina(){
+        return view('front.basket');
+    }
 }

@@ -14,7 +14,10 @@ class MessageController extends Controller
      */
     public function index()
     {
-        //
+
+
+        $message = Message::all();
+        return view('message.index',compact('message'));
     }
 
     /**
@@ -35,7 +38,17 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+//        dd('sdmfnvd');
+        $mess = new Message;
+//        $mess->order_id = $request->order_id;
+        $mess->name = $request->name;
+        $mess->last_name = $request->last_name;
+        $mess->phone = $request->phone;
+        $mess->message = $request->message;
+
+        $mess->save();
+        return redirect()->back();
+
     }
 
     /**
@@ -78,8 +91,10 @@ class MessageController extends Controller
      * @param  \App\Models\Message  $message
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Message $message)
+    public function destroy(Message $message,$id)
     {
-        //
+        $message = Message::find($id);
+        $message->delete();
+        return redirect()->back();
     }
 }

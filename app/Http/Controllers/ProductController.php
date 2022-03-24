@@ -87,6 +87,7 @@ class ProductController extends Controller
             $product->description_ru = $req->description_ru;
             $product->description_en = $req->description_en;
             $product->size = $req->size;
+            $product->price = $req->price;
             $product->save();
         }
         return redirect('list');
@@ -133,7 +134,8 @@ class ProductController extends Controller
                     'description_uz'=>$request->input('description_uz'),
                     'description_ru'=>$request->input('description_ru'),
                     'description_en'=>$request->input('description_en'),
-                    'size'=>$request->input('size')]
+                    'size'=>$request->input('size'),
+                    'price'=>$request->input('price')]
             );
 
         return redirect('/list');
