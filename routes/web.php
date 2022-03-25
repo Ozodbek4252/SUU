@@ -5,6 +5,8 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\MessageController;
+
+use App\Http\Livewire\Index;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,9 +18,11 @@ use App\Http\Controllers\MessageController;
 |
 */
 
+Route::get('/', Index::class)->name('home');
+
 /// ------------------------ Front End --------------------------
 Route::controller(HomeController::class)->group(function(){
-    Route::get('/', 'index')->name('home');
+    // Route::get('/', 'index')->name('home');
     Route::get('/about','about')->name('about');
     Route::get('/all-news', 'news')->name('front.news');
     Route::get('/korzina', 'korzina')->name('korzina');
