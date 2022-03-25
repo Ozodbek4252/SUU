@@ -6,62 +6,6 @@
 
 	<div class="popup-layer"></div>
 
-	<div class="feedback">
-		<div class="feedback-content">
-			<div class="feedback__title">
-				Оставить заявку
-			</div>
-			<div class="feedback__text">
-				Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
-			</div>
-			<div class="feedback-form">
-				<input type="text" placeholder="Имя">
-				<input type="text" placeholder="Фамилия">
-				<input type="tel" placeholder="Телефон" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
-				<textarea placeholder="Текст"></textarea>
-				<div class="feedback-form__check">
-					<label>
-						<input type="checkbox">
-						<span>Я прочитал согласие с политикой конфиденциальности</span>
-					</label>
-				</div>
-				<button type="submit" class="btn">Оставить заявку</button>
-			</div>
-		</div>
-	</div>
-
-	<!-- АВТОРИЗАЦИЯ -->
-
-{{--	<div class="login">--}}
-{{--		<div class="feedback-content">--}}
-{{--			<div class="feedback__title">--}}
-{{--				Зарегистрироваться--}}
-{{--			</div>--}}
-{{--			<div class="feedback__text">--}}
-{{--				Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>--}}
-{{--			</div>--}}
-{{--			<div class="feedback-form">--}}
-{{--				<div class="feedback-date">--}}
-{{--					<select id="dobday"></select>--}}
-{{--					<select id="dobmonth"></select>--}}
-{{--					<select id="dobyear"></select>--}}
-{{--				</div>--}}
-{{--				<input type="text" placeholder="Имя">--}}
-{{--				<input type="text" placeholder="Фамилия">--}}
-{{--				<input type="email" placeholder="Ваш электронный адрес">--}}
-{{--				<p>Пароль</p>--}}
-{{--				<input type="password" placeholder="Новый пароль">--}}
-{{--				<input type="password" placeholder="Подтвердите пароль">--}}
-{{--				<div class="feedback-form__check">--}}
-{{--					<label>--}}
-{{--						<input type="checkbox">--}}
-{{--						<span>Я прочитал согласие с политикой конфиденциальности</span>--}}
-{{--					</label>--}}
-{{--				</div>--}}
-{{--				<button type="submit" class="btn">Оставить заявку</button>--}}
-{{--			</div>--}}
-{{--		</div>--}}
-{{--	</div>--}}
 
 	<!-- МОБИЛЬНОЕ МЕНЮ -->
 
@@ -135,11 +79,6 @@
 			<a href="#">EN</a>
 		</div>
 	</div>
-
-
-	<!-- ХЭДЕР СТАТИЧЕСКИЙ, ОТЛИЧАЕТСЯ ОТ ГЛАВНОГО -->
-
-
 
 
 
@@ -230,9 +169,6 @@
 
 
 
-	<!-- ФУТЕР -->
-
-
-
+	@include('front.component.scripts')
 
 @endsection

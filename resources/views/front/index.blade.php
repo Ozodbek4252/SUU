@@ -883,13 +883,8 @@
 	<script src="js/gsap.min.js"></script>
 	<script src="js/dobpicker.js"></script>
 	<script src="js/main.js"></script>
+
 	<script>
-
-		// СКИПТЫ ТОЛЬКО ДЛЯ ГЛАВНОЙ
-
-
-		// ФУЛПЕЙДЖ
-
 		$('#fullPage').fullpage({
 			anchors: ['main', 'about', 'products', 'services', 'news', 'contact'],
 			onLeave:function(origin,destination,direction) {

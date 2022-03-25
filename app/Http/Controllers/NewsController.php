@@ -19,9 +19,6 @@ class NewsController extends Controller
         return view('news.index',compact('news'));
     }
 
-
-    
-
     /**
      * Show the form for creating a new resource.
      *

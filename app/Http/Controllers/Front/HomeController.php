@@ -39,7 +39,7 @@ class HomeController extends Controller
     public function singleNews_index($id)
     {
         $news = News::find($id);
-        return view('news.single-news',compact('news'));
+        return view('front.news-single',compact('news'));
     }
 
     public function  korzina(){
