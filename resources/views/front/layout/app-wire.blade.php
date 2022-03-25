@@ -14,15 +14,18 @@
     <link rel="stylesheet" href="css/animate.css">
     <link rel="stylesheet" href="css/main.css">
     <title>SUU | О нас</title>
+    {{-- @livewireStyles --}}
 </head>
 
 <body>
-    @include('front.component.header')
+{{-- @include('front.component.header') --}}
 
-    @yield('content')
+{{-- @yield('content') --}}
+{{ $slot }}
 
-    @include('front.component.footer')
+{{-- @include('front.component.footer') --}}
 
+{{-- @livewireScripts --}}
 </body>
 </html>
     

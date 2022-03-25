@@ -155,6 +155,7 @@ class ProductController extends Controller
     public function destroy(Product $product,$id)
     {
         $product = Product::find($id);
+        
         $product->delete();
         return redirect()->back();
     }

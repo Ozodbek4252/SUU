@@ -1,19 +1,3 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="shortcut icon" href="" type="image/x-icon">
-	<link rel="preconnect" href="https://fonts.googleapis.com">
-	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-	<link rel="stylesheet" href="css/normalize.css">
-	<link rel="stylesheet" href="css/owl.carousel.css">
-	<link rel="stylesheet" href="css/animate.css">
-	<link rel="stylesheet" href="css/main.css">
-	<title>SUU</title>
-</head>
-<body>
 
     <div class="popup-layer"></div>
 
@@ -213,8 +197,6 @@ session()->put('cart', []);
 
 
 <!-- САЙДМЕНЮ -->
-
-
 <aside class="side">
     <div class="side__logo">
         <a href="index.html">
@@ -244,7 +226,6 @@ session()->put('cart', []);
 </aside>
 
 <!-- МОБИЛЬНОЕ МЕНЮ -->
-
 <div class="mobile-menu">
     <div class="mobile-menu__head">
         <div class="mobile-menu__logo">
@@ -695,11 +676,28 @@ session()->put('cart', []);
 								<div class="products-choose__name">
 									Газированная
 								</div>
+								
+								<h1 wire:click="test()">{{$name}}</h1>
+
 								<ul class="products-list">
 									<?php 
 										$gazlilar = App\Models\Product::where('cat_id', '1')->get();
 									?>
-									@livewire('order-product')				
+									
+
+									@foreach($gazlilar as $gazli)
+										<li>
+											<div class="products-list__img products-list__img-big">
+												<img src="{{$gazli->image_path}}/{{$gazli->image}}" alt="nogaz">
+											</div>
+											<div class="products-list__size">
+												{{$gazli->size}} L
+											</div>
+											<div wire:click="addCart({{$gazli->id}})" class="products-list__basket">
+												<img src="img/basket.png" alt="ico">
+											</div>
+										</li>
+									@endforeach			
 								</ul>
 							</div>
 							<div class="products-ch
@@ -972,9 +970,6 @@ session()->put('cart', []);
 
     // СКИПТЫ ТОЛЬКО ДЛЯ ГЛАВНОЙ
 
-
-    // ФУЛПЕЙДЖ
-
     $('#fullPage').fullpage({
         anchors: ['main', 'about', 'products', 'services', 'news', 'contact'],
         onLeave:function(origin,destination,direction) {
@@ -1029,5 +1024,3 @@ session()->put('cart', []);
     }
 
 </script>
-</body>
-</html>
