@@ -39,7 +39,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $req, $id)
     {
         if($req->btn == "Delete"){
             $category = Category::find($req->cat_name);
@@ -64,25 +64,29 @@ class ProductController extends Controller
 
             }
         }
-
+        
         if($req->cat_id!=null || $req->image!=null || $req->name_uz!=null || $req->name_ru!=null ||
             $req->name_en!=null || $req->description_uz!=null || $req->description_ru!=null || $req->description_en!=null ||
             $req->size!=null){
-
-            $validatedData = $req->validate([
-                'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
-            ]);
+                
+                $validatedData = $req->validate([
+                    'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                ]);
             $img_name = Str::random(10).'.'.$req->file('image')->getClientOriginalExtension();
-            $img_path = '/images/product/'.$img_name;
+            $img_path = '/images/product';
             $req->image->move(public_path('/images/product'), $img_name);
+            if($id){
+                $product = Product::find($id);
+            }else{
+                $product = new Product;
+            }
 
-            $product = new Product;
-            $product->photo = $img_name;
+            $product->image = $img_name;
+            $product->image_path = $img_path;
             $product->cat_id = $req->cat_id;
             $product->name_uz = $req->name_uz;
             $product->name_ru = $req->name_ru;
             $product->name_en = $req->name_en;
-            $product->img_path = $img_path;
             $product->description_uz = $req->description_uz;
             $product->description_ru = $req->description_ru;
             $product->description_en = $req->description_en;
@@ -90,7 +94,8 @@ class ProductController extends Controller
             $product->price = $req->price;
             $product->save();
         }
-        return redirect('list');
+
+        return redirect()->route('product.list');
     }
 
     /**
@@ -110,10 +115,10 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit(Product $product, $id)
+    public function edit($id)
     {
         $product = Product::find($id);
-        return view('product.edit',compact('product'));
+        return view('product.create',compact('product'));
     }
 
     /**
@@ -152,11 +157,5 @@ class ProductController extends Controller
         $product = Product::find($id);
         $product->delete();
         return redirect()->back();
-
-        $cat = Category::find($cat->$name);
-
-
-        $cat->delete();
-
     }
 }
