@@ -2,69 +2,9 @@
 
 @section('content')
 	<!-- ОБРАТНАЯ СВЯЗЬ -->
-
 	<div class="popup-layer"></div>
 
-	<div class="feedback">
-		<div class="feedback-content">
-			<div class="feedback__title">
-				Оставить заявку
-			</div>
-			<div class="feedback__text">
-				Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
-			</div>
-			<div class="feedback-form">
-				<input type="text" placeholder="Имя">
-				<input type="text" placeholder="Фамилия">
-				<input type="tel" placeholder="Телефон" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
-				<textarea placeholder="Текст"></textarea>
-				<div class="feedback-form__check">
-					<label>
-						<input type="checkbox">
-						<span>Я прочитал согласие с политикой конфиденциальности</span>
-					</label>
-				</div>
-				<button type="submit" class="btn">Оставить заявку</button>
-			</div>
-		</div>
-	</div>
-
-	<!-- АВТОРИЗАЦИЯ -->
-
-	<div class="login">
-		<div class="feedback-content">
-			<div class="feedback__title">
-				Зарегистрироваться
-			</div>
-			<div class="feedback__text">
-				Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
-			</div>
-			<div class="feedback-form">
-				<div class="feedback-date">
-					<select id="dobday"></select>
-					<select id="dobmonth"></select>
-					<select id="dobyear"></select>
-				</div>
-				<input type="text" placeholder="Имя">
-				<input type="text" placeholder="Фамилия">
-				<input type="email" placeholder="Ваш электронный адрес">
-				<p>Пароль</p>
-				<input type="password" placeholder="Новый пароль">
-				<input type="password" placeholder="Подтвердите пароль">
-				<div class="feedback-form__check">
-					<label>
-						<input type="checkbox">
-						<span>Я прочитал согласие с политикой конфиденциальности</span>
-					</label>
-				</div>
-				<button type="submit" class="btn">Оставить заявку</button>
-			</div>
-		</div>
-	</div>
-
-
 	<!-- МОБИЛЬНОЕ МЕНЮ -->
-
 	<div class="mobile-menu">
 		<div class="mobile-menu__head">
 			<div class="mobile-menu__logo">
@@ -136,14 +76,7 @@
 		</div>
 	</div>
 
-
-	<!-- ХЭДЕР СТАТИЧЕСКИЙ, ОТЛИЧАЕТСЯ ОТ ГЛАВНОГО -->
-
-
-
-
 	<!-- НОВОСТИ -->
-
 	<section class="news-main">
 		<div class="container">
 			<div class="news-main__content">
@@ -155,162 +88,28 @@
 				</div>
 			</div>
 			<div class="news-wrap">
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news1.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news2.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news1.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news2.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news1.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news2.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news1.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news2.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news1.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news2.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news1.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
-				<div class="news-carousel__item">
-					<div class="news-carousel__img">
-						<img src="img/news2.jpg" alt="news">
-					</div>
-					<div class="news-carousel__text">
-						В наше время все заботятся о своем здоровье и потребляют
-					</div>
-					<div class="news-carousel__info">
-						<span>13.Сент.2021</span>
-						<span><img src="img/eye-gray.svg" alt="ico">20</span>
-					</div>
-					<a href="#"></a>
-				</div>
+				@foreach($news as $news)
+				<a class="news-carousel__item" href="{{route('single-news',$news->id)}}">
+					{{-- <div class="news-carousel__item"> --}}
+						<div class="news-carousel__img">
+							<img src="{{$news->image_path}}/{{$news->image}}" alt="news">
+						</div>
+						<div class="news-carousel__text">
+							{{$news->name_uz}}
+						</div>
+						<div class="news-carousel__info">
+							<span>
+								{{explode(".", $news->updated_at->format('d.m.Y'))[0].'.'
+								.$months[explode(".", $news->updated_at->format('d.m.Y'))[1]].'.'.
+								explode(".", $news->updated_at->format('d.m.Y'))[2]
+								}}
+							</span>
+							<span><img src="img/eye-gray.svg" alt="ico">20</span>
+						</div>
+						<a href="#"></a>
+					{{-- </div> --}}
+				</a>
+				@endforeach
 			</div>
 			<div class="news-more">
 				<a href="#">
@@ -321,7 +120,6 @@
 		</div>
 	</section>
 
-	<!-- ФУТЕР -->
 @endsection
 
 

@@ -1,46 +1,49 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="shortcut icon" href="" type="image/x-icon">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/normalize.css">
-    <link rel="stylesheet" href="css/owl.carousel.css">
-    <link rel="stylesheet" href="css/animate.css">
-    <link rel="stylesheet" href="css/main.css">
-    <title>SUU</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" href="" type="image/x-icon">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="css/normalize.css">
+	<link rel="stylesheet" href="css/owl.carousel.css">
+	<link rel="stylesheet" href="css/animate.css">
+	<link rel="stylesheet" href="css/main.css">
+	<title>SUU</title>
 </head>
 <body>
 
-<!-- ОБРАТНАЯ СВЯЗЬ -->
+    <div class="popup-layer"></div>
 
-<div class="popup-layer"></div>
-<div class="feedback">
-    <div class="feedback-content">
-        <div class="feedback__title">
-            Оставить заявку
-        </div>
-        <div class="feedback__text">
-            Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
-        </div>
-        <div class="feedback-form">
-            <input type="text" placeholder="Имя">
-            <input type="text" placeholder="Фамилия">
-            <input type="tel" placeholder="Телефон" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
-            <textarea placeholder="Текст"></textarea>
-            <div class="feedback-form__check">
-                <label>
-                    <input type="checkbox">
-                    <span>Я прочитал согласие с политикой конфиденциальности</span>
-                </label>
+	<!-- ОБРАТНАЯ СВЯЗЬ -->
+    <form action="{{route('message.store')}}" method="post" >
+        {{ csrf_field() }}
+        <div class="feedback">
+            <div class="feedback-content">
+                <div class="feedback__title">
+                    Оставить заявку
+                </div>
+                <div class="feedback__text">
+                    Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
+                </div>
+                <div class="feedback-form">
+                    <input type="text" placeholder="Имя" name="name" >
+                    <input type="text" placeholder="Фамилия" name="last_name" >
+                    <input type="tel" placeholder="Телефон" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$" name="phone">
+                    <textarea placeholder="Текст" name="message"></textarea>
+                    <div class="feedback-form__check">
+                        <label>
+                            <input type="checkbox">
+                            <span>Я прочитал согласие с политикой конфиденциальности</span>
+                        </label>
+                    </div>
+                    <button type="submit" class="btn">Оставить заявку</button>
+                </div>
             </div>
-            <button type="submit" class="btn">Оставить заявку</button>
         </div>
-    </div>
-</div>
+    </form>
 
 <!-- PRELOADER -->
 
@@ -72,38 +75,38 @@
 
 
 <!-- АВТОРИЗАЦИЯ -->
-
-<div class="login">
-    <div class="feedback-content">
-        <div class="feedback__title">
-            Зарегистрироваться
-        </div>
-        <div class="feedback__text">
-            Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
-        </div>
-        <div class="feedback-form">
-            <div class="feedback-date">
-                <select id="dobday"></select>
-                <select id="dobmonth"></select>
-                <select id="dobyear"></select>
+@if(auth()->user())
+    <div class="login">
+        <div class="feedback-content">
+            <div class="feedback__title">
+                Зарегистрироваться
             </div>
-            <input type="text" placeholder="Имя">
-            <input type="text" placeholder="Фамилия">
-            <input type="email" placeholder="Ваш электронный адрес">
-            <p>Пароль</p>
-            <input type="password" placeholder="Новый пароль">
-            <input type="password" placeholder="Подтвердите пароль">
-            <div class="feedback-form__check">
-                <label>
-                    <input type="checkbox">
-                    <span>Я прочитал согласие с политикой конфиденциальности</span>
-                </label>
+            <div class="feedback__text">
+                Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
             </div>
-            <button type="submit" class="btn">Оставить заявку</button>
+            <div class="feedback-form">
+                <div class="feedback-date">
+                    <select id="dobday"></select>
+                    <select id="dobmonth"></select>
+                    <select id="dobyear"></select>
+                </div>
+                <input type="text" placeholder="Имя">
+                <input type="text" placeholder="Фамилия">
+                <input type="email" placeholder="Ваш электронный адрес">
+                <p>Пароль</p>
+                <input type="password" placeholder="Новый пароль">
+                <input type="password" placeholder="Подтвердите пароль">
+                <div class="feedback-form__check">
+                    <label>
+                        <input type="checkbox">
+                        <span>Я прочитал согласие с политикой конфиденциальности</span>
+                    </label>
+                </div>
+                <button type="submit" class="btn">Оставить заявку</button>
+            </div>
         </div>
     </div>
-</div>
-
+@endif
 
 <!-- КОРЗИНА БОКОВАЯ -->
 
@@ -312,662 +315,664 @@
     </div>
 </div>
 
-<!-- ХЭДЕР -->
 
+<!-- ХЭДЕР -->
 <header class="header">
-    <div class="container">
-        <nav class="header-menu">
-            <ul class="menu">
-                <li>
-                    <a href="#main" data-menuanchor="main">
-                        Главная
-                    </a>
-                </li>
-                <li>
-                    <a href="#about" data-menuanchor="about">
-                        О компании
-                    </a>
-                </li>
-                <li>
-                    <a href="#products" data-menuanchor="products">
-                        Продукция
-                    </a>
-                </li>
-                <li>
-                    <a href="#services" data-menuanchor="services">
-                        Услуги
-                    </a>
-                </li>
-                <li>
-                    <a href="#news" data-menuanchor="news">
-                        Новости
-                    </a>
-                </li>
-                <li>
-                    <a href="#contact" data-menuanchor="contact">
-                        Контакты
-                    </a>
-                </li>
-            </ul>
-        </nav>
-        <ul class="header-side">
-            <li class="header-lang">
-                <div class="header-lang__open">
-                    РУ
-                    <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M0.495008 0.690059V1.57506L4.65001 5.73006C4.84501 5.92506 5.16001 5.92506 5.35501 5.73006L9.51001 1.57506V0.690059H8.62501L5.00001 4.31006L1.37501 0.685059L0.495008 0.690059Z" fill="white"/>
-                    </svg>
-                </div>
-                <div class="header-lang__dropdown header-side__dropdown">
-                    <a href="#">
-                        РУ
-                    </a>
-                    <a href="#">
-                        UZ
-                    </a>
-                    <a href="#">
-                        EN
-                    </a>
-                </div>
-            </li>
-            <li class="header-basket">
-                <div class="header-side__btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
-                    </svg>
-                </div>
-                <span>
+		<div class="container">
+			<nav class="header-menu">
+				<ul class="menu">
+					<li>
+						<a href="#main" data-menuanchor="main">
+							Главная
+						</a>
+					</li>
+					<li>
+						<a href="#about" data-menuanchor="about">
+							О компании
+						</a>
+					</li>
+					<li>
+						<a href="#products" data-menuanchor="products">
+							Продукция
+						</a>
+					</li>
+					<li>
+						<a href="#services" data-menuanchor="services">
+							Услуги
+						</a>
+					</li>
+					<li>
+						<a href="#news" data-menuanchor="news">
+							Новости
+						</a>
+					</li>
+					<li>
+						<a href="#contact" data-menuanchor="contact">
+							Контакты
+						</a>
+					</li>
+				</ul>
+			</nav>
+			<ul class="header-side">
+				<li class="header-lang">
+					<div class="header-lang__open">
+						РУ
+						<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M0.495008 0.690059V1.57506L4.65001 5.73006C4.84501 5.92506 5.16001 5.92506 5.35501 5.73006L9.51001 1.57506V0.690059H8.62501L5.00001 4.31006L1.37501 0.685059L0.495008 0.690059Z" fill="white"/>
+						</svg>
+					</div>
+					<div class="header-lang__dropdown header-side__dropdown">
+						<a href="#">
+							РУ
+						</a>
+						<a href="#">
+							UZ
+						</a>
+						<a href="#">
+							EN
+						</a>
+					</div>
+				</li>
+				<li class="header-basket">
+					<div class="header-side__btn">
+                        <a href="{{route('korzina')}}">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
+                            </svg>
+                        </a>
+					</div>
+					<span>
 						16
 					</span>
-            </li>
-            <li class="header-profile">
-                <div class="header-side__btn">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M12 5.1375C13.305 5.1375 14.3625 6.195 14.3625 7.5C14.3625 8.805 13.305 9.8625 12 9.8625C10.695 9.8625 9.6375 8.805 9.6375 7.5C9.6375 6.195 10.695 5.1375 12 5.1375ZM12 15.2625C15.3413 15.2625 18.8625 16.905 18.8625 17.625V18.8625H5.1375V17.625C5.1375 16.905 8.65875 15.2625 12 15.2625ZM12 3C9.51375 3 7.5 5.01375 7.5 7.5C7.5 9.98625 9.51375 12 12 12C14.4862 12 16.5 9.98625 16.5 7.5C16.5 5.01375 14.4862 3 12 3ZM12 13.125C8.99625 13.125 3 14.6325 3 17.625V19.875C3 20.4937 3.50625 21 4.125 21H19.875C20.4937 21 21 20.4937 21 19.875V17.625C21 14.6325 15.0037 13.125 12 13.125Z" fill="white"/>
-                    </svg>
-                </div>
-                <div class="header-profile__dropdown header-side__dropdown">
-                    <a href="#" class="header-profile__login">Profile</a>
-                    <a href="#">Log out</a>
-                </div>
-            </li>
-            <li class="header-tel">
-                <a href="#">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M17.6275 21.3946C15.9642 21.3946 14.1934 20.9223 12.3665 19.9933C10.6822 19.1353 9.01929 17.9071 7.55514 16.4417C6.09078 14.9762 4.86523 13.3109 4.00852 11.626C3.08001 9.7973 2.6084 8.02739 2.6084 6.36362C2.6084 5.28547 3.6138 4.24334 4.04498 3.84621C4.66616 3.27434 5.64321 2.60596 6.35308 2.60596C6.70672 2.60596 7.11999 2.83705 7.65579 3.33311C8.05573 3.70335 8.50524 4.20464 8.95476 4.78328C9.22627 5.13298 10.5803 6.91754 10.5803 7.77291C10.5803 8.47429 9.78653 8.96312 8.94732 9.4793C8.62186 9.67807 8.28699 9.88426 8.04453 10.0787C7.78526 10.2873 7.73808 10.3969 7.73087 10.4212C8.6227 12.6439 11.3485 15.3697 13.5692 16.2595C13.5893 16.2532 13.6994 16.2099 13.9106 15.9463C14.105 15.7043 14.3123 15.3677 14.5106 15.0435C15.0279 14.2043 15.516 13.4099 16.217 13.4099C17.073 13.4099 18.8574 14.7639 19.206 15.0354C19.7859 15.4852 20.2865 15.9351 20.6574 16.3344C21.1528 16.8702 21.3839 17.2841 21.3839 17.6371C21.3839 18.3483 20.716 19.3279 20.1454 19.9522C19.7475 20.386 18.7049 21.3949 17.6263 21.3949L17.6275 21.3946Z" fill="white"/>
-                    </svg>
-                </a>
-            </li>
-        </ul>
-        <div class="header-mobile">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-    </div>
+				</li>
+				<li class="header-profile">
+					<div class="header-side__btn">
+
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M12 5.1375C13.305 5.1375 14.3625 6.195 14.3625 7.5C14.3625 8.805 13.305 9.8625 12 9.8625C10.695 9.8625 9.6375 8.805 9.6375 7.5C9.6375 6.195 10.695 5.1375 12 5.1375ZM12 15.2625C15.3413 15.2625 18.8625 16.905 18.8625 17.625V18.8625H5.1375V17.625C5.1375 16.905 8.65875 15.2625 12 15.2625ZM12 3C9.51375 3 7.5 5.01375 7.5 7.5C7.5 9.98625 9.51375 12 12 12C14.4862 12 16.5 9.98625 16.5 7.5C16.5 5.01375 14.4862 3 12 3ZM12 13.125C8.99625 13.125 3 14.6325 3 17.625V19.875C3 20.4937 3.50625 21 4.125 21H19.875C20.4937 21 21 20.4937 21 19.875V17.625C21 14.6325 15.0037 13.125 12 13.125Z" fill="white"/>
+                            </svg>
+
+					</div>
+					<div class="header-profile__dropdown header-side__dropdown">
+						<a href="#" class="header-profile__login">Profile</a>
+						<a href="#">Log out</a>
+					</div>
+				</li>
+				<li class="header-tel">
+					<a href="#">
+						<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+							<path d="M17.6275 21.3946C15.9642 21.3946 14.1934 20.9223 12.3665 19.9933C10.6822 19.1353 9.01929 17.9071 7.55514 16.4417C6.09078 14.9762 4.86523 13.3109 4.00852 11.626C3.08001 9.7973 2.6084 8.02739 2.6084 6.36362C2.6084 5.28547 3.6138 4.24334 4.04498 3.84621C4.66616 3.27434 5.64321 2.60596 6.35308 2.60596C6.70672 2.60596 7.11999 2.83705 7.65579 3.33311C8.05573 3.70335 8.50524 4.20464 8.95476 4.78328C9.22627 5.13298 10.5803 6.91754 10.5803 7.77291C10.5803 8.47429 9.78653 8.96312 8.94732 9.4793C8.62186 9.67807 8.28699 9.88426 8.04453 10.0787C7.78526 10.2873 7.73808 10.3969 7.73087 10.4212C8.6227 12.6439 11.3485 15.3697 13.5692 16.2595C13.5893 16.2532 13.6994 16.2099 13.9106 15.9463C14.105 15.7043 14.3123 15.3677 14.5106 15.0435C15.0279 14.2043 15.516 13.4099 16.217 13.4099C17.073 13.4099 18.8574 14.7639 19.206 15.0354C19.7859 15.4852 20.2865 15.9351 20.6574 16.3344C21.1528 16.8702 21.3839 17.2841 21.3839 17.6371C21.3839 18.3483 20.716 19.3279 20.1454 19.9522C19.7475 20.386 18.7049 21.3949 17.6263 21.3949L17.6275 21.3946Z" fill="white"/>
+						</svg>
+					</a>
+				</li>
+			</ul>
+			<div class="header-mobile">
+				<span></span>
+				<span></span>
+				<span></span>
+			</div>
+		</div>
 </header>
 
 
-<!-- ОСНОВНОЙ КОНТЕНТ ГЛАВНОЙ -->
+	<!-- ОСНОВНОЙ КОНТЕНТ ГЛАВНОЙ -->
+	<div id="fullPage">
+		<section class="section main">
+			<div class="container">
+				<div class="main-wrap">
+					<h1 class="section__title">
+						Природная питьевая вода
+					</h1>
+					<div class="section__text">
+						В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+					</div>
+					<div class="section__main">
+						<div class="main-elements">
+							<h3 class="main-elements__title">
+								Полезные элементы
+							</h3>
+							<div class="main-elements__wrap">
+								<div class="main-elements__item">
+									<div class="main-elements__name">
+										Magniy
+									</div>
+									<div class="main-elements__weight">
+										30 mg
+									</div>
+									<div class="main-elements__percent">
+										10 %
+									</div>
+								</div>
+								<div class="main-elements__item">
+									<div class="main-elements__name">
+										Ca
+									</div>
+									<div class="main-elements__weight">
+										30 mg
+									</div>
+									<div class="main-elements__percent">
+										10 %
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="main-btns">
+							<a href="#" class="btn">
+								Узнать больше
+							</a>
+							<a href="#" class="btn btn-trans feedback-open">
+								Оставить заявку
+							</a>
+						</div>
+					</div>
+				</div>
+				<div class="main-carousel owl-carousel">
+					<div class="main-carousel__item">
+						<div class="main-carousel__img">
+							<img data-src="img/bottle1.png" alt="SUU" class="owl-lazy">
+						</div>
+						<div class="main-carousel__info">
+							<div class="main-carousel__name">
+								SUU
+							</div>
+							<div class="main-carousel__desc">
+								Gazlanmagan shifobahsh suv
+							</div>
+							<div class="main-carousel__size">
+								0.5 l
+							</div>
+						</div>
+					</div>
+					<div class="main-carousel__item">
+						<div class="main-carousel__img">
+							<img data-src="img/bottle2.png" alt="SUU" class="owl-lazy">
+						</div>
+						<div class="main-carousel__info">
+							<div class="main-carousel__name">
+								SUU
+							</div>
+							<div class="main-carousel__desc">
+								Gazlanmagan shifobahsh suv
+							</div>
+							<div class="main-carousel__size">
+								18.9 l
+							</div>
+						</div>
+					</div>
+					<div class="main-carousel__item">
+						<div class="main-carousel__img">
+							<img data-src="img/bottle3.png" alt="SUU" class="owl-lazy">
+						</div>
+						<div class="main-carousel__info">
+							<div class="main-carousel__name">
+								SUU
+							</div>
+							<div class="main-carousel__desc">
+								Gazlanmagan shifobahsh suv
+							</div>
+							<div class="main-carousel__size">
+								0.5 l
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="main-animation">
+					<div class="main-animation__item">
+						<img src="img/main-anim1.png" alt="ico">
+					</div>
+					<div class="main-animation__item">
+						<img src="img/main-anim2.png" alt="ico">
+					</div>
+					<div class="main-animation__item">
+						<img src="img/main-anim3.png" alt="ico">
+					</div>
+					<div class="main-animation__item">
+						<img src="img/main-anim4.png" alt="ico">
+					</div>
+					<div class="main-animation__item">
+						<img src="img/main-anim5.png" alt="ico">
+					</div>
+					<div class="main-animation__item">
+						<img src="img/main-anim6.png" alt="ico">
+					</div>
+					<div class="main-animation__item">
+						<img src="img/main-anim7.png" alt="ico">
+					</div>
+					<div class="main-animation__item">
+						<img src="img/main-anim8.png" alt="ico">
+					</div>
+					<div class="main-animation__item">
+						<img src="img/main-anim9.png" alt="ico">
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section about pattern">
+			<div class="container">
+				<div class="section-wrap">
+					<div class="about-content">
+						<div class="section-content">
+							<h2 class="section__title">
+								О «SUU.UZBEKISTAN»
+							</h2>
+							<div class="section__text">
+								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+							</div>
+						</div>
+						<a href="{{route('about')}}" class="about__btn btn">
+							О компании
+						</a>
+					</div>
+					<div class="section__main">
+						<div class="about-list">
+							<div class="about-list__item">
+								<div class="about-list__img">
+									<img src="img/about.png" alt="about">
 
+									<div class="dots">
+										<div class="dot"></div>
+										<div class="dot"></div>
+										<div class="dot"></div>
+									</div>
+								</div>
+								<div class="about-list__number">
+									01
+								</div>
+								<div class="about-list__name">
+									Технологии
+								</div>
+								<div class="about-list__desc">
+									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+								</div>
+							</div>
+							<div class="about-list__item">
+								<div class="about-list__img">
+									<img src="img/about.png" alt="about">
 
-<div id="fullPage">
-    <section class="section main">
-        <div class="container">
-            <div class="main-wrap">
-                <h1 class="section__title">
-                    Природная питьевая вода
-                </h1>
-                <div class="section__text">
-                    В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                </div>
-                <div class="section__main">
-                    <div class="main-elements">
-                        <h3 class="main-elements__title">
-                            Полезные элементы
-                        </h3>
-                        <div class="main-elements__wrap">
-                            <div class="main-elements__item">
-                                <div class="main-elements__name">
-                                    Magniy
-                                </div>
-                                <div class="main-elements__weight">
-                                    30 mg
-                                </div>
-                                <div class="main-elements__percent">
-                                    10 %
-                                </div>
-                            </div>
-                            <div class="main-elements__item">
-                                <div class="main-elements__name">
-                                    Ca
-                                </div>
-                                <div class="main-elements__weight">
-                                    30 mg
-                                </div>
-                                <div class="main-elements__percent">
-                                    10 %
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="main-btns">
-                        <a href="#" class="btn">
-                            Узнать больше
-                        </a>
-                        <a href="#" class="btn btn-trans feedback-open">
-                            Оставить заявку
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="main-carousel owl-carousel">
-                <div class="main-carousel__item">
-                    <div class="main-carousel__img">
-                        <img data-src="img/bottle1.png" alt="SUU" class="owl-lazy">
-                    </div>
-                    <div class="main-carousel__info">
-                        <div class="main-carousel__name">
-                            SUU
-                        </div>
-                        <div class="main-carousel__desc">
-                            Gazlanmagan shifobahsh suv
-                        </div>
-                        <div class="main-carousel__size">
-                            0.5 l
-                        </div>
-                    </div>
-                </div>
-                <div class="main-carousel__item">
-                    <div class="main-carousel__img">
-                        <img data-src="img/bottle2.png" alt="SUU" class="owl-lazy">
-                    </div>
-                    <div class="main-carousel__info">
-                        <div class="main-carousel__name">
-                            SUU
-                        </div>
-                        <div class="main-carousel__desc">
-                            Gazlanmagan shifobahsh suv
-                        </div>
-                        <div class="main-carousel__size">
-                            18.9 l
-                        </div>
-                    </div>
-                </div>
-                <div class="main-carousel__item">
-                    <div class="main-carousel__img">
-                        <img data-src="img/bottle3.png" alt="SUU" class="owl-lazy">
-                    </div>
-                    <div class="main-carousel__info">
-                        <div class="main-carousel__name">
-                            SUU
-                        </div>
-                        <div class="main-carousel__desc">
-                            Gazlanmagan shifobahsh suv
-                        </div>
-                        <div class="main-carousel__size">
-                            0.5 l
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="main-animation">
-                <div class="main-animation__item">
-                    <img src="img/main-anim1.png" alt="ico">
-                </div>
-                <div class="main-animation__item">
-                    <img src="img/main-anim2.png" alt="ico">
-                </div>
-                <div class="main-animation__item">
-                    <img src="img/main-anim3.png" alt="ico">
-                </div>
-                <div class="main-animation__item">
-                    <img src="img/main-anim4.png" alt="ico">
-                </div>
-                <div class="main-animation__item">
-                    <img src="img/main-anim5.png" alt="ico">
-                </div>
-                <div class="main-animation__item">
-                    <img src="img/main-anim6.png" alt="ico">
-                </div>
-                <div class="main-animation__item">
-                    <img src="img/main-anim7.png" alt="ico">
-                </div>
-                <div class="main-animation__item">
-                    <img src="img/main-anim8.png" alt="ico">
-                </div>
-                <div class="main-animation__item">
-                    <img src="img/main-anim9.png" alt="ico">
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section about pattern">
-        <div class="container">
-            <div class="section-wrap">
-                <div class="about-content">
-                    <div class="section-content">
-                        <h2 class="section__title">
-                            О «SUU.UZBEKISTAN»
-                        </h2>
-                        <div class="section__text">
-                            В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                        </div>
-                    </div>
-                    <a href="#" class="about__btn btn">
-                        О компании
-                    </a>
-                </div>
-                <div class="section__main">
-                    <div class="about-list">
-                        <div class="about-list__item">
-                            <div class="about-list__img">
-                                <img src="img/about.png" alt="about">
+									<div class="dots">
+										<div class="dot"></div>
+										<div class="dot"></div>
+										<div class="dot"></div>
+									</div>
+								</div>
+								<div class="about-list__number">
+									02
+								</div>
+								<div class="about-list__name">
+									Производство
+								</div>
+								<div class="about-list__desc">
+									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+								</div>
+							</div>
+							<div class="about-list__item">
+								<div class="about-list__img">
+									<img src="img/about.png" alt="about">
 
-                                <div class="dots">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
-                            </div>
-                            <div class="about-list__number">
-                                01
-                            </div>
-                            <div class="about-list__name">
-                                Технологии
-                            </div>
-                            <div class="about-list__desc">
-                                В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                            </div>
-                        </div>
-                        <div class="about-list__item">
-                            <div class="about-list__img">
-                                <img src="img/about.png" alt="about">
-
-                                <div class="dots">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
-                            </div>
-                            <div class="about-list__number">
-                                02
-                            </div>
-                            <div class="about-list__name">
-                                Производство
-                            </div>
-                            <div class="about-list__desc">
-                                В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                            </div>
-                        </div>
-                        <div class="about-list__item">
-                            <div class="about-list__img">
-                                <img src="img/about.png" alt="about">
-
-                                <div class="dots">
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                    <div class="dot"></div>
-                                </div>
-                            </div>
-                            <div class="about-list__number">
-                                03
-                            </div>
-                            <div class="about-list__name">
-                                Немецкие фильтры
-                            </div>
-                            <div class="about-list__desc">
-                                В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section products">
-        <div class="container">
-            <div class="section-wrap">
-                <div class="products-content">
-                    <div class="section-content">
-                        <h2 class="section__title">
-                            Продукция
-                        </h2>
-                        <div class="section__text">
-                            В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                        </div>
-                    </div>
-                    <a href="#" class="products__btn btn feedback-open">
-                        Оставить заявку
-                    </a>
-                </div>
-                <div class="section__main">
-                    <div class="products-choose">
-                        <div class="products-choose__item">
-                            <div class="products-choose__name">
-                                Негазированная
-                            </div>
-                            <ul class="products-list">
-                                <li>
-                                    <div class="products-list__img products-list__img-big">
-                                        <img src="img/nogaz.png" alt="nogaz">
-                                    </div>
-                                    <div class="products-list__size">
-                                        1.5 L
-                                    </div>
-                                    <div class="products-list__basket">
-                                        <img src="img/basket.png" alt="ico">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="products-list__img products-list__img-medium">
-                                        <img src="img/nogaz.png" alt="nogaz">
-                                    </div>
-                                    <div class="products-list__size">
-                                        1.0 L
-                                    </div>
-                                    <div class="products-list__basket">
-                                        <img src="img/basket.png" alt="ico">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="products-list__img products-list__img-small">
-                                        <img src="img/nogaz.png" alt="nogaz">
-                                    </div>
-                                    <div class="products-list__size">
-                                        0.5 L
-                                    </div>
-                                    <div class="products-list__basket">
-                                        <img src="img/basket.png" alt="ico">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="products-choose__item">
-                            <div class="products-choose__name">
-                                Газированная
-                            </div>
-                            <ul class="products-list">
-                                <li>
-                                    <div class="products-list__img products-list__img-big">
-                                        <img src="img/gaz.png" alt="nogaz">
-                                    </div>
-                                    <div class="products-list__size">
-                                        1.5 L
-                                    </div>
-                                    <div class="products-list__basket">
-                                        <img src="img/basket.png" alt="ico">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="products-list__img products-list__img-medium">
-                                        <img src="img/gaz.png" alt="nogaz">
-                                    </div>
-                                    <div class="products-list__size">
-                                        1.0 L
-                                    </div>
-                                    <div class="products-list__basket">
-                                        <img src="img/basket.png" alt="ico">
-                                    </div>
-                                </li>
-                                <li>
-                                    <div class="products-list__img products-list__img-small">
-                                        <img src="img/gaz.png" alt="nogaz">
-                                    </div>
-                                    <div class="products-list__size">
-                                        0.5 L
-                                    </div>
-                                    <div class="products-list__basket">
-                                        <img src="img/basket.png" alt="ico">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="products-choose__item">
-                            <div class="products-choose__name">
-                                Капсула
-                            </div>
-                            <ul class="products-list">
-                                <li>
-                                    <div class="products-list__img products-list__img-cooler">
-                                        <img src="img/cooler.png" alt="nogaz">
-                                    </div>
-                                    <div class="products-list__size">
-                                        18.9 L
-                                    </div>
-                                    <div class="products-list__basket">
-                                        <img src="img/basket.png" alt="ico">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section services">
-        <div class="container">
-            <div class="section-wrap">
-                <div class="services__title">
-                    <h2 class="section__title">
-                        Услуги
-                    </h2>
-                    <a href="#" class="services__btn btn feedback-open">
-                        Оставить заявку
-                    </a>
-                </div>
-                <div class="section__main">
-                    <div class="services-content">
-                        <div class="services-item">
-                            <h3 class="services-item__title">
-                                Печать логотипа
-                            </h3>
-                            <div class="services-item__text">
-                                В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                            </div>
-                            <div class="services-item__bottles">
-                                <img src="img/services1.png" alt="bottle">
-                                <img src="img/services2.png" alt="bottle">
-                            </div>
-                        </div>
-                        <div class="services-item">
-                            <h3 class="services-item__title">
-                                Доставка
-                            </h3>
-                            <div class="services-item__text">
-                                В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                            </div>
-                            <div class="services-item__truck">
-                                <img src="img/truck.png" alt="truck">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section news pattern">
-        <div class="container">
-            <div class="section-wrap">
-                <div class="news-content">
-                    <div class="section-content">
-                        <h2 class="section__title">
-                            Новости
-                        </h2>
-                        <div class="section__text">
-                            В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-                        </div>
-                    </div>
-                    <a href="#" class="news__btn btn">
-                        Все новости
-                    </a>
-                </div>
-                <div class="section__main">
-                    <div class="news-arrows">
+									<div class="dots">
+										<div class="dot"></div>
+										<div class="dot"></div>
+										<div class="dot"></div>
+									</div>
+								</div>
+								<div class="about-list__number">
+									03
+								</div>
+								<div class="about-list__name">
+									Немецкие фильтры
+								</div>
+								<div class="about-list__desc">
+									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section products">
+			<div class="container">
+				<div class="section-wrap">
+					<div class="products-content">
+						<div class="section-content">
+							<h2 class="section__title">
+								Продукция
+							</h2>
+							<div class="section__text">
+								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+							</div>
+						</div>
+						<a href="#" class="products__btn btn feedback-open">
+							Оставить заявку
+						</a>
+					</div>
+					<div class="section__main">
+						<div class="products-choose">
+							<div class="products-choose__item">
+								<div class="products-choose__name">
+									Негазированная
+								</div>
+								<ul class="products-list">
+									<li>
+										<div class="products-list__img products-list__img-big">
+											<img src="img/nogaz.png" alt="nogaz">
+										</div>
+										<div class="products-list__size">
+											1.5 L
+										</div>
+										<div class="products-list__basket">
+											<img src="img/basket.png" alt="ico">
+										</div>
+									</li>
+									<li>
+										<div class="products-list__img products-list__img-medium">
+											<img src="img/nogaz.png" alt="nogaz">
+										</div>
+										<div class="products-list__size">
+											1.0 L
+										</div>
+										<div class="products-list__basket">
+											<img src="img/basket.png" alt="ico">
+										</div>
+									</li>
+									<li>
+										<div class="products-list__img products-list__img-small">
+											<img src="img/nogaz.png" alt="nogaz">
+										</div>
+										<div class="products-list__size">
+											0.5 L
+										</div>
+										<div class="products-list__basket">
+											<img src="img/basket.png" alt="ico">
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="products-choose__item">
+								<div class="products-choose__name">
+									Газированная
+								</div>
+								<ul class="products-list">
+									<li>
+										<div class="products-list__img products-list__img-big">
+											<img src="img/gaz.png" alt="nogaz">
+										</div>
+										<div class="products-list__size">
+											1.5 L
+										</div>
+										<div class="products-list__basket">
+											<img src="img/basket.png" alt="ico">
+										</div>
+									</li>
+									<li>
+										<div class="products-list__img products-list__img-medium">
+											<img src="img/gaz.png" alt="nogaz">
+										</div>
+										<div class="products-list__size">
+											1.0 L
+										</div>
+										<div class="products-list__basket">
+											<img src="img/basket.png" alt="ico">
+										</div>
+									</li>
+									<li>
+										<div class="products-list__img products-list__img-small">
+											<img src="img/gaz.png" alt="nogaz">
+										</div>
+										<div class="products-list__size">
+											0.5 L
+										</div>
+										<div class="products-list__basket">
+											<img src="img/basket.png" alt="ico">
+										</div>
+									</li>
+								</ul>
+							</div>
+							<div class="products-choose__item">
+								<div class="products-choose__name">
+									Капсула
+								</div>
+								<ul class="products-list">
+									<li>
+										<div class="products-list__img products-list__img-cooler">
+											<img src="img/cooler.png" alt="nogaz">
+										</div>
+										<div class="products-list__size">
+											18.9 L
+										</div>
+										<div class="products-list__basket">
+											<img src="img/basket.png" alt="ico">
+										</div>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section services">
+			<div class="container">
+				<div class="section-wrap">
+					<div class="services__title">
+						<h2 class="section__title">
+							Услуги
+						</h2>
+						<a href="#" class="services__btn btn feedback-open">
+							Оставить заявку
+						</a>
+					</div>
+					<div class="section__main">
+						<div class="services-content">
+							<div class="services-item">
+								<h3 class="services-item__title">
+									Печать логотипа
+								</h3>
+								<div class="services-item__text">
+									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+								</div>
+								<div class="services-item__bottles">
+									<img src="img/services1.png" alt="bottle">
+									<img src="img/services2.png" alt="bottle">
+								</div>
+							</div>
+							<div class="services-item">
+								<h3 class="services-item__title">
+									Доставка
+								</h3>
+								<div class="services-item__text">
+									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+								</div>
+								<div class="services-item__truck">
+									<img src="img/truck.png" alt="truck">
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section news pattern">
+			<div class="container">
+				<div class="section-wrap">
+					<div class="news-content">
+						<div class="section-content">
+							<h2 class="section__title">
+								Новости
+							</h2>
+							<div class="section__text">
+								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+							</div>
+						</div>
+						<a href="{{route('front.news')}}" class="news__btn btn">
+							Все новости
+						</a>
+					</div>
+					<div class="section__main">
+						<div class="news-arrows">
 							<span class="arrow-left">
 								<img src="img/chevron_left.svg" alt="ico">
 							</span>
-                        <span class="arrow-right">
+							<span class="arrow-right">
 								<img src="img/chevron_right.svg" alt="ico">
 							</span>
-                    </div>
-                    <div class="news-carousel owl-carousel">
-                        <div class="news-carousel__item">
-                            <div class="news-carousel__img">
-                                <img data-src="img/news1.jpg" class="owl-lazy" alt="news">
-                            </div>
-                            <div class="news-carousel__text">
-                                В наше время все заботятся о своем здоровье и потребляют
-                            </div>
-                            <div class="news-carousel__info">
-                                <span>13.Сент.2021</span>
-                                <span><img src="img/eye.svg" alt="ico">20</span>
-                            </div>
-                            <a href="#"></a>
-                        </div>
-                        <div class="news-carousel__item">
-                            <div class="news-carousel__img">
-                                <img data-src="img/news2.jpg" class="owl-lazy" alt="news">
-                            </div>
-                            <div class="news-carousel__text">
-                                В наше время все заботятся о своем здоровье и потребляют
-                            </div>
-                            <div class="news-carousel__info">
-                                <span>13.Сент.2021</span>
-                                <span><img src="img/eye.svg" alt="ico">20</span>
-                            </div>
-                            <a href="#"></a>
-                        </div>
-                        <div class="news-carousel__item">
-                            <div class="news-carousel__img">
-                                <img data-src="img/news1.jpg" class="owl-lazy" alt="news">
-                            </div>
-                            <div class="news-carousel__text">
-                                В наше время все заботятся о своем здоровье и потребляют
-                            </div>
-                            <div class="news-carousel__info">
-                                <span>13.Сент.2021</span>
-                                <span><img src="img/eye.svg" alt="ico">20</span>
-                            </div>
-                            <a href="#"></a>
-                        </div>
-                        <div class="news-carousel__item">
-                            <div class="news-carousel__img">
-                                <img data-src="img/news2.jpg" class="owl-lazy" alt="news">
-                            </div>
-                            <div class="news-carousel__text">
-                                В наше время все заботятся о своем здоровье и потребляют
-                            </div>
-                            <div class="news-carousel__info">
-                                <span>13.Сент.2021</span>
-                                <span><img src="img/eye.svg" alt="ico">20</span>
-                            </div>
-                            <a href="#"></a>
-                        </div>
-                        <div class="news-carousel__item">
-                            <div class="news-carousel__img">
-                                <img data-src="img/news1.jpg" class="owl-lazy" alt="news">
-                            </div>
-                            <div class="news-carousel__text">
-                                В наше время все заботятся о своем здоровье и потребляют
-                            </div>
-                            <div class="news-carousel__info">
-                                <span>13.Сент.2021</span>
-                                <span><img src="img/eye.svg" alt="ico">20</span>
-                            </div>
-                            <a href="#"></a>
-                        </div>
-                        <div class="news-carousel__item">
-                            <div class="news-carousel__img">
-                                <img data-src="img/news2.jpg" class="owl-lazy" alt="news">
-                            </div>
-                            <div class="news-carousel__text">
-                                В наше время все заботятся о своем здоровье и потребляют
-                            </div>
-                            <div class="news-carousel__info">
-                                <span>13.Сент.2021</span>
-                                <span><img src="img/eye.svg" alt="ico">20</span>
-                            </div>
-                            <a href="#"></a>
-                        </div>
-                        <div class="news-carousel__item">
-                            <div class="news-carousel__img">
-                                <img data-src="img/news1.jpg" class="owl-lazy" alt="news">
-                            </div>
-                            <div class="news-carousel__text">
-                                В наше время все заботятся о своем здоровье и потребляют
-                            </div>
-                            <div class="news-carousel__info">
-                                <span>13.Сент.2021</span>
-                                <span><img src="img/eye.svg" alt="ico">20</span>
-                            </div>
-                            <a href="#"></a>
-                        </div>
-                        <div class="news-carousel__item">
-                            <div class="news-carousel__img">
-                                <img data-src="img/news2.jpg" class="owl-lazy" alt="news">
-                            </div>
-                            <div class="news-carousel__text">
-                                В наше время все заботятся о своем здоровье и потребляют
-                            </div>
-                            <div class="news-carousel__info">
-                                <span>13.Сент.2021</span>
-                                <span><img src="img/eye.svg" alt="ico">20</span>
-                            </div>
-                            <a href="#"></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-    <section class="section contact">
-        <div class="container">
-            <div class="section-wrap">
-                <div class="contact-content">
-                    <h2 class="section__title">
-                        Контакты
-                    </h2>
-                    <div class="section__main">
-                        <div class="contact-item">
-                            <div class="contact-item__name">
-                                Для экспорта и импорта:
-                            </div>
-                            <div class="contact-item__value">
-                                <a href="mailto:SUU.UZBEKISTAN@suu.uz">SUU.UZBEKISTAN@suu.uz</a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-item__name">
-                                Телефоны:
-                            </div>
-                            <div class="contact-item__value">
-                                <a href="tel:+998911529721">+998 91 152 97 21 </a>
-                                <a href="tel:+998911529721">+998 91 152 97 21 </a>
-                            </div>
-                        </div>
-                        <div class="contact-item">
-                            <div class="contact-item__name">
-                                E-mail:
-                            </div>
-                            <div class="contact-item__value">
-                                <a href="mailto:info@SUU.UZBEKISTAN.uz">info@SUU.UZBEKISTAN.uz
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="contact__bottle">
-                <img src="img/contact.png" alt="bottle">
-            </div>
-        </div>
-        <div class="contact__map">
-            <div id="map"></div>
-        </div>
-    </section>
-</div>
+						</div>
+						<div class="news-carousel owl-carousel">
+							<div class="news-carousel__item">
+								<div class="news-carousel__img">
+									<img data-src="img/news1.jpg" class="owl-lazy" alt="news">
+								</div>
+								<div class="news-carousel__text">
+									В наше время все заботятся о своем здоровье и потребляют
+								</div>
+								<div class="news-carousel__info">
+									<span>13.Сент.2021</span>
+									<span><img src="img/eye.svg" alt="ico">20</span>
+								</div>
+								<a href="#"></a>
+							</div>
+							<div class="news-carousel__item">
+								<div class="news-carousel__img">
+									<img data-src="img/news2.jpg" class="owl-lazy" alt="news">
+								</div>
+								<div class="news-carousel__text">
+									В наше время все заботятся о своем здоровье и потребляют
+								</div>
+								<div class="news-carousel__info">
+									<span>13.Сент.2021</span>
+									<span><img src="img/eye.svg" alt="ico">20</span>
+								</div>
+								<a href="#"></a>
+							</div>
+							<div class="news-carousel__item">
+								<div class="news-carousel__img">
+									<img data-src="img/news1.jpg" class="owl-lazy" alt="news">
+								</div>
+								<div class="news-carousel__text">
+									В наше время все заботятся о своем здоровье и потребляют
+								</div>
+								<div class="news-carousel__info">
+									<span>13.Сент.2021</span>
+									<span><img src="img/eye.svg" alt="ico">20</span>
+								</div>
+								<a href="#"></a>
+							</div>
+							<div class="news-carousel__item">
+								<div class="news-carousel__img">
+									<img data-src="img/news2.jpg" class="owl-lazy" alt="news">
+								</div>
+								<div class="news-carousel__text">
+									В наше время все заботятся о своем здоровье и потребляют
+								</div>
+								<div class="news-carousel__info">
+									<span>13.Сент.2021</span>
+									<span><img src="img/eye.svg" alt="ico">20</span>
+								</div>
+								<a href="#"></a>
+							</div>
+							<div class="news-carousel__item">
+								<div class="news-carousel__img">
+									<img data-src="img/news1.jpg" class="owl-lazy" alt="news">
+								</div>
+								<div class="news-carousel__text">
+									В наше время все заботятся о своем здоровье и потребляют
+								</div>
+								<div class="news-carousel__info">
+									<span>13.Сент.2021</span>
+									<span><img src="img/eye.svg" alt="ico">20</span>
+								</div>
+								<a href="#"></a>
+							</div>
+							<div class="news-carousel__item">
+								<div class="news-carousel__img">
+									<img data-src="img/news2.jpg" class="owl-lazy" alt="news">
+								</div>
+								<div class="news-carousel__text">
+									В наше время все заботятся о своем здоровье и потребляют
+								</div>
+								<div class="news-carousel__info">
+									<span>13.Сент.2021</span>
+									<span><img src="img/eye.svg" alt="ico">20</span>
+								</div>
+								<a href="#"></a>
+							</div>
+							<div class="news-carousel__item">
+								<div class="news-carousel__img">
+									<img data-src="img/news1.jpg" class="owl-lazy" alt="news">
+								</div>
+								<div class="news-carousel__text">
+									В наше время все заботятся о своем здоровье и потребляют
+								</div>
+								<div class="news-carousel__info">
+									<span>13.Сент.2021</span>
+									<span><img src="img/eye.svg" alt="ico">20</span>
+								</div>
+								<a href="#"></a>
+							</div>
+							<div class="news-carousel__item">
+								<div class="news-carousel__img">
+									<img data-src="img/news2.jpg" class="owl-lazy" alt="news">
+								</div>
+								<div class="news-carousel__text">
+									В наше время все заботятся о своем здоровье и потребляют
+								</div>
+								<div class="news-carousel__info">
+									<span>13.Сент.2021</span>
+									<span><img src="img/eye.svg" alt="ico">20</span>
+								</div>
+								<a href="#"></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+		<section class="section contact">
+			<div class="container">
+				<div class="section-wrap">
+					<div class="contact-content">
+						<h2 class="section__title">
+							Контакты
+						</h2>
+						<div class="section__main">
+							<div class="contact-item">
+								<div class="contact-item__name">
+									Для экспорта и импорта:
+								</div>
+								<div class="contact-item__value">
+									<a href="mailto:SUU.UZBEKISTAN@suu.uz">SUU.UZBEKISTAN@suu.uz</a>
+								</div>
+							</div>
+							<div class="contact-item">
+								<div class="contact-item__name">
+									Телефоны:
+								</div>
+								<div class="contact-item__value">
+									<a href="tel:+998911529721">+998 91 152 97 21 </a>
+									<a href="tel:+998911529721">+998 91 152 97 21 </a>
+								</div>
+							</div>
+							<div class="contact-item">
+								<div class="contact-item__name">
+									E-mail:
+								</div>
+								<div class="contact-item__value">
+									<a href="mailto:info@SUU.UZBEKISTAN.uz">info@SUU.UZBEKISTAN.uz
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="contact__bottle">
+					<img src="img/contact.png" alt="bottle">
+				</div>
+			</div>
+			<div class="contact__map">
+				<div id="map"></div>
+			</div>
+		</section>
+	</div>
 
 
 <!-- КНОПКА ВЫЗОВА ОБРАТНОЙ СВЯЗИ -->

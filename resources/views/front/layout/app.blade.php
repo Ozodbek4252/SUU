@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
+    <base href="/public">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="shortcut icon" href="" type="image/x-icon">
@@ -20,8 +21,6 @@
 @yield('content')
 
 @include('front.component.footer')
-
-
 
 </body>
 
