@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Report;
+use App\Models\News;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
-class ReportController extends Controller
+class NewsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,8 +15,8 @@ class ReportController extends Controller
      */
     public function index()
     {
-        $report = Report::all();
-        return view('report.index',compact('report'));
+        $news = News::all();
+        return view('news.index',compact('news'));
     }
 
     /**
@@ -26,7 +26,7 @@ class ReportController extends Controller
      */
     public function create()
     {
-        return view('report.create');
+        return view('news.create');
     }
 
     /**
@@ -40,30 +40,36 @@ class ReportController extends Controller
         $validatedData = $request->validate([
             'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
         ]);
-        $img_name = Str::random(10).'.'.$request->file('image')->getClientOriginalExtension();
-        $img_path = '/images/news';
-        $request->image->move(public_path('/images/news'), $img_name);
 
-        $report = new Report;
-        $report->name_uz = $request->name_uz;
-        $report->name_ru = $request->name_ru;
-        $report->name_en = $request->name_en;
-        $report->photo = $img_name;
-        $report->img_path = $img_path;
-        $report->description_uz = $request->description_uz;
-        $report->description_ru = $request->description_ru;
-        $report->description_en = $request->description_en;
-        $report->save();
-        return redirect('report');
+        $news = new News;
+        if($request->has('image')){
+            $img_name = Str::random(10).'.'.$request->file('image')->getClientOriginalExtension();
+            $img_path = '/images/news';
+            $request->image->move(public_path('/images/news'), $img_name);
+            $news->image = $img_name;
+            $news->image_path = $img_path;
+        }
+
+        $news->name_uz = $request->name_uz;
+        $news->name_ru = $request->name_ru;
+        $news->name_en = $request->name_en;
+        $news->description_uz = $request->description_uz;
+        $news->description_ru = $request->description_ru;
+        $news->description_en = $request->description_en;
+        $news->save();
+
+        session()->flash('message','News added successfully.');
+        
+        return redirect('news');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function show(Report $report)
+    public function show(News $news)
     {
         //
     }
@@ -71,14 +77,14 @@ class ReportController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function edit(Report $report,$id)
+    public function edit(News $news,$id)
     {
-        $report = Report::find($id);
+        $news = News::find($id);
 
-        return view('report.edite',compact('report'));
+        return view('news.edit',compact('news'));
 
 
     }
@@ -87,12 +93,12 @@ class ReportController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Report $report,$id)
+    public function update(Request $request, News $news,$id)
     {
-        Report::where('id', $id)
+        News::where('id', $id)
             ->update([
                     'name_uz' => $request->input('name_uz'),
                     'name_ru'=>$request->input('name_ru'),
@@ -102,19 +108,19 @@ class ReportController extends Controller
                     'description_ru'=>$request->input('description_ru'),
                     'description_en'=>$request->input('description_en')]
             );
-        return redirect('report');
+        return redirect('news');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Report  $report
+     * @param  \App\Models\News  $news
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Report $report,$id)
+    public function destroy(News $news,$id)
     {
-        $report = Report::find($id);
-        $report->delete();
+        $news = News::find($id);
+        $news->delete();
         return redirect()->back();
     }
 }
