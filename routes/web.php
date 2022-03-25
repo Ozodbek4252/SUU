@@ -43,17 +43,15 @@ Route::get('/dashboard', function () {
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return view('dashboard');
-    
-    // Route::get('/list',[ProductController::class,'index'])->name('list');
-    // Route::get('/create',[ProductController::class,'create'])->name('create');
-    // Route::post('/create/store',[ProductController::class,'store'])->name('create.store');
-    // Route::get('/product/edit/{id}',[ProductController::class,'edit'])->name('create.edit');
-    // Route::post('/product/update/{id}',[ProductController::class,'update'])->name('create.update');
-    // Route::get('/product/destroy/{id}',[ProductController::class,'destroy'])->name('create.destroy');
-
-    ///--- News ---///
-    
 })->name('dashboard');
+
+Route::get('/product/list',[ProductController::class,'index'])->name('product.list');
+Route::get('/product/create',[ProductController::class,'create'])->name('product.create');
+Route::post('/product/{id?}',[ProductController::class,'store'])->name('product.store');
+Route::delete('/product/{id}',[ProductController::class,'destroy'])->name('product.destroy');
+Route::post('/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+// Route::post('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
+
 Route::get('/news', [NewsController::class,'index'])->name('news');
 Route::get('/news/create', [NewsController::class,'create'])->name('news.create');
 Route::post('/news',[NewsController::class,'store'])->name('news.store');
