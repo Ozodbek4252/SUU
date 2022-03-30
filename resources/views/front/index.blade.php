@@ -18,7 +18,7 @@
     <div class="popup-layer"></div>
 
 	<!-- ОБРАТНАЯ СВЯЗЬ -->
-    <form action="{{route('message.store')}}" method="post" >
+    <form action="{{route('message.store', app()->getLocale())}}" method="post" >
         {{ csrf_field() }}
         <div class="feedback">
             <div class="feedback-content">
@@ -108,105 +108,32 @@
 @endif
 
 <!-- КОРЗИНА БОКОВАЯ -->
-<?php
-session()->put('cart', []);
-?>
 <div class="side-basket__layer"></div>
 <div class="side-basket">
     <div class="feedback-content">
-        <div class="side-basket__content">
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-        </div>
+			<div class="side-basket__content" id="side-basket__content">
+				{{-- @if(session()->get('basket')!=null)
+					@foreach(session()->get('basket') as $data) --}}
+						
+					{{-- @endforeach
+				@endif --}}
+			</div>
         <div class="side-basket__price">
             <div class="order-price">
                 <div class="order-price__item">
                     <span class="order-price__name">Промежуточный итог</span>
-                    <span class="order-price__value">42000 <span>UZS</span></span>
+                    <span class="order-price__value" id="price"><span>UZS</span></span>
                 </div>
                 <div class="order-price__item">
                     <span class="order-price__name">Доставка</span>
                     <span class="order-price__value">0 <span>UZS</span></span>
                 </div>
             </div>
-            <button class="order-add btn">
-                Оплатить
-            </button>
+            <a href="/order">
+				<button class="order-add btn">
+					Оплатить
+				</button>
+			</a>
         </div>
     </div>
 </div>
@@ -324,32 +251,32 @@ session()->put('cart', []);
 				<ul class="menu">
 					<li>
 						<a href="#main" data-menuanchor="main">
-							Главная
+							{{__('navHome')}}
 						</a>
 					</li>
 					<li>
 						<a href="#about" data-menuanchor="about">
-							О компании
+							{{__('navAbout')}}
 						</a>
 					</li>
 					<li>
 						<a href="#products" data-menuanchor="products">
-							Продукция
+							{{__('navProducts')}}
 						</a>
 					</li>
 					<li>
 						<a href="#services" data-menuanchor="services">
-							Услуги
+							{{__('navServices')}}
 						</a>
 					</li>
 					<li>
 						<a href="#news" data-menuanchor="news">
-							Новости
+							{{__('navNews')}}
 						</a>
 					</li>
 					<li>
 						<a href="#contact" data-menuanchor="contact">
-							Контакты
+							{{__('navContact')}}
 						</a>
 					</li>
 				</ul>
@@ -357,26 +284,39 @@ session()->put('cart', []);
 			<ul class="header-side">
 				<li class="header-lang">
 					<div class="header-lang__open">
+						@if(app()->getLocale() == 'ru')
 						РУ
+						@elseif(app()->getLocale()=='en')
+						EN
+						@elseif(app()->getLocale()=='uz')
+						UZ
+						@else
+						@endif
 						<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
 							<path d="M0.495008 0.690059V1.57506L4.65001 5.73006C4.84501 5.92506 5.16001 5.92506 5.35501 5.73006L9.51001 1.57506V0.690059H8.62501L5.00001 4.31006L1.37501 0.685059L0.495008 0.690059Z" fill="white"/>
 						</svg>
 					</div>
 					<div class="header-lang__dropdown header-side__dropdown">
-						<a href="#">
-							РУ
-						</a>
-						<a href="#">
-							UZ
-						</a>
-						<a href="#">
-							EN
-						</a>
+						@if(app()->getLocale() != 'ru')
+							<a href="{{ route(Route::currentRouteName(), 'ru') }}">
+								РУ
+							</a>
+						@endif
+						@if(app()->getLocale() != 'uz')
+							<a href="{{ route(Route::currentRouteName(), 'uz') }}">
+								UZ
+							</a>
+						@endif
+						@if(app()->getLocale() != 'en')
+							<a href="{{ route(Route::currentRouteName(), 'en') }}">
+								EN
+							</a>
+						@endif
 					</div>
 				</li>
 				<li class="header-basket">
 					<div class="header-side__btn">
-                        <a href="{{route('korzina')}}">
+                        <a href="{{route('order', app()->getLocale())}}">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
                             </svg>
@@ -417,22 +357,21 @@ session()->put('cart', []);
 		</div>
 </header>
 
-
 	<!-- ОСНОВНОЙ КОНТЕНТ ГЛАВНОЙ -->
 	<div id="fullPage">
 		<section class="section main">
 			<div class="container">
 				<div class="main-wrap">
 					<h1 class="section__title">
-						Природная питьевая вода
+						{{__('homeTitle')}}
 					</h1>
 					<div class="section__text">
-						В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+						{{__('homeTitleText')}}
 					</div>
 					<div class="section__main">
 						<div class="main-elements">
 							<h3 class="main-elements__title">
-								Полезные элементы
+								{{__('homeTitleElements')}}
 							</h3>
 							<div class="main-elements__wrap">
 								<div class="main-elements__item">
@@ -562,7 +501,7 @@ session()->put('cart', []);
 								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
 							</div>
 						</div>
-						<a href="{{route('about')}}" class="about__btn btn">
+						<a href="{{route('about', app()->getLocale())}}" class="about__btn btn">
 							О компании
 						</a>
 					</div>
@@ -656,69 +595,63 @@ session()->put('cart', []);
 									Негазированная
 								</div>
 								<ul class="products-list">
-									<li>
-										<div class="products-list__img products-list__img-big">
-											<img src="img/nogaz.png" alt="nogaz">
-										</div>
-										<div class="products-list__size">
-											1.5 L
-										</div>
-										<div class="products-list__basket">
-											<img src="img/basket.png" alt="ico">
-										</div>
-									</li>
-									<li>
-										<div class="products-list__img products-list__img-medium">
-											<img src="img/nogaz.png" alt="nogaz">
-										</div>
-										<div class="products-list__size">
-											1.0 L
-										</div>
-										<div class="products-list__basket">
-											<img src="img/basket.png" alt="ico">
-										</div>
-									</li>
-									<li>
-										<div class="products-list__img products-list__img-small">
-											<img src="img/nogaz.png" alt="nogaz">
-										</div>
-										<div class="products-list__size">
-											0.5 L
-										</div>
-										<div class="products-list__basket">
-											<img src="img/basket.png" alt="ico">
-										</div>
-									</li>
+									@foreach(\App\Models\Product::where('cat_id', 2)->get() as $data)
+										<li>
+											<div class="products-list__img @if($data->size == 1.5) products-list__img-big @elseif($data->size == 1) products-list__img-medium @elseif($data->size == 0.5) products-list__img-small @endif">
+												<img src="{{ $data->image_path }}/{{ $data->image }}" alt="nogaz">
+											</div>
+											<div class="products-list__size">
+												{{ $data->size }} L
+											</div>
+											<div class="products-list__basket" onclick="addBasket({{ $data->id }})">
+												<img src="img/basket.png" alt="ico">
+											</div>
+										</li>
+									@endforeach
 								</ul>
 							</div>
+							
 							<div class="products-choose__item">
+							
 								<div class="products-choose__name">
 									Газированная
 								</div>
+								
 								<ul class="products-list">
-									<?php 
-										$gazlilar = App\Models\Product::where('cat_id', '1')->get();
-									?>
-									@livewire('order-product')				
+									@foreach(\App\Models\Product::where('cat_id', 1)->get() as $data)
+										<li>
+											<div class="products-list__img @if($data->size == 1.5) products-list__img-big @elseif($data->size == 1) products-list__img-medium @elseif($data->size == 0.5) products-list__img-small @endif">
+												<img src="{{ $data->image_path }}/{{ $data->image }}" alt="nogaz">
+											</div>
+											<div class="products-list__size">
+												{{ $data->size }} L
+											</div>
+											<div class="products-list__basket" onclick="addBasket({{ $data->id }})">
+												<img src="img/basket.png" alt="ico">
+											</div>
+										</li>
+									@endforeach	
 								</ul>
 							</div>
-							<div class="products-ch
-							oose__item">
+										
+							<div class="products-choose__item">
 								<div class="products-choose__name">
 									Капсула
 								</div>
 								<ul class="products-list">
-									<li>
-										<div class="products-list__img products-list__img-cooler">
-											<img src="img/cooler.png" alt="nogaz">
-										</div>
-										<div class="products-list__size">
-											18.9 L
-										</div>
-										<div class="products-list__basket">
-											<img src="img/basket.png" alt="ico">
-										</div>
-									</li>
+									@foreach(\App\Models\Product::where('cat_id', 3)->get() as $data)
+										<li>
+											<div class="products-list__img products-list__img-cooler">
+												<img src="{{ $data->image_path }}/{{ $data->image }}" alt="nogaz">
+											</div>
+											<div class="products-list__size">
+												{{ $data->size }} L
+											</div>
+											<div class="products-list__basket" onclick="addBasket({{ $data->id }})">
+												<img src="img/basket.png" alt="ico">
+											</div>
+										</li>
+									@endforeach
 								</ul>
 							</div>
 						</div>
@@ -779,7 +712,7 @@ session()->put('cart', []);
 								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
 							</div>
 						</div>
-						<a href="{{route('front.news')}}" class="news__btn btn">
+						<a href="{{route('front.news', app()->getLocale())}}" class="news__btn btn">
 							Все новости
 						</a>
 					</div>
@@ -968,6 +901,7 @@ session()->put('cart', []);
 <script src="js/gsap.min.js"></script>
 <script src="js/dobpicker.js"></script>
 <script src="js/main.js"></script>
+<script src="js/basket.js"></script>
 <script>
 
     // СКИПТЫ ТОЛЬКО ДЛЯ ГЛАВНОЙ

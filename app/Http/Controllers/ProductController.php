@@ -18,9 +18,9 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $product = Product::orderBy('updated_at', 'desc')->get();
+        $products = Product::orderBy('id', 'asc')->get();
 
-        return view('product.list', compact('product'));
+        return view('product.list', compact('products'));
     }
 
     /**
@@ -30,8 +30,64 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        $product = null;
+        return view('product.create', ['product'=> $product]);
     }
+
+    public function fetch(Request $request){
+    $arr = [] ;
+    if($request->get('arr')){
+        foreach($request->get('arr') as $key=>$value){
+            $arr[$key] = [
+                'id' => $value,
+                'cat_id' => Product::find($value)->cat_id,
+                'cat_name_ru' => Category::find(Product::find($value)->cat_id)->name_ru,
+                'cat_name_uz' => Category::find(Product::find($value)->cat_id)->name_uz,
+                'cat_name_en' => Category::find(Product::find($value)->cat_id)->name_en,
+                'image' => Product::find($value)->image,
+                'image_path' => Product::find($value)->image_path,
+                'price' => Product::find($value)->price,
+                'name_uz' => Product::find($value)->name_uz,
+                'name_ru' => Product::find($value)->name_ru,
+                'name_en' => Product::find($value)->name_en,
+                'description_uz' => Product::find($value)->description_uz,
+                'description_ru' => Product::find($value)->description_ru,
+                'description_en' => Product::find($value)->description_en,
+                'size' => Product::find($value)->size,
+            ];
+        }
+    }
+    return response()->json([
+        'data' => $arr,
+    ]);
+    }
+    public function basket(Request $request){
+        $arr = [] ;
+        if($request->get('arr')){
+            foreach($request->get('arr') as $key=>$value){
+                $arr[$key] = [
+                    'id' => $value,
+                    'cat_id' => Product::find($value)->cat_id,
+                    'cat_name_ru' => Category::find(Product::find($value)->cat_id)->name_ru,
+                    'cat_name_uz' => Category::find(Product::find($value)->cat_id)->name_uz,
+                    'cat_name_en' => Category::find(Product::find($value)->cat_id)->name_en,
+                    'image' => Product::find($value)->image,
+                    'image_path' => Product::find($value)->image_path,
+                    'price' => Product::find($value)->price,
+                    'name_uz' => Product::find($value)->name_uz,
+                    'name_ru' => Product::find($value)->name_ru,
+                    'name_en' => Product::find($value)->name_en,
+                    'description_uz' => Product::find($value)->description_uz,
+                    'description_ru' => Product::find($value)->description_ru,
+                    'description_en' => Product::find($value)->description_en,
+                    'size' => Product::find($value)->size,
+                ];
+            }
+        }
+        return response()->json([
+            'data' => $arr,
+        ]);
+        }
 
     /**
      * Store a newly created resource in storage.
@@ -39,7 +95,7 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req, $id)
+    public function store(Request $req)
     {
         if($req->btn == "Delete"){
             $category = Category::find($req->cat_name);
@@ -75,11 +131,11 @@ class ProductController extends Controller
             $img_name = Str::random(10).'.'.$req->file('image')->getClientOriginalExtension();
             $img_path = '/images/product';
             $req->image->move(public_path('/images/product'), $img_name);
-            if($id){
-                $product = Product::find($id);
-            }else{
+            // if(isset($id)){
+                // $product = Product::find($id);
+            // }else{
                 $product = new Product;
-            }
+            // }
 
             $product->image = $img_name;
             $product->image_path = $img_path;

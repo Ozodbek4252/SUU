@@ -8,33 +8,33 @@
         <nav class="header-menu">
             <ul class="menu">
                 <li>
-                    <a href="{{route('home')}}">
-                        Главная
+                    <a href="{{route('home', app()->getLocale())}}">
+                        {{__('navHome')}}
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('about')}}">
-                        О компании
+                    <a href="{{route('about', app()->getLocale())}}">
+                        {{__('navAbout')}}
                     </a>
                 </li>
                 <li>
-                    <a href="index.blade.php#products">
-                        Продукция
+                    <a href="{{route('about', app()->getLocale())}}">
+                        {{__('navProducts')}}
                     </a>
                 </li>
                 <li>
                     <a href="index.blade.php#services">
-                        Услуги
+                        {{__('navServices')}}
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('front.news')}}">
-                        Новости
+                    <a href="{{route('front.news', app()->getLocale())}}">
+                        {{__('navNews')}}
                     </a>
                 </li>
                 <li>
                     <a href="index.blade.php#contact">
-                        Контакты
+                        {{__('navContact')}}
                     </a>
                 </li>
             </ul>
@@ -42,26 +42,33 @@
         <ul class="header-side">
             <li class="header-lang">
                 <div class="header-lang__open">
+                    @if(app()->getLocale() == 'ru')
                     РУ
+                    @elseif(app()->getLocale()=='en')
+                    EN
+                    @elseif(app()->getLocale()=='uz')
+                    UZ
+                    @else
+                    @endif
                     <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.495008 0.690059V1.57506L4.65001 5.73006C4.84501 5.92506 5.16001 5.92506 5.35501 5.73006L9.51001 1.57506V0.690059H8.62501L5.00001 4.31006L1.37501 0.685059L0.495008 0.690059Z" fill="white"/>
                     </svg>
                 </div>
                 <div class="header-lang__dropdown header-side__dropdown">
-                    <a href="#">
+                    <a href="{{ route(Route::currentRouteName(), 'ru') }}">
                         РУ
                     </a>
-                    <a href="#">
+                    <a href="{{ route(Route::currentRouteName(), 'uz') }}">
                         UZ
                     </a>
-                    <a href="#">
+                    <a href="{{ route(Route::currentRouteName(), 'en') }}">
                         EN
                     </a>
                 </div>
             </li>
             <li class="header-basket">
                 <div class="header-side__btn">
-                    <a href="{{route('korzina')}}">
+                    <a href="{{route('order', app()->getLocale())}}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
                         </svg>

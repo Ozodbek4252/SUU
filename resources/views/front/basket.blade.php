@@ -149,295 +149,13 @@
 	<section class="basket">
 		<div class="container">
 
-			<!-- ПУСТАЯ
-
-			<div class="basket-empty">
-				ВАША КОРЗИНА ПУСТА
+			<div class="basket-empty" id="basket-empty">
+				
 			</div>
-			 -->
-
-			<div class="basket-list">
-				<div class="basket-item">
-					<div class="basket-item__delete">
-						<img src="img/del.svg" alt="ico">
-					</div>
-					<div class="basket-item__img">
-						<img src="img/bottle1.png" alt="img">
-					</div>
-					<div class="basket-item__wrap">
-						<div class="basket-item__size">
-							1.5 L
-						</div>
-						<div class="basket-item__info">
-							<div class="basket-item__head">
-								<h2 class="basket-item__name">
-									Негазированная
-								</h2>
-								<div class="basket-item__price">
-									итог <span><strong>12000</strong> UZS </span>
-								</div>
-							</div>
-							<div class="basket-item__text">
-								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-							</div>
-							<div class="basket-item__logo btn">
-								Печать логотипа
-								<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M9.41619 1.17401L5.29546 5.29474M1.17473 9.41547L5.29546 5.29474M5.29546 5.29474L9.26077 9.26005L1.12145 1.12073" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
-							</div>
-							<div class="basket-item__total">
-								<div>6 x 1500 =</div>
-								<div><strong>12000</strong> UZS * <span>10 блок</span></div>
-							</div>
-							<div class="basket-item__open">
-								количество
-								<svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M14 1L7.5 7L1 1" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round"/>
-								</svg>
-							</div>
-							<div class="basket-item__dropdown">
-								<div class="order-item order-size">
-									<div class="order-item__title">
-										Размер
-									</div>
-									<div class="order-size__btns">
-										<button class="btn active">1.5 L</button>
-										<button class="btn">1.0 L</button>
-										<button class="btn">0.5 L</button>
-									</div>
-								</div>
-								<div class="order-thin">
-									<div class="order-item order-count">
-										<div class="order-item__title">
-											Выберите количество
-										</div>
-										<select>
-											<option value="1">1 <span>блок</span></option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-										</select>
-									</div>
-									<div class="order-item order-print">
-										<div class="order-item__title">
-											Печать логотипа
-										</div>
-										<div class="order-print__btns">
-											<button class="btn active">С вашим логотипом</button>
-											<button class="btn">Без логотипа</button>
-										</div>
-										<div class="order-print__images">
-											<div>
-												<img src="img/print1.png" alt="img">
-											</div>
-											<div>
-												<img src="img/print2.png" alt="img">
-											</div>
-										</div>
-									</div>
-									<div class="order-price">
-										<div class="order-price__item">
-											<span class="order-price__name">Промежуточный итог</span>
-											<span class="order-price__value">42000 <span>UZS</span></span>
-										</div>
-									</div>
-									<button class="order-add btn">
-										Далее
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="basket-item">
-					<div class="basket-item__delete">
-						<img src="img/del.svg" alt="ico">
-					</div>
-					<div class="basket-item__img">
-						<img src="img/bottle1.png" alt="img">
-					</div>
-					<div class="basket-item__wrap">
-						<div class="basket-item__size">
-							1.5 L
-						</div>
-						<div class="basket-item__info">
-							<div class="basket-item__head">
-								<h2 class="basket-item__name">
-									Негазированная
-								</h2>
-								<div class="basket-item__price">
-									итог <span><strong>12000</strong> UZS </span>
-								</div>
-							</div>
-							<div class="basket-item__text">
-								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-							</div>
-							<div class="basket-item__logo btn">
-								Печать логотипа
-								<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M9.41619 1.17401L5.29546 5.29474M1.17473 9.41547L5.29546 5.29474M5.29546 5.29474L9.26077 9.26005L1.12145 1.12073" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
-							</div>
-							<div class="basket-item__total">
-								<div>6 x 1500 =</div>
-								<div><strong>12000</strong> UZS * <span>10 блок</span></div>
-							</div>
-							<div class="basket-item__open">
-								количество
-								<svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M14 1L7.5 7L1 1" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round"/>
-								</svg>
-							</div>
-							<div class="basket-item__dropdown">
-								<div class="order-item order-size">
-									<div class="order-item__title">
-										Размер
-									</div>
-									<div class="order-size__btns">
-										<button class="btn active">1.5 L</button>
-										<button class="btn">1.0 L</button>
-										<button class="btn">0.5 L</button>
-									</div>
-								</div>
-								<div class="order-thin">
-									<div class="order-item order-count">
-										<div class="order-item__title">
-											Выберите количество
-										</div>
-										<select>
-											<option value="1">1 <span>блок</span></option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-											<option value="4">4</option>
-										</select>
-									</div>
-									<div class="order-item order-print">
-										<div class="order-item__title">
-											Печать логотипа
-										</div>
-										<div class="order-print__btns">
-											<button class="btn active">С вашим логотипом</button>
-											<button class="btn">Без логотипа</button>
-										</div>
-										<div class="order-print__images">
-											<div>
-												<img src="img/print1.png" alt="img">
-											</div>
-											<div>
-												<img src="img/print2.png" alt="img">
-											</div>
-										</div>
-									</div>
-									<div class="order-price">
-										<div class="order-price__item">
-											<span class="order-price__name">Промежуточный итог</span>
-											<span class="order-price__value">42000 <span>UZS</span></span>
-										</div>
-									</div>
-									<button class="order-add btn">
-										Далее
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-				<div class="basket-item">
-					<div class="basket-item__delete">
-						<img src="img/del.svg" alt="ico">
-					</div>
-					<div class="basket-item__img">
-						<img src="img/bottle1.png" alt="img">
-					</div>
-					<div class="basket-item__wrap">
-						<div class="basket-item__size">
-							1.5 L
-						</div>
-						<div class="basket-item__info">
-							<div class="basket-item__head">
-								<h2 class="basket-item__name">
-									Негазированная
-								</h2>
-								<div class="basket-item__price">
-									итог <span><strong>12000</strong> UZS </span>
-								</div>
-							</div>
-							<div class="basket-item__text">
-								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-							</div>
-							<div class="basket-item__logo btn">
-								Печать логотипа
-								<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M9.41619 1.17401L5.29546 5.29474M1.17473 9.41547L5.29546 5.29474M5.29546 5.29474L9.26077 9.26005L1.12145 1.12073" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
-								</svg>
-							</div>
-							<div class="basket-item__total">
-								<div>6 x 1500 =</div>
-								<div><strong>12000</strong> UZS * <span>10 блок</span></div>
-							</div>
-							<div class="basket-item__open">
-								количество
-								<svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-									<path d="M14 1L7.5 7L1 1" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round"/>
-								</svg>
-							</div>
-							<div class="basket-item__dropdown">
-								<div class="order-item order-size">
-									<div class="order-item__title">
-										Размер
-									</div>
-									<div class="order-size__btns">
-										<button class="btn active">1.5 L</button>
-										<button class="btn">1.0 L</button>
-										<button class="btn">0.5 L</button>
-									</div>
-								</div>
-								<div class="order-thin">
-									<div class="order-item order-count">
-										<div class="order-item__title">
-											Выберите количество
-										</div>
-										<select>
-											<option value="1">1 блок</option>
-											<option value="2">2 блока</option>
-											<option value="3">3 блока</option>
-											<option value="4">4 блока</option>
-										</select>
-									</div>
-									<div class="order-item order-print">
-										<div class="order-item__title">
-											Печать логотипа
-										</div>
-										<div class="order-print__btns">
-											<button class="btn active">С вашим логотипом</button>
-											<button class="btn">Без логотипа</button>
-										</div>
-										<div class="order-print__images">
-											<div>
-												<img src="img/print1.png" alt="img">
-											</div>
-											<div>
-												<img src="img/print2.png" alt="img">
-											</div>
-										</div>
-									</div>
-									<div class="order-price">
-										<div class="order-price__item">
-											<span class="order-price__name">Промежуточный итог</span>
-											<span class="order-price__value">42000 <span>UZS</span></span>
-										</div>
-									</div>
-									<button class="order-add btn">
-										Далее
-									</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
+			<div class="basket-list" id="basket-list">
+				
 			</div>
-			<div class="basket-content">
+			<div class="basket-content" id="basket-content">
 				<form action="#" class="basket-form">
 					<div class="basket-form__title">
 						я ... покупатель
@@ -454,6 +172,7 @@
 						<div class="order-item__title">
 							Доставка
 						</div>
+						
 						<div class="order-delivery__btns">
 							<button class="btn active">нужно</button>
 							<button class="btn">не нужно</button>
@@ -462,7 +181,7 @@
 					<div class="basket-form__price">
 						<span>Промежуточный итог</span>
 						<span></span>
-						<span><strong>42000</strong> UZS</span>
+						<span><strong id="total_price"></strong> UZS</span>
 					</div>
 					<div class="basket-form__price">
 						<span>Доставка</span>
@@ -530,10 +249,19 @@
 			</div>
 		</div>
 	</section>
+	
+	{{-- <script src="js/jquery-3.4.1.min.js"></script>
+	<script src="js/jquery.inputmask.min.js"></script>
+	
+	<script src="js/owl.carousel.js"></script>
+	<script src="js/fullpage.min.js"></script>
+	<script src="js/wow.min.js"></script>
+	<script src="js/jquery.ripples-min.js"></script>
+	<script src="js/gsap.min.js"></script>
+	<script src="js/dobpicker.js"></script>
+	<script src="js/main.js"></script>
 
-
-	<!-- ФУТЕР -->
-
+	<script src="/js/basket.js"></script> --}}
 
 
 @endsection

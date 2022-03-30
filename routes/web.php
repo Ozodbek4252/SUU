@@ -5,7 +5,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\Front\HomeController;
 use App\Http\Controllers\MessageController;
-
+use App\Http\Controllers\OrderController;
 use App\Http\Livewire\Index;
 /*
 |--------------------------------------------------------------------------
@@ -18,25 +18,31 @@ use App\Http\Livewire\Index;
 |
 */
 
-Route::get('/', Index::class)->name('home');
 
 /// ------------------------ Front End --------------------------
-Route::controller(HomeController::class)->group(function(){
-    // Route::get('/', 'index')->name('home');
-    Route::get('/about','about')->name('about');
-    Route::get('/all-news', 'news')->name('front.news');
-    Route::get('/korzina', 'korzina')->name('korzina');
-    Route::get('/single-news/{id}', 'singleNews_index')->name('single-news');
+Route::redirect('/', '/ru');
+
+Route::group(['prefix' => '{language}'], function(){
+
+
+    Route::get('/fetch', [ProductController::class, 'fetch']);
+    Route::get('/basket', [ProductController::class, 'fetch']);
+    Route::get('/order', [OrderController::class, 'index'])->name('order');
+
+    Route::controller(HomeController::class)->group(function(){
+        Route::get('/', 'index')->name('home');
+        Route::get('/about','about')->name('about');
+        Route::get('/all-news', 'news')->name('front.news');
+        Route::get('/single-news/{id}', 'singleNews_index')->name('single-news');
+    });
+
+    Route::get('/message',[MessageController::class,'index'])->name('message');
+    Route::post('/message/store',[MessageController::class,'store'])->name('message.store');
+    Route::get('/message/destroy/{id}',[MessageController::class,'destroy'])->name('message.destroy');
+
+
 
 });
-
-Route::get('/message',[MessageController::class,'index'])->name('message');
-Route::post('/message/store',[MessageController::class,'store'])->name('message.store');
-Route::get('/message/destroy/{id}',[MessageController::class,'destroy'])->name('message.destroy');
-
-
-
-
 
 
 // ------------------------------- Dashboard ----------------------------------

@@ -88,11 +88,12 @@
 		<div class="container">
 			<div class="about-main__content">
 				<h1 class="about__title section__title">
-					ПРИРОДНАЯ ПИТЬЕВАЯ ВОДА
+					{{-- ПРИРОДНАЯ ПИТЬЕВАЯ ВОДА --}}
+					{{__('title')}}
 				</h1>
 				<div class="about__text section__text">
 					<img src="img/logo-gray.svg" alt="SUU">
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+					{{__('aboutTopText')}}
 				</div>
 			</div>
 		</div>
@@ -129,19 +130,17 @@
 			</span>
 		</div>
 		<div class="about-products__title">
-			Продукты
+			{{__('aboutProduct')}}
 		</div>
 	</section>
 	<section class="about-equip">
 		<div class="about-equip__info wow fadeInLeft" data-wow-delay=".5s">
 			<div class="container">
 				<h2 class="about-equip__title section__title">
-					Наше оборудование
+					{{__('aboutEquipment')}}
 				</h2>
 				<div class="about-equip__text section__text">
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду
+					{{__('aboutEquipmentText')}}
 				</div>
 			</div>
 		</div>
@@ -151,7 +150,7 @@
 	</section>
 	<section class="about-video">
 		<h2 class="about-video__title section__title">
-			О компании
+			{{__('aboutTitle')}}
 		</h2>
 		<div class="about-video__wrap">
 			<div class="about-video__left wow fadeInLeft" data-wow-delay=".5s" data-wow-duration="1.5s">

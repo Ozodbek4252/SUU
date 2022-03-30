@@ -27,7 +27,7 @@ $('.header-mobile__open').click(() => {
 let slideChange = () => {
     $('.main-animation').hide()
     $('.main-animation__item').removeClass('main-animation__item-show')
-
+    
     setTimeout(() => {
         $('.main-animation').show()
         $('.main-animation__item').addClass('main-animation__item-show')
@@ -133,7 +133,7 @@ $('.popup-layer').click(function() {
 $('.products-list__basket').click(function() {
     $('.side-basket__layer').fadeIn(500)
     $('.side-basket').addClass('side-basket-show')
-})
+}) 
 
 $('.side-basket__layer').click(function() {
     $(this).fadeOut(500)
@@ -144,17 +144,17 @@ $('.side-basket__layer').click(function() {
 $(document).ready(function() {
     $.dobPicker({
         daySelector: '#dobday',
-        monthSelector: '#dobmonth',
+        monthSelector: '#dobmonth', 
         yearSelector: '#dobyear',
-        minimumAge: 12,
+        minimumAge: 12, 
         maximumAge: 80
     });
 
     $.dobPicker({
         daySelector: '#dobday-cabinet',
-        monthSelector: '#dobmonth-cabinet',
+        monthSelector: '#dobmonth-cabinet', 
         yearSelector: '#dobyear-cabinet',
-        minimumAge: 12,
+        minimumAge: 12, 
         maximumAge: 80
     });
 });
@@ -239,7 +239,7 @@ $('.cabinet-menu li').click(function() {
 
 //___________ORDER__________
 
-$('.order-item .btn').click(function() {
+$('body').on('click', '.order-item .btn', function() {
     $(this).parent().find('.btn').removeClass('active')
     $(this).addClass('active')
 })
@@ -247,7 +247,8 @@ $('.order-item .btn').click(function() {
 
 //____________BASKET_________
 
-$('.basket-item__open').click(function() {
+$('body').on('click', '.basket-item__open', function() {
+    console.log(this)
     $(this).toggleClass('active')
     $(this).parent().toggleClass('basket-item-active')
     $(this).parent().find('.basket-item__dropdown').slideToggle(600)
@@ -259,7 +260,7 @@ $('.basket-form__card').click(function() {
 })
 
 $('.basket-form__choose').on('input', function() {
-
+    
     if($('.basket-form__choose #card').prop('checked')) {
         $('.basket-form__cards').css('display', 'flex')
     } else {

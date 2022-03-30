@@ -92,13 +92,14 @@
 @endif
 
 <!-- КОРЗИНА БОКОВАЯ -->
-<?php
-session()->put('cart', []);
-?>
+
 <div class="side-basket__layer"></div>
-<div class="side-basket">
+
+@livewire('side-basket')
+{{-- <div class="side-basket">
     <div class="feedback-content">
         <div class="side-basket__content">
+
             <div class="side-basket__item">
                 <div class="cabinet-order__img">
                     <img src="img/water1.png" alt="img">
@@ -110,72 +111,7 @@ session()->put('cart', []);
                     <img src="img/del.svg" alt="ico">
                 </div>
             </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
-            <div class="side-basket__item">
-                <div class="cabinet-order__img">
-                    <img src="img/water1.png" alt="img">
-                </div>
-                <div class="cabinet-order__name">
-                    Негазированная <span>(1.5)</span>
-                </div>
-                <div class="basket-item__delete">
-                    <img src="img/del.svg" alt="ico">
-                </div>
-            </div>
+            
         </div>
         <div class="side-basket__price">
             <div class="order-price">
@@ -193,7 +129,7 @@ session()->put('cart', []);
             </button>
         </div>
     </div>
-</div>
+</div> --}}
 
 
 <!-- САЙДМЕНЮ -->
@@ -357,7 +293,7 @@ session()->put('cart', []);
 				</li>
 				<li class="header-basket">
 					<div class="header-side__btn">
-                        <a href="{{route('korzina')}}">
+                        <a href="{{route('order')}}">
                             <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
                             </svg>
@@ -672,34 +608,9 @@ session()->put('cart', []);
 									</li>
 								</ul>
 							</div>
-							<div class="products-choose__item">
-								<div class="products-choose__name">
-									Газированная
-								</div>
-								
-								<h1 wire:click="test()">{{$name}}</h1>
 
-								<ul class="products-list">
-									<?php 
-										$gazlilar = App\Models\Product::where('cat_id', '1')->get();
-									?>
-									
+							@livewire('order-product')
 
-									@foreach($gazlilar as $gazli)
-										<li>
-											<div class="products-list__img products-list__img-big">
-												<img src="{{$gazli->image_path}}/{{$gazli->image}}" alt="nogaz">
-											</div>
-											<div class="products-list__size">
-												{{$gazli->size}} L
-											</div>
-											<div wire:click="addCart({{$gazli->id}})" class="products-list__basket">
-												<img src="img/basket.png" alt="ico">
-											</div>
-										</li>
-									@endforeach			
-								</ul>
-							</div>
 							<div class="products-ch
 							oose__item">
 								<div class="products-choose__name">

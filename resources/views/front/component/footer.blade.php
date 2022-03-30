@@ -6,40 +6,40 @@
             </div>
             <div class="footer-logo">
                 <img src="img/logo.svg" alt="SUU">
-                <span>Природная питьевая вода</span>
+                <span>{{__('footerTitle')}}</span>
             </div>
             <ul class="footer-menu">
                 <li>
-                    <a href="{{route('home')}}">Главная</a>
+                    <a href="{{route('home', app()->getLocale())}}">{{__('navHome')}}</a>
                 </li>
                 <li>
-                    <a href="{{route('about')}}">О компании</a>
+                    <a href="{{route('about', app()->getLocale())}}">{{__('navAbout')}}</a>
                 </li>
                 <li>
-                    <a href="{{route('home', '#products')}}">Продукция</a>
+                    <a href="{{route('about', app()->getLocale())}}">{{__('navProducts')}}</a>
                 </li>
                 <li>
-                    <a href="#">Услуги</a>
+                    <a href="#">{{__('navServices')}}</a>
                 </li>
                 <li>
-                    <a href="{{route('front.news')}}">Новости</a>
+                    <a href="{{route('front.news', app()->getLocale())}}">{{__('navNews')}}</a>
                 </li>
                 <li>
-                    <a href="#">Контакты</a>
+                    <a href="#">{{__('navContact')}}</a>
                 </li>
             </ul>
             <div class="footer-info">
                 <div class="footer-info__item">
                     <div class="footer-info__name">
-                        Адрес:
+                        {{__('footerAddress')}}:
                     </div>
                     <div class="footer-info__value">
-                        100174, г. Ташкент, Алмазарский р-н,
+                        {{__('footerAddressInfo')}}
                     </div>
                 </div>
                 <div class="footer-info__item">
                     <div class="footer-info__name">
-                        Телефон:
+                        {{__('footerPhone')}}:
                     </div>
                     <div class="footer-info__value">
                         <a href="tel:+998911521915">+99891 152 19 15</a>
@@ -47,7 +47,7 @@
                 </div>
                 <div class="footer-info__item">
                     <div class="footer-info__name">
-                        Почта:
+                        {{__('footerMail')}}:
                     </div>
                     <div class="footer-info__value">
                         <a href="mailto:info@suuuzbekistan.uz">info@suuuzbekistan.uz</a>
@@ -55,7 +55,7 @@
                 </div>
                 <div class="footer-info__item">
                     <div class="footer-info__name">
-                        Мы в соц. сетях:
+                        {{__('footerSocial')}}:
                     </div>
                     <div class="footer-info__value">
                         <ul>

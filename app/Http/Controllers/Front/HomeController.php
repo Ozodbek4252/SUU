@@ -43,8 +43,4 @@ class HomeController extends Controller
         $news = News::find($id);
         return view('front.news-single',compact('news'));
     }
-
-    public function  korzina(){
-        return view('front.basket');
-    }
 }
