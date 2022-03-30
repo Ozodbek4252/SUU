@@ -7,6 +7,21 @@
     "navNews": "News",
     "navContact": "Contact",
 
+    "preloader": "NATURAL DRINKING WATER",
+
+    "homeInputTitle": "Feedback",
+    "homeInputTitleText": "You need to register to order in the company",
+    "homePlaceholderInputName": "Name",
+    "homePlaceholderInputLastName": "Last Name",
+    "homePlaceholderInputPhone": "Phone",
+    "homePlaceholderInputText": "Text",
+    "homeInputChech": "I have read the consent to the privacy policy",
+    "homeInputButton": "Submit",
+
+    "honeOrderPrice": "Subtotal",
+    "honeOrderDelivery": "Delivery",
+    "honeOrderButton": "Order",
+
     "footerAddress": "Address",
     "footerAddressInfo": "100174, Tashkent, Almazar district",
     "footerPhone": "Phone",
@@ -14,17 +29,55 @@
     "footerSocial": "Other Social Networks",
     "footerTitle": "Natural drinking water",
 
+    "homeMainTitle": "Natural drinking water.",
+    "homeMainTitleText": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "homeMainTitleElements": "Useful elements",
+    "homeMainTitleElement_name_1": "Magniy",
+    "homeMainTitleElement_weight": "mg",
+    "homeMainTitleElement_name_2": "Ca",
+    "homeMainButtonMore": "Learn More",
+    "homeMainButtonSubmit": "Feedback",
+
+    "homeAboutTitle": "About",
+    "homeAboutTitleText": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "homeAboutCard1": "Technology",
+    "homeAboutCard1Text": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "homeAboutCard2": "Production",
+    "homeAboutCard2Text": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "homeAboutCard3": "German Filters",
+    "homeAboutCard3Text": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    
+    "homeProductTitle": "Products",
+    "homeProductTitleText": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "homeProductButton": "Order",
+    "homeProductCat1": "Still",
+    "homeProductCat2": "Carbonated",
+    "homeProductCat3": "Capsule",
+
+    "homeServiceTitle":"Services",
+    "homeService1Title":"Logo printing",
+    "homeService1TitleText":"Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "homeService2Title":"Delivery",
+    "homeService2TitleText":"Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "homeServiceButton":"Order",
+
+    "homeNewsTitle": "News",
+    "homeNewsTitleText": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "homeNewsButton": "All News",
+
+    "homeContactTitle": "Contact",
+    "homeContactForExportImport": "For export and import",
+    "homeContactPhone": "Phone",
+    "homeContactMail": "E-mail",
+    
     "aboutTitle": "About company",
     "aboutEquipment": "Our equipment",
     "aboutEquipmentText": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water. Nowadays, everyone takes care of their health and consumes only clean water only clean water. Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water",
     "aboutProduct": "Product",
     "aboutTopText": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
 
-    "homeTitle": "Natural drinking water.",
-    "homeTitleText": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
-    "homeTitleElements": "Useful elements",
-
-
+    "newsTitleText": "Nowadays, everyone takes care of their health and consumes only clean water Nowadays, everyone takes care of their health and consumes only clean water.",
+    "newsButton": "More",
 
     "": ""
 }

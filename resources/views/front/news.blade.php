@@ -81,21 +81,27 @@
 		<div class="container">
 			<div class="news-main__content">
 				<h1 class="news__title section__title">
-					Новости
+					{{__('homeNewsTitle')}}
 				</h1>
 				<div class="news__text section__text">
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+					{{__('newsTitleText')}}
 				</div>
 			</div>
 			<div class="news-wrap">
 				@foreach($news as $news)
-				<a class="news-carousel__item" href="{{route('single-news',$news->id)}}">
-					{{-- <div class="news-carousel__item"> --}}
+				<a class="news-carousel__item" href="{{route('single-news', [app()->getLocale(), $news->id] )}}">
 						<div class="news-carousel__img">
 							<img src="{{$news->image_path}}/{{$news->image}}" alt="news">
 						</div>
 						<div class="news-carousel__text">
-							{{$news->name_uz}}
+							@if(app()->getLocale()=='uz')
+								{{$news->name_uz}}
+							@elseif(app()->getLocale()=='ru')
+								{{$news->name_ru}}
+							@elseif(app()->getLocale()=='en')
+								{{$news->name_en}}
+							@else
+							@endif
 						</div>
 						<div class="news-carousel__info">
 							<span>
@@ -107,14 +113,13 @@
 							<span><img src="img/eye-gray.svg" alt="ico">20</span>
 						</div>
 						<a href="#"></a>
-					{{-- </div> --}}
 				</a>
 				@endforeach
 			</div>
 			<div class="news-more">
 				<a href="#">
 					<img src="img/more.svg" alt="ico">
-					загрузить еще
+					{{__('newsButton')}}
 				</a>
 			</div>
 		</div>

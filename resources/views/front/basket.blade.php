@@ -83,7 +83,7 @@
 		</div>
 		<ul class="menu">
 			<li>
-				<a href="{{route('home')}}" data-menuanchor="main">
+				<a href="{{route('home', app()->getLocale())}}" data-menuanchor="main">
 					Главная
 				</a>
 			</li>
