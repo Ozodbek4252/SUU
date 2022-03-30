@@ -7,6 +7,21 @@
     "navNews": "Yangiliklar",
     "navContact": "Aloqa",
     
+    "preloader": "TABIY ICHIMLIK SUV",
+
+    "homeInputTitle": "Ariza Yuborish",
+    "homeInputTitleText": "Kompaniyada buyurtma berish uchun ro'yxatdan o'tishingiz kerak",
+    "homePlaceholderInputName": "Ism",
+    "homePlaceholderInputLastName": "Familiya",
+    "homePlaceholderInputPhone": "Telefon",
+    "homePlaceholderInputText": "Xabar",
+    "homeInputChech": "Men maxfiylik siyosatiga rozilik bilan tanishdim",
+    "homeInputButton": "Ariza yuborish",
+
+    "honeOrderPrice": "Jami",
+    "honeOrderDelivery": "Yetkazib berish",
+    "honeOrderButton": "Buyurtma",
+
     "footerAddress": "Manzil",
     "footerAddressInfo": "100174, Toshkent sh., Olmazor tumani",
     "footerPhone": "Telefon",
@@ -20,9 +35,49 @@
     "aboutProduct": "mahsulot",
     "aboutTopText": "Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
 
-    "homeTitle": "Tabiiy ichimlik suvi.",
-    "homeTitleText": "Bizning zamonda har bir inson o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.Bizning zamonda har bir kishi o'z sog'lig'i haqida qayg'uradi va faqat toza elementar suvni iste'mol qiladi.",
-    "homeTitleElements": "Foydali elementlar",
+    "homeMainTitle": "Tabiiy ichimlik suvi.",
+    "homeMainTitleText": "Bizning zamonda har bir inson o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.Bizning zamonda har bir kishi o'z sog'lig'i haqida qayg'uradi va faqat toza elementar suvni iste'mol qiladi.",
+    "homeMainTitleElements": "Foydali elementlar",
+    "homeMainTitleElement_name_1": "Magniy",
+    "homeMainTitleElement_weight": "mg",
+    "homeMainTitleElement_name_2": "Ca",
+    "homeMainButtonMore": "Batafsil",
+    "homeMainButtonSubmit": "Ariza qoldirish",
+
+    "homeAboutTitle": "Haqida",
+    "homeAboutTitleText": "Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+    "homeAboutCard1": "Texnologiya",
+    "homeAboutCard1Text": "Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+    "homeAboutCard2": "Ishlab chiqarish",
+    "homeAboutCard2Text": "Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+    "homeAboutCard3": "Nemis Filtrlari",
+    "homeAboutCard3Text": "Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+
+    "homeProductTitle": "Mahsulotlar",
+    "homeProductTitleText": "Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+    "homeProductButton": "Buyurtma",
+    "homeProductCat1": "Gazsiz",
+    "homeProductCat2": "Gazli",
+    "homeProductCat3": "Kapsula",
+
+    "homeServiceTitle":"Xizmatlar",
+    "homeService1Title":"Logotip chop etish",
+    "homeService1TitleText":"Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+    "homeService2Title":"Yetkazib berish",
+    "homeService2TitleText":"Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+    "homeServiceButton":"Buyurtma",
+
+    "homeNewsTitle": "Yangiliklar",
+    "homeNewsTitleText": "Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+    "homeNewsButton": "Barchas Yangiliklar",
+
+    "homeContactTitle": "Aloqa",
+    "homeContactForExportImport": "Eksport va import uchun",
+    "homeContactPhone": "Telefon",
+    "homeContactMail": "Elektron pochta",
+
+    "newsTitleText": "Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi Hozirgi kunda hamma o'z sog'lig'i haqida qayg'uradi va faqat toza suv iste'mol qiladi.",
+    "newsButton": "Ko'proq",
 
     "": ""
 }

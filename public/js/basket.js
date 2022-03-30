@@ -1,17 +1,12 @@
 var arr = [];
+var archive = [];
+
 function addBasket(id){
-    if(!arr.includes(id)){
-        // if(l == 0){
-        arr.push(id);
-        localStorage.setItem("arr", JSON.stringify(arr));
-        arr = JSON.parse(localStorage.getItem("arr"));
-        // }
-        // else{
-        //     arr = JSON.parse(localStorage.getItem("arr"));
-        //     if(!arr.includes(id)){
-        //         arr.push(id);
-        //         localStorage.setItem("arr", JSON.stringify(arr));
-        //     }
+    if(!arr.includes(id) || arr.length == 0){
+            archive.push(id);        
+            localStorage.setItem("arr", JSON.stringify(archive));
+            arr = JSON.parse(localStorage.getItem("arr"));
+            console.log(arr);
         }
     fetchposts();
 }
@@ -24,7 +19,7 @@ function fetchposts() {
         url:'fetch',
         data: {"arr":arr},
         success: function (data) {
-            // console.log(data);
+            console.log(data);
             $('#side-basket__content').html('');
             if(data.data.length != 0){
                 var total_price = 0;
@@ -72,7 +67,6 @@ function basket() {
             $('#basket-list').html('');
             if(data.data.length != 0){
                 var total_price = 0;
-                length = data.data.length;
 
                 for(var i=0; i<=data.data.length; i++){
                 total_price += parseInt(data.data[i].price);
@@ -102,10 +96,10 @@ function basket() {
                                     +data.data[i].description_ru+
                                 '</div>'+
                                 '<div class="basket-item__logo btn">'+
-                                    'Печать логотипа'+
-                                    '<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">'+
-                                        '<path d="M9.41619 1.17401L5.29546 5.29474M1.17473 9.41547L5.29546 5.29474M5.29546 5.29474L9.26077 9.26005L1.12145 1.12073" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
-                                    '</svg>'+
+                                    '<span id="logo'+i+'">'+'С вашим логотипом'+'</span>'+
+                                    // '<svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">'+
+                                    //     '<path d="M9.41619 1.17401L5.29546 5.29474M1.17473 9.41547L5.29546 5.29474M5.29546 5.29474L9.26077 9.26005L1.12145 1.12073" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>'+
+                                    // '</svg>'+
                                 '</div>'+
                                 '<div class="basket-item__total">'+
                                     '<div id="capsula'+i+'">6 x '+parseInt(data.data[i].price)/6+' =</div>'+
@@ -135,8 +129,8 @@ function basket() {
                                                 'Печать логотипа'+
                                             '</div>'+
                                             '<div class="order-print__btns">'+
-                                                '<button class="btn active">С вашим логотипом</button>'+
-                                                '<button class="btn">Без логотипа</button>'+
+                                                '<button class="btn active" onclick="logo(1,'+i+')">С вашим логотипом</button>'+
+                                                '<button class="btn" onclick="logo(0,'+i+')">Без логотипа</button>'+
                                             '</div>'+
                                             '<div class="order-print__images">'+
                                                 '<div>'+
@@ -201,6 +195,14 @@ function quantity(q) {
     $("#total_price").html((price + parseInt($("#price_product"+q).text())));
     console.log()
 
+}
+function logo(l,id) {
+    if(l == 1){
+        $("#logo"+id).html('С вашим логотипом');
+    }else{
+        $("#logo"+id).html('Без логотипа');
+    }
+    console.log(id);
 }
 
 

@@ -18,32 +18,32 @@
     <div class="popup-layer"></div>
 
 	<!-- ОБРАТНАЯ СВЯЗЬ -->
-    <form action="{{route('message.store', app()->getLocale())}}" method="post" >
-        {{ csrf_field() }}
-        <div class="feedback">
-            <div class="feedback-content">
-                <div class="feedback__title">
-                    Оставить заявку
+<form action="{{route('message.store', app()->getLocale())}}" method="post" >
+    {{ csrf_field() }}
+    <div class="feedback">
+        <div class="feedback-content">
+            <div class="feedback__title">
+                {{__('homeInputTitle')}}
+            </div>
+            <div class="feedback__text">
+                {{__('homeInputTitleText')}} <strong>suu.uzbekistan</strong>
+            </div>
+            <div class="feedback-form">
+                <input type="text" placeholder="{{__('homePlaceholderInputName')}}" name="name" >
+                <input type="text" placeholder="{{__('homePlaceholderInputLastName')}}" name="last_name" >
+                <input type="tel" placeholder="{{__('homePlaceholderInputPhone')}}" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$" name="phone">
+                <textarea placeholder="{{__('homePlaceholderInputText')}}" name="message"></textarea>
+                <div class="feedback-form__check">
+                    <label>
+                        <input type="checkbox">
+                        <span>{{__('homeInputChech')}}</span>
+                    </label>
                 </div>
-                <div class="feedback__text">
-                    Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
-                </div>
-                <div class="feedback-form">
-                    <input type="text" placeholder="Имя" name="name" >
-                    <input type="text" placeholder="Фамилия" name="last_name" >
-                    <input type="tel" placeholder="Телефон" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$" name="phone">
-                    <textarea placeholder="Текст" name="message"></textarea>
-                    <div class="feedback-form__check">
-                        <label>
-                            <input type="checkbox">
-                            <span>Я прочитал согласие с политикой конфиденциальности</span>
-                        </label>
-                    </div>
-                    <button type="submit" class="btn">Оставить заявку</button>
-                </div>
+                <button type="submit" class="btn">{{__('homeInputButton')}}</button>
             </div>
         </div>
-    </form>
+    </div>
+</form>
 
 <!-- PRELOADER -->
 <div class="preloader">
@@ -65,7 +65,7 @@
         </svg>
     </div>
     <div class="preloader__text">
-        ПРИРОДНАЯ ПИТЬЕВАЯ ВОДА
+        {{__('preloader')}}
     </div>
     <div class="preloader__percent">
         <span>0</span>%
@@ -73,7 +73,6 @@
 </div>
 
 
-<!-- АВТОРИЗАЦИЯ -->
 @if(auth()->user())
     <div class="login">
         <div class="feedback-content">
@@ -107,7 +106,6 @@
     </div>
 @endif
 
-<!-- КОРЗИНА БОКОВАЯ -->
 <div class="side-basket__layer"></div>
 <div class="side-basket">
     <div class="feedback-content">
@@ -121,26 +119,22 @@
         <div class="side-basket__price">
             <div class="order-price">
                 <div class="order-price__item">
-                    <span class="order-price__name">Промежуточный итог</span>
+                    <span class="order-price__name">{{__('honeOrderPrice')}}</span>
                     <span class="order-price__value" id="price"><span>UZS</span></span>
                 </div>
                 <div class="order-price__item">
-                    <span class="order-price__name">Доставка</span>
+                    <span class="order-price__name">{{__('honeOrderDelivery')}}</span>
                     <span class="order-price__value">0 <span>UZS</span></span>
                 </div>
             </div>
             <a href="/order">
 				<button class="order-add btn">
-					Оплатить
+					{{__('honeOrderButton')}}
 				</button>
 			</a>
         </div>
     </div>
 </div>
-
-
-<!-- САЙДМЕНЮ -->
-
 
 <aside class="side">
     <div class="side__logo">
@@ -170,8 +164,7 @@
     </div>
 </aside>
 
-<!-- МОБИЛЬНОЕ МЕНЮ -->
-
+<!------------------------- Mobile Menu ------------------------->
 <div class="mobile-menu">
     <div class="mobile-menu__head">
         <div class="mobile-menu__logo">
@@ -190,32 +183,32 @@
     <ul class="menu">
         <li>
             <a href="#main" data-menuanchor="main">
-                Главная
+                {{__('navHome')}}
             </a>
         </li>
         <li>
             <a href="#about" data-menuanchor="about">
-                О компании
+                {{__('navAbout')}}
             </a>
         </li>
         <li>
             <a href="#products" data-menuanchor="products">
-                Продукция
+                {{__('navProducts')}}
             </a>
         </li>
         <li>
             <a href="#services" data-menuanchor="services">
-                Услуги
+                {{__('navServices')}}
             </a>
         </li>
         <li>
             <a href="#news" data-menuanchor="news">
-                Новости
+                {{__('navNews')}}
             </a>
         </li>
         <li>
             <a href="#contact" data-menuanchor="contact">
-                Контакты
+                {{__('navContact')}}
             </a>
         </li>
     </ul>
@@ -237,14 +230,26 @@
         </li>
     </ul>
     <div class="mobile-menu__lang">
-        <a href="#">РУ</a>
-        <a href="#">UZ</a>
-        <a href="#">EN</a>
+        @if(app()->getLocale() != 'ru')
+			<a href="{{ route(Route::currentRouteName(), 'ru') }}">
+				РУ
+			</a>
+		@endif
+		@if(app()->getLocale() != 'uz')
+			<a href="{{ route(Route::currentRouteName(), 'uz') }}">
+				UZ
+			</a>
+		@endif
+		@if(app()->getLocale() != 'en')
+			<a href="{{ route(Route::currentRouteName(), 'en') }}">
+				EN
+			</a>
+		@endif
     </div>
 </div>
 
 
-<!-- ХЭДЕР -->
+<!--------------------------- Header --------------------------->
 <header class="header">
 		<div class="container">
 			<nav class="header-menu">
@@ -357,29 +362,28 @@
 		</div>
 </header>
 
-	<!-- ОСНОВНОЙ КОНТЕНТ ГЛАВНОЙ -->
-	<div id="fullPage">
-		<section class="section main">
+<div id="fullPage">
+	<section class="section main">
 			<div class="container">
 				<div class="main-wrap">
 					<h1 class="section__title">
-						{{__('homeTitle')}}
+						{{__('homeMainTitle')}}
 					</h1>
 					<div class="section__text">
-						{{__('homeTitleText')}}
+						{{__('homeMainTitleText')}}
 					</div>
 					<div class="section__main">
 						<div class="main-elements">
 							<h3 class="main-elements__title">
-								{{__('homeTitleElements')}}
+								{{__('homeMainTitleElements')}}
 							</h3>
 							<div class="main-elements__wrap">
 								<div class="main-elements__item">
 									<div class="main-elements__name">
-										Magniy
+										{{__('homeMainTitleElement_name_1')}}
 									</div>
 									<div class="main-elements__weight">
-										30 mg
+										30 <span style="font-size: 16px;">{{__('homeMainTitleElement_weight')}}</span>
 									</div>
 									<div class="main-elements__percent">
 										10 %
@@ -387,10 +391,10 @@
 								</div>
 								<div class="main-elements__item">
 									<div class="main-elements__name">
-										Ca
+										{{__('homeMainTitleElement_name_2')}}
 									</div>
 									<div class="main-elements__weight">
-										30 mg
+										30 <span style="font-size: 16px;">{{__('homeMainTitleElement_weight')}}</span>
 									</div>
 									<div class="main-elements__percent">
 										10 %
@@ -400,63 +404,34 @@
 						</div>
 						<div class="main-btns">
 							<a href="#" class="btn">
-								Узнать больше
+								{{__('homeMainButtonMore')}}
 							</a>
 							<a href="#" class="btn btn-trans feedback-open">
-								Оставить заявку
+								{{__('homeMainButtonSubmit')}}
 							</a>
 						</div>
 					</div>
 				</div>
 				<div class="main-carousel owl-carousel">
-					<div class="main-carousel__item">
-						<div class="main-carousel__img">
-							<img data-src="img/bottle1.png" alt="SUU" class="owl-lazy">
-						</div>
-						<div class="main-carousel__info">
-							<div class="main-carousel__name">
-								SUU
+					@foreach($products as $product)
+						<div class="main-carousel__item">
+							<div class="main-carousel__img">
+								<img data-src="{{$product->image_path}}/{{$product->image}}" alt="SUU" class="owl-lazy">
 							</div>
-							<div class="main-carousel__desc">
-								Gazlanmagan shifobahsh suv
-							</div>
-							<div class="main-carousel__size">
-								0.5 l
-							</div>
-						</div>
-					</div>
-					<div class="main-carousel__item">
-						<div class="main-carousel__img">
-							<img data-src="img/bottle2.png" alt="SUU" class="owl-lazy">
-						</div>
-						<div class="main-carousel__info">
-							<div class="main-carousel__name">
-								SUU
-							</div>
-							<div class="main-carousel__desc">
-								Gazlanmagan shifobahsh suv
-							</div>
-							<div class="main-carousel__size">
-								18.9 l
+							<div class="main-carousel__info">
+								<div class="main-carousel__name">
+									SUU
+								</div>
+								<div class="main-carousel__desc">
+									{{$product->name_uz}}
+								</div>
+								<div class="main-carousel__size">
+									{{$product->size}} l
+								</div>
 							</div>
 						</div>
-					</div>
-					<div class="main-carousel__item">
-						<div class="main-carousel__img">
-							<img data-src="img/bottle3.png" alt="SUU" class="owl-lazy">
-						</div>
-						<div class="main-carousel__info">
-							<div class="main-carousel__name">
-								SUU
-							</div>
-							<div class="main-carousel__desc">
-								Gazlanmagan shifobahsh suv
-							</div>
-							<div class="main-carousel__size">
-								0.5 l
-							</div>
-						</div>
-					</div>
+					@endforeach
+
 				</div>
 				<div class="main-animation">
 					<div class="main-animation__item">
@@ -488,21 +463,21 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<section class="section about pattern">
+	</section>
+	<section class="section about pattern">
 			<div class="container">
 				<div class="section-wrap">
 					<div class="about-content">
 						<div class="section-content">
 							<h2 class="section__title">
-								О «SUU.UZBEKISTAN»
+								{{__('homeAboutTitle')}} «SUU.UZBEKISTAN»
 							</h2>
 							<div class="section__text">
-								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+								{{__('homeAboutTitleText')}}
 							</div>
 						</div>
 						<a href="{{route('about', app()->getLocale())}}" class="about__btn btn">
-							О компании
+							{{__('aboutTitle')}}
 						</a>
 					</div>
 					<div class="section__main">
@@ -521,10 +496,10 @@
 									01
 								</div>
 								<div class="about-list__name">
-									Технологии
+									{{__('homeAboutCard1')}}
 								</div>
 								<div class="about-list__desc">
-									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+									{{__('homeAboutCard1Text')}}
 								</div>
 							</div>
 							<div class="about-list__item">
@@ -541,10 +516,10 @@
 									02
 								</div>
 								<div class="about-list__name">
-									Производство
+									{{__('homeAboutCard2')}}
 								</div>
 								<div class="about-list__desc">
-									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+									{{__('homeAboutCard2Text')}}
 								</div>
 							</div>
 							<div class="about-list__item">
@@ -561,38 +536,38 @@
 									03
 								</div>
 								<div class="about-list__name">
-									Немецкие фильтры
+									{{__('homeAboutCard3')}}
 								</div>
 								<div class="about-list__desc">
-									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+									{{__('homeAboutCard3Text')}}
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-		<section class="section products">
+	</section>
+	<section class="section products">
 			<div class="container">
 				<div class="section-wrap">
 					<div class="products-content">
 						<div class="section-content">
 							<h2 class="section__title">
-								Продукция
+								{{__('homeProductTitle')}}
 							</h2>
 							<div class="section__text">
-								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+								{{__('homeProductTitleText')}}
 							</div>
 						</div>
 						<a href="#" class="products__btn btn feedback-open">
-							Оставить заявку
+							{{__('homeProductButton')}}
 						</a>
 					</div>
 					<div class="section__main">
 						<div class="products-choose">
 							<div class="products-choose__item">
 								<div class="products-choose__name">
-									Негазированная
+									{{__('homeProductCat1')}}
 								</div>
 								<ul class="products-list">
 									@foreach(\App\Models\Product::where('cat_id', 2)->get() as $data)
@@ -614,7 +589,7 @@
 							<div class="products-choose__item">
 							
 								<div class="products-choose__name">
-									Газированная
+									{{__('homeProductCat2')}}
 								</div>
 								
 								<ul class="products-list">
@@ -636,7 +611,7 @@
 										
 							<div class="products-choose__item">
 								<div class="products-choose__name">
-									Капсула
+									{{__('homeProductCat3')}}
 								</div>
 								<ul class="products-list">
 									@foreach(\App\Models\Product::where('cat_id', 3)->get() as $data)
@@ -658,26 +633,26 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<section class="section services">
+	</section>
+	<section class="section services">
 			<div class="container">
 				<div class="section-wrap">
 					<div class="services__title">
 						<h2 class="section__title">
-							Услуги
+							{{__('homeServiceTitle')}}
 						</h2>
 						<a href="#" class="services__btn btn feedback-open">
-							Оставить заявку
+							{{__('homeServiceButton')}}
 						</a>
 					</div>
 					<div class="section__main">
 						<div class="services-content">
 							<div class="services-item">
 								<h3 class="services-item__title">
-									Печать логотипа
+									{{__('homeService1Title')}}
 								</h3>
 								<div class="services-item__text">
-									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+									{{__('homeService1TitleText')}}	
 								</div>
 								<div class="services-item__bottles">
 									<img src="img/services1.png" alt="bottle">
@@ -686,10 +661,10 @@
 							</div>
 							<div class="services-item">
 								<h3 class="services-item__title">
-									Доставка
+									{{__('homeService2Title')}}
 								</h3>
 								<div class="services-item__text">
-									В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+									{{__('homeService2TitleText')}}
 								</div>
 								<div class="services-item__truck">
 									<img src="img/truck.png" alt="truck">
@@ -699,21 +674,21 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<section class="section news pattern">
+	</section>
+	<section class="section news pattern">
 			<div class="container">
 				<div class="section-wrap">
 					<div class="news-content">
 						<div class="section-content">
 							<h2 class="section__title">
-								Новости
+								{{__('homeNewsTitle')}}
 							</h2>
 							<div class="section__text">
-								В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+								{{__('homeNewsTitleText')}}
 							</div>
 						</div>
 						<a href="{{route('front.news', app()->getLocale())}}" class="news__btn btn">
-							Все новости
+							{{__('homeNewsButton')}}
 						</a>
 					</div>
 					<div class="section__main">
@@ -726,126 +701,49 @@
 							</span>
 						</div>
 						<div class="news-carousel owl-carousel">
-							<div class="news-carousel__item">
-								<div class="news-carousel__img">
-									<img data-src="img/news1.jpg" class="owl-lazy" alt="news">
+							@foreach($news as $news)
+								<div class="news-carousel__item">
+									<div class="news-carousel__img">
+										<img data-src="{{$news->image_path}}/{{$news->image}}" class="owl-lazy" alt="news">
+									</div>
+									<div class="news-carousel__text">
+										@if(app()->getLocale()=='uz')
+											{{$news->name_uz}}
+										@elseif(app()->getLocale()=='ru')
+											{{$news->name_ru}}
+										@elseif(app()->getLocale()=='en')
+											{{$news->name_en}}
+										@else
+										@endif
+									</div>
+									<div class="news-carousel__info">
+										<span>
+											{{explode(".", $news->updated_at->format('d.m.Y'))[0].'.'
+											.$months[explode(".", $news->updated_at->format('d.m.Y'))[1]].'.'.
+											explode(".", $news->updated_at->format('d.m.Y'))[2]
+											}}
+										</span>
+										<span><img src="img/eye.svg" alt="ico">20</span>
+									</div>
+									<a href="#"></a>
 								</div>
-								<div class="news-carousel__text">
-									В наше время все заботятся о своем здоровье и потребляют
-								</div>
-								<div class="news-carousel__info">
-									<span>13.Сент.2021</span>
-									<span><img src="img/eye.svg" alt="ico">20</span>
-								</div>
-								<a href="#"></a>
-							</div>
-							<div class="news-carousel__item">
-								<div class="news-carousel__img">
-									<img data-src="img/news2.jpg" class="owl-lazy" alt="news">
-								</div>
-								<div class="news-carousel__text">
-									В наше время все заботятся о своем здоровье и потребляют
-								</div>
-								<div class="news-carousel__info">
-									<span>13.Сент.2021</span>
-									<span><img src="img/eye.svg" alt="ico">20</span>
-								</div>
-								<a href="#"></a>
-							</div>
-							<div class="news-carousel__item">
-								<div class="news-carousel__img">
-									<img data-src="img/news1.jpg" class="owl-lazy" alt="news">
-								</div>
-								<div class="news-carousel__text">
-									В наше время все заботятся о своем здоровье и потребляют
-								</div>
-								<div class="news-carousel__info">
-									<span>13.Сент.2021</span>
-									<span><img src="img/eye.svg" alt="ico">20</span>
-								</div>
-								<a href="#"></a>
-							</div>
-							<div class="news-carousel__item">
-								<div class="news-carousel__img">
-									<img data-src="img/news2.jpg" class="owl-lazy" alt="news">
-								</div>
-								<div class="news-carousel__text">
-									В наше время все заботятся о своем здоровье и потребляют
-								</div>
-								<div class="news-carousel__info">
-									<span>13.Сент.2021</span>
-									<span><img src="img/eye.svg" alt="ico">20</span>
-								</div>
-								<a href="#"></a>
-							</div>
-							<div class="news-carousel__item">
-								<div class="news-carousel__img">
-									<img data-src="img/news1.jpg" class="owl-lazy" alt="news">
-								</div>
-								<div class="news-carousel__text">
-									В наше время все заботятся о своем здоровье и потребляют
-								</div>
-								<div class="news-carousel__info">
-									<span>13.Сент.2021</span>
-									<span><img src="img/eye.svg" alt="ico">20</span>
-								</div>
-								<a href="#"></a>
-							</div>
-							<div class="news-carousel__item">
-								<div class="news-carousel__img">
-									<img data-src="img/news2.jpg" class="owl-lazy" alt="news">
-								</div>
-								<div class="news-carousel__text">
-									В наше время все заботятся о своем здоровье и потребляют
-								</div>
-								<div class="news-carousel__info">
-									<span>13.Сент.2021</span>
-									<span><img src="img/eye.svg" alt="ico">20</span>
-								</div>
-								<a href="#"></a>
-							</div>
-							<div class="news-carousel__item">
-								<div class="news-carousel__img">
-									<img data-src="img/news1.jpg" class="owl-lazy" alt="news">
-								</div>
-								<div class="news-carousel__text">
-									В наше время все заботятся о своем здоровье и потребляют
-								</div>
-								<div class="news-carousel__info">
-									<span>13.Сент.2021</span>
-									<span><img src="img/eye.svg" alt="ico">20</span>
-								</div>
-								<a href="#"></a>
-							</div>
-							<div class="news-carousel__item">
-								<div class="news-carousel__img">
-									<img data-src="img/news2.jpg" class="owl-lazy" alt="news">
-								</div>
-								<div class="news-carousel__text">
-									В наше время все заботятся о своем здоровье и потребляют
-								</div>
-								<div class="news-carousel__info">
-									<span>13.Сент.2021</span>
-									<span><img src="img/eye.svg" alt="ico">20</span>
-								</div>
-								<a href="#"></a>
-							</div>
+							@endforeach
 						</div>
 					</div>
 				</div>
 			</div>
-		</section>
-		<section class="section contact">
+	</section>
+	<section class="section contact">
 			<div class="container">
 				<div class="section-wrap">
 					<div class="contact-content">
 						<h2 class="section__title">
-							Контакты
+							{{__('homeContactTitle')}}
 						</h2>
 						<div class="section__main">
 							<div class="contact-item">
 								<div class="contact-item__name">
-									Для экспорта и импорта:
+									{{__('homeContactForExportImport')}}:
 								</div>
 								<div class="contact-item__value">
 									<a href="mailto:SUU.UZBEKISTAN@suu.uz">SUU.UZBEKISTAN@suu.uz</a>
@@ -853,7 +751,7 @@
 							</div>
 							<div class="contact-item">
 								<div class="contact-item__name">
-									Телефоны:
+									{{__('homeContactPhone')}}:
 								</div>
 								<div class="contact-item__value">
 									<a href="tel:+998911529721">+998 91 152 97 21 </a>
@@ -862,7 +760,7 @@
 							</div>
 							<div class="contact-item">
 								<div class="contact-item__name">
-									E-mail:
+									{{__('homeContactMail')}}:
 								</div>
 								<div class="contact-item__value">
 									<a href="mailto:info@SUU.UZBEKISTAN.uz">info@SUU.UZBEKISTAN.uz
@@ -879,36 +777,27 @@
 			<div class="contact__map">
 				<div id="map"></div>
 			</div>
-		</section>
-	</div>
-
-
-<!-- КНОПКА ВЫЗОВА ОБРАТНОЙ СВЯЗИ -->
-
+	</section>
+</div>
 
 <div class="tel-popup feedback-open">
     <img src="img/tel-popup.png" alt="ico">
 </div>
 
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/jquery.inputmask.min.js"></script>
-<script src="js/owl.carousel.js"></script>
-<script src="js/fullpage.min.js"></script>
+<script src="/js/jquery-3.4.1.min.js"></script>
+<script src="/js/jquery.inputmask.min.js"></script>
+<script src="/js/owl.carousel.js"></script>
+<script src="/js/fullpage.min.js"></script>
 <script src="https://api-maps.yandex.ru/2.1/?lang=ru_RU" type="text/javascript"></script>
-<script src="js/map.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.ripples-min.js"></script>
-<script src="js/gsap.min.js"></script>
-<script src="js/dobpicker.js"></script>
-<script src="js/main.js"></script>
-<script src="js/basket.js"></script>
+<script src="/js/map.js"></script>
+<script src="/js/wow.min.js"></script>
+<script src="/js/jquery.ripples-min.js"></script>
+<script src="/js/gsap.min.js"></script>
+<script src="/js/dobpicker.js"></script>
+<script src="/js/main.js"></script>
+<script src="/js/basket.js"></script>
+
 <script>
-
-    // СКИПТЫ ТОЛЬКО ДЛЯ ГЛАВНОЙ
-
-
-    // ФУЛПЕЙДЖ
-
     $('#fullPage').fullpage({
         anchors: ['main', 'about', 'products', 'services', 'news', 'contact'],
         onLeave:function(origin,destination,direction) {
@@ -926,12 +815,10 @@
             }, 0.07, 0);
             tl.fromTo(text, .7, { y: "50", opacity: 0 }, { y: "0", opacity: 1 }, .6);
             tl.fromTo(main, .7, { x: "-50", opacity: 0 }, { x: "0", opacity: 1 }, .9);
-
         }
     })
 
     // ПРЕЛОАДЕР
-
     var preloader = $('.preloader'),
         imagesCount = $('img').length,
         percent = 100 / imagesCount,
@@ -939,15 +826,12 @@
         imgSum = $('img').length,
         loadedImg = 0;
 
-
     for (var i = 0; i < imagesCount; i++) {
         var img_copy = new Image();
         img_copy.src = document.images[i].src;
         img_copy.onload = img_load;
         img_copy.onerror = img_load;
     }
-
-
 
     function img_load() {
         progress += percent;
