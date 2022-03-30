@@ -1,3 +1,4 @@
+
 @extends('front.layout.app')
 
 @section('content')
@@ -7,10 +8,10 @@
 	<section class="news-single">
 		<div class="container">
 			<div class="news-single__title">
-				{{$news->name_uz}} 
+				{{-- {{$news->name_uz}}  --}}
 			</div>
 			<div class="news-single__img water-anim">
-				<img src="{{$news->image_path}}/{{$news->image}}" alt="img">
+				{{-- <img src="{{$news->image_path}}/{{$news->image}}" alt="img"> --}}
 			</div>
 			<div class="news-single__content">
 				<p>

@@ -23,7 +23,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.blade.php#services">
+                    <a href="#services">
                         {{__('navServices')}}
                     </a>
                 </li>
@@ -33,9 +33,10 @@
                     </a>
                 </li>
                 <li>
-                    <a href="index.blade.php#contact">
+                    <a href="#contact">
                         {{__('navContact')}}
                     </a>
+                    
                 </li>
             </ul>
         </nav>
@@ -55,13 +56,13 @@
                     </svg>
                 </div>
                 <div class="header-lang__dropdown header-side__dropdown">
-                    <a href="{{ route(Route::currentRouteName(), 'ru') }}">
+                    <a href="{{ route(Route::currentRouteName(), ['ru', \Request::segment(3)]) }}">
                         РУ
                     </a>
-                    <a href="{{ route(Route::currentRouteName(), 'uz') }}">
+                    <a href="{{ route(Route::currentRouteName(), ['uz', \Request::segment(3)]) }}">
                         UZ
                     </a>
-                    <a href="{{ route(Route::currentRouteName(), 'en') }}">
+                    <a href="{{ route(Route::currentRouteName(), ['en', \Request::segment(3)]) }}">
                         EN
                     </a>
                 </div>

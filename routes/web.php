@@ -24,7 +24,6 @@ Route::redirect('/', '/ru');
 
 Route::group(['prefix' => '{language}'], function(){
 
-
     Route::get('/fetch', [ProductController::class, 'fetch']);
     Route::get('/basket', [ProductController::class, 'fetch']);
     Route::get('/order', [OrderController::class, 'index'])->name('order');
