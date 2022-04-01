@@ -30,23 +30,23 @@
                     <div class="basket-item__info">
                         <div class="basket-item__head">
                             <h2 class="basket-item__name">
-                                {{ \App\Models\Category::find($product->cat_id)->name_ru }} ({{ $product->size }}L)
+                                {{ \App\Models\Category::find($product->cat_id)['name_'.session()->get('locale')] }} ({{ $product->size }}L)
                             </h2>
-                            <div class="basket-item__price">итог
+                            <div class="basket-item__price">итог 
                                 <span>
                                     <strong id="price_product">{{ $product->price*$cart[$key]['quantity'] }}</strong> UZS
                                 </span>
                             </div>
                         </div>
                         <div class="basket-item__text">
-                            {{ $product->description_ru }}
+                            {{ $product['description_'.session()->get('locale')] }}
                         </div>
                         <div class="basket-item__logo btn">
                                         <span>
-                                            @if($cart[$key]['logo'] == 0)
-                                            {{ __('Без логотипа') }}
+                                            @if($cart[$key]['logo'] == '0')
+                                                {{__('Без логотипа')}}
                                             @else
-                                                {{ __('С вашим логотипом') }}
+                                                {{__('С вашим логотипом')}}
                                             @endif
                                         </span>
                             <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -113,7 +113,7 @@
 </div>
 @if(session()->get('cart'))
     <div class="basket-content" id="basket-content">
-        <form action="#" class="basket-form">
+        <form action="{{Route('order.create', session()->get('locale'))}}" class="basket-form">
             <div class="basket-form__title">
                 я ... покупатель
             </div>

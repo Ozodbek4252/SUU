@@ -6,32 +6,11 @@
 
 	<div class="popup-layer"></div>
 
-	<div class="feedback">
-		<div class="feedback-content">
-			<div class="feedback__title">
-				{{__('homeInputTitle')}}
-			</div>
-			<div class="feedback__text">
-				{{__('homeInputTitleText')}} <strong>suu.uzbekistan</strong>
-			</div>
-			<div class="feedback-form">
-				<input type="text" placeholder="{{__('homePlaceholderInputName')}}">
-				<input type="text" placeholder="{{__('homePlaceholderInputLastName')}}">
-				<input type="tel" placeholder="{{__('homePlaceholderInputPhone')}}" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
-				<textarea placeholder="{{__('homePlaceholderInputText')}}"></textarea>
-				<div class="feedback-form__check">
-					<label>
-						<input type="checkbox">
-						<span>{{__('homeInputChech')}}</span>
-					</label>
-				</div>
-				<button type="submit" class="btn">{{__('homeInputButton')}}</button>
-			</div>
-		</div>
-	</div>
 
 	<!-- АВТОРИЗАЦИЯ -->
-
+	<?php
+		session()->put('locale', Request::segment(1))
+	?>
 	<div class="login">
 		<div class="feedback-content">
 			<div class="feedback__title">
@@ -65,7 +44,6 @@
 
 
 	<!-- МОБИЛЬНОЕ МЕНЮ -->
-
 	<div class="mobile-menu">
 		<div class="mobile-menu__head">
 			<div class="mobile-menu__logo">
@@ -149,19 +127,20 @@
 		<div class="container" id="basket_refresh">
 			<div class="basket-empty">
                 @if(!session()->get('cart'))
-                    ВАША КОРЗИНА ПУСТА
+                    {{__('ВАША КОРЗИНА ПУСТА')}}
                 @endif
 			</div>
 
 			<div class="basket-list" id="basket-list">
                 <?php $total_price = 0 ?>
-                @if(session()->get('cart'))
+                @if(session()->get('cart') != null)
                     @foreach(session()->get('cart') as $key=>$value)
                         <?php
                             $cart = session()->get('cart');
                             $product = \App\Models\Product::find($key);
                             $total_price += $product->price*$cart[$key]['quantity'];
                         ?>
+						
                         <div class="basket-item" id="basket-item{{ $product->id }}">
                             <div class="basket-item__delete" onclick="deleteProduct({{ $product->id }})">
                                 <img src="img/del.svg" alt="ico">
@@ -182,18 +161,19 @@
                                         <h2 class="basket-item__name">
                                             {{ \App\Models\Category::find($product->cat_id)['name_'.app()->getLocale()] }} ({{ $product->size }}L)
                                         </h2>
-                                        <div class="basket-item__price">итог
+                                        <div class="basket-item__price">{{__('cartPrice')}}
                                             <span>
                                                 <strong id="price_product">{{ $product->price*$cart[$key]['quantity'] }}</strong> UZS
                                             </span>
                                         </div>
                                     </div>
+								
                                     <div class="basket-item__text">
                                         {{ $product['description_'.app()->getLocale()] }}
                                     </div>
                                     <div class="basket-item__logo btn">
                                         <span>
-                                            @if($cart[$key]['logo'] == 0)
+                                            @if($cart[$key]['logo'] == '0')
                                                 {{__('Без логотипа')}}
                                             @else
                                                 {{__('С вашим логотипом')}}
@@ -212,7 +192,7 @@
                                         </div>
                                     </div>
                                     <div class="basket-item__open">
-                                        количество
+                                        {{__('количество')}}
                                         <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
                                             <path d="M14 1L7.5 7L1 1" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round"/>
                                         </svg>
@@ -221,7 +201,7 @@
                                         <div class="order-thin">
                                             <div class="order-item order-count">
                                                 <div class="order-item__title">
-                                                    Выберите количество блоков
+                                                    {{__('Выберите количество блоков')}}
                                                 </div>
                                                 <select id="blok_quantity{{ $product->id }}" onchange="quantity({{ $product->id }})">
                                                     @for($i=1; $i<5; $i++)
@@ -231,11 +211,11 @@
                                             </div>
                                             <div class="order-item order-print">
                                                 <div class="order-item__title">
-                                                    Печать логотипа
+                                                    {{__('Печать логотипа')}}
                                                 </div>
                                                 <div class="order-print__btns">
-                                                    <button class="btn @if($cart[$key]['logo'] == 1) active @endif" onclick="logo(1, {{ $product->id }})">С вашим логотипом</button>
-                                                    <button class="btn @if($cart[$key]['logo'] == 0) active @endif" onclick="logo(0, {{ $product->id }})">Без логотипа</button>
+                                                    <button class="btn @if($cart[$key]['logo'] == 1) active @endif" onclick="logo(1, {{ $product->id }})">{{__('С вашим логотипом')}}</button>
+                                                    <button class="btn @if($cart[$key]['logo'] == 0) active @endif" onclick="logo(0, {{ $product->id }})">{{__('Без логотипа')}}</button>
                                                 </div>
                                                 <div class="order-print__images">
                                                     <div>
@@ -248,7 +228,7 @@
                                             </div>
                                             <div class="order-price">
                                                 <div class="order-price__item">
-                                                    <span class="order-price__name">Промежуточный итог</span>
+                                                    <span class="order-price__name">{{__('honeOrderPrice')}}</span>
                                                     <span class="order-price__value" id="order-price__name'+i+'">{{ $product->price*$cart[$key]['quantity'] }}<span>UZS</span></span>
                                                 </div>
                                             </div>
@@ -262,45 +242,45 @@
                 @endif
 			</div>
             @if(session()->get('cart'))
-			    <div class="basket-content" id="basket-content">
-				<form action="#" class="basket-form">
+			<div class="basket-content" id="basket-content">
+				<form action="{{Route('order.create', app()->getLocale())}}" class="basket-form">
 					<div class="basket-form__title">
-						я ... покупатель
+						{{__('cartFormTitle')}}
 					</div>
-					<select class="basket-form__select">
-						<option value="new" selected>новый</option>
-						<option value="stand">постоянный</option>
+					<select name="customer" class="basket-form__select">
+						<option value="new" selected>{{__('cartFormOption1')}}</option>
+						<option value="stand">{{__('cartFormOption2')}}</option>
 					</select>
 					<div class="form-half">
-						<input type="text" placeholder="Имя">
-						<input type="tel" placeholder="Телефон" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
+						<input name="name" type="text" placeholder="{{__('homePlaceholderInputName')}}">
+						<input name="phone" type="tel" placeholder="{{__('homeContactPhone')}}" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
 					</div>
 					<div class="order-item order-delivery">
 						<div class="order-item__title">
-							Доставка
+							{{__('honeOrderDelivery')}}
 						</div>
 
 						<div class="order-delivery__btns">
-							<button class="btn active">нужно</button>
-							<button class="btn">не нужно</button>
+							<button name="deliveryNeeded" class="btn active">{{__('cartFormDelivery1')}}</button>
+							<button name="deliveryNoNeed" class="btn">{{__('cartFormDelivery2')}}</button>
 						</div>
 					</div>
 					<div class="basket-form__price">
-						<span>Промежуточный итог</span>
+						<span>{{__('honeOrderPrice')}}</span>
 						<span></span>
 						<span><strong>{{ $total_price }}</strong> UZS</span>
 					</div>
 					<div class="basket-form__price">
-						<span>Доставка</span>
+						<span>{{__('honeOrderDelivery')}}</span>
 						<span></span>
 						<span><strong>00</strong> UZS</span>
 					</div>
 					<div class="basket-form__choose">
 						<div>
-							<input type="radio" name="pay" id="cash"> <label for="cash">Наличными</label>
+							<input type="radio" name="pay" id="cash"> <label for="cash">{{__('cartFormPaymentM1')}}</label>
 						</div>
 						<div>
-							<input type="radio" name="pay" id="card"> <label for="card">Карта</label>
+							<input type="radio" name="pay" id="card"> <label for="card">{{__('cartFormPaymentM2')}}</label>
 						</div>
 					</div>
 					<div class="basket-form__cards">
@@ -321,35 +301,34 @@
 						</div>
 					</div>
 					<button type="submit" class="order-add btn">
-						Оплатить
+						{{__('cartFormPayBtn')}}
 					</button>
 				</form>
 				<div class="basket-info">
 					<div class="basket-info__title">
-						Реквизиты
+						{{__('cartReqTitle')}}
 					</div>
 					<ul class="basket-info__list">
 						<li>
-							<span>Получатель:</span> OOO “SUU Tashkent”
+							<span>{{__('cartReqResip')}}:</span> OOO “SUU Tashkent”
 						</li>
 						<li>
-							<span>Адрес:</span> г. Ташкент, Юнусабадский район, ул.Ахмад Дониша 26А
+							<span>{{__('footerAddress')}}:</span> {{__('cartReqAddress')}}
 						</li>
 						<li>
-							<span>ИНН:</span> 7706412841
+							<span>{{__('cartReqTIN')}}:</span> 7706412841
 						</li>
 						<li>
-							<span>Р/С:</span> 2020 8000 2010 3340 5001 ЧАКБ «ОРИЕНТ ФИНАНС» Юнусабадский Филиал
-
+							<span>{{__('cartReqBC')}}:</span> {{__('cartReqBCBody')}}
 						</li>
 						<li>
-							<span>МФО:</span> 01075
+							<span>{{__('cartReqIFI')}}:</span> 01075
 						</li>
 						<li>
-							<span>ИНН:</span> 306 164 875
+							<span>{{__('cartReqTIN')}}:</span> 306 164 875
 						</li>
 						<li>
-							<span>ОКЭД:</span> 58290
+							<span>{{__('cartReqNCKEA')}}:</span> 58290
 						</li>
 					</ul>
 				</div>

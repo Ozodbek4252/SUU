@@ -107,10 +107,8 @@
 @endif
 
 <div class="side-basket__layer"></div>
-{{-- <?php 
-$cart = session()->get('cart');
-?>
-{{ dd($cart) }} --}}
+
+
 <div class="side-basket">
     <div class="feedback-content">
     <div class="side-basket__content" id="side-basket__content">

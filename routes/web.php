@@ -73,6 +73,8 @@ Route::group(['prefix' => '{language}'], function(){
     Route::get('/fetch', [ProductController::class, 'fetch']);
     Route::get('/basket', [ProductController::class, 'fetch']);
     Route::get('/order', [OrderController::class, 'index'])->name('order');
+    Route::get('/order/create', [OrderController::class, 'create'])->name('order.create');
+
 
     Route::controller(HomeController::class)->group(function(){
         Route::get('/', 'index')->name('home');
