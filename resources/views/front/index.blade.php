@@ -107,31 +107,33 @@
 @endif
 
 <div class="side-basket__layer"></div>
+{{-- <?php 
+$cart = session()->get('cart');
+?>
+{{ dd($cart) }} --}}
 <div class="side-basket">
     <div class="feedback-content">
-			<div class="side-basket__content" id="side-basket__content">
-				{{-- @if(session()->get('basket')!=null)
-					@foreach(session()->get('basket') as $data) --}}
-						
-					{{-- @endforeach
-				@endif --}}
-			</div>
+    <div class="side-basket__content" id="side-basket__content">
+
+    </div>
         <div class="side-basket__price">
             <div class="order-price">
                 <div class="order-price__item">
-                    <span class="order-price__name">{{__('honeOrderPrice')}}</span>
-                    <span class="order-price__value" id="price"><span>UZS</span></span>
+                    <span class="order-price__name">Промежуточный итог</span>
+                    <span class="order-price__value" id="price">
+
+                    </span>
                 </div>
                 <div class="order-price__item">
-                    <span class="order-price__name">{{__('honeOrderDelivery')}}</span>
+                    <span class="order-price__name">Доставка</span>
                     <span class="order-price__value">0 <span>UZS</span></span>
                 </div>
             </div>
-            <a href="/order">
+            <a href="{{route('order', app()->getLocale())}}">
 				<button class="order-add btn">
-					{{__('honeOrderButton')}}
+					Оплатить
 				</button>
-			</a>
+    		</a>
         </div>
     </div>
 </div>
@@ -327,8 +329,15 @@
                             </svg>
                         </a>
 					</div>
-					<span>
-						16
+					<span id="quantity_product">
+					<?php
+						$k = 0;
+						if(session()->get('cart') != null){
+							foreach(session()->get('cart') as $key=>$value){
+							$k++;
+						}
+						}
+						?>{{ $k }}
 					</span>
 				</li>
 				@if(auth()->user())

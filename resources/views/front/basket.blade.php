@@ -9,23 +9,23 @@
 	<div class="feedback">
 		<div class="feedback-content">
 			<div class="feedback__title">
-				Оставить заявку
+				{{__('homeInputTitle')}}
 			</div>
 			<div class="feedback__text">
-				Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
+				{{__('homeInputTitleText')}} <strong>suu.uzbekistan</strong>
 			</div>
 			<div class="feedback-form">
-				<input type="text" placeholder="Имя">
-				<input type="text" placeholder="Фамилия">
-				<input type="tel" placeholder="Телефон" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
-				<textarea placeholder="Текст"></textarea>
+				<input type="text" placeholder="{{__('homePlaceholderInputName')}}">
+				<input type="text" placeholder="{{__('homePlaceholderInputLastName')}}">
+				<input type="tel" placeholder="{{__('homePlaceholderInputPhone')}}" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
+				<textarea placeholder="{{__('homePlaceholderInputText')}}"></textarea>
 				<div class="feedback-form__check">
 					<label>
 						<input type="checkbox">
-						<span>Я прочитал согласие с политикой конфиденциальности</span>
+						<span>{{__('homeInputChech')}}</span>
 					</label>
 				</div>
-				<button type="submit" class="btn">Оставить заявку</button>
+				<button type="submit" class="btn">{{__('homeInputButton')}}</button>
 			</div>
 		</div>
 	</div>
@@ -35,10 +35,10 @@
 	<div class="login">
 		<div class="feedback-content">
 			<div class="feedback__title">
-				Зарегистрироваться
+				{{__('Зарегистрироваться')}}
 			</div>
 			<div class="feedback__text">
-				Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
+				{{__('homeInputTitleText')}} <strong>suu.uzbekistan</strong>
 			</div>
 			<div class="feedback-form">
 				<div class="feedback-date">
@@ -49,16 +49,16 @@
 				<input type="text" placeholder="Имя">
 				<input type="text" placeholder="Фамилия">
 				<input type="email" placeholder="Ваш электронный адрес">
-				<p>Пароль</p>
+				<p>{{__('Пароль')}}</p>
 				<input type="password" placeholder="Новый пароль">
 				<input type="password" placeholder="Подтвердите пароль">
 				<div class="feedback-form__check">
 					<label>
 						<input type="checkbox">
-						<span>Я прочитал согласие с политикой конфиденциальности</span>
+						<span>{{__('homeInputChech')}}</span>
 					</label>
 				</div>
-				<button type="submit" class="btn">Оставить заявку</button>
+				<button type="submit" class="btn">{{__('homeInputButton')}}</button>
 			</div>
 		</div>
 	</div>
@@ -83,33 +83,33 @@
 		</div>
 		<ul class="menu">
 			<li>
-				<a href="{{route('home', app()->getLocale())}}" data-menuanchor="main">
-					Главная
+				<a href="/home" data-menuanchor="main">
+					{{__('navHome')}}
 				</a>
 			</li>
 			<li>
 				<a href="#about" data-menuanchor="about">
-					О компании
+					{{__('aboutTitle')}}
 				</a>
 			</li>
 			<li>
 				<a href="#products" data-menuanchor="products">
-					Продукция
+					{{__('homeProductTitle')}}
 				</a>
 			</li>
 			<li>
 				<a href="#services" data-menuanchor="services">
-					Услуги
+					{{__('homeServiceTitle')}}
 				</a>
 			</li>
 			<li>
 				<a href="#news" data-menuanchor="news">
-					Новости
+					{{__('homeNewsTitle')}}
 				</a>
 			</li>
 			<li>
 				<a href="#contact" data-menuanchor="contact">
-					Контакты
+					{{__('homeContactTitle')}}
 				</a>
 			</li>
 		</ul>
@@ -145,17 +145,124 @@
 
 	<!-- КОРЗИНА -->
     <form action=""></form>
-
 	<section class="basket">
-		<div class="container">
+		<div class="container" id="basket_refresh">
+			<div class="basket-empty">
+                @if(!session()->get('cart'))
+                    ВАША КОРЗИНА ПУСТА
+                @endif
+			</div>
 
-			<div class="basket-empty" id="basket-empty">
-				
-			</div>
 			<div class="basket-list" id="basket-list">
-				
+                <?php $total_price = 0 ?>
+                @if(session()->get('cart'))
+                    @foreach(session()->get('cart') as $key=>$value)
+                        <?php
+                            $cart = session()->get('cart');
+                            $product = \App\Models\Product::find($key);
+                            $total_price += $product->price*$cart[$key]['quantity'];
+                        ?>
+                        <div class="basket-item" id="basket-item{{ $product->id }}">
+                            <div class="basket-item__delete" onclick="deleteProduct({{ $product->id }})">
+                                <img src="img/del.svg" alt="ico">
+                            </div>
+                            <div class="basket-item__img">
+                                <img src="{{ $product->image_path }}/{{ $product->image }}" alt="img">
+                            </div>
+                            <div class="basket-item__wrap">
+                                <div class="basket-item__size" id="basket-item__size'+i+'">
+                                    @if($product->cat_id != 3)
+                                        {{ $product->price/6 }}
+                                    @else
+                                        {{ $product->price }}
+                                    @endif
+                                </div>
+                                <div class="basket-item__info">
+                                    <div class="basket-item__head">
+                                        <h2 class="basket-item__name">
+                                            {{ \App\Models\Category::find($product->cat_id)['name_'.app()->getLocale()] }} ({{ $product->size }}L)
+                                        </h2>
+                                        <div class="basket-item__price">итог
+                                            <span>
+                                                <strong id="price_product">{{ $product->price*$cart[$key]['quantity'] }}</strong> UZS
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="basket-item__text">
+                                        {{ $product['description_'.app()->getLocale()] }}
+                                    </div>
+                                    <div class="basket-item__logo btn">
+                                        <span>
+                                            @if($cart[$key]['logo'] == 0)
+                                                {{__('Без логотипа')}}
+                                            @else
+                                                {{__('С вашим логотипом')}}
+                                            @endif
+                                        </span>
+                                        <svg width="11" height="11" viewBox="0 0 11 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M9.41619 1.17401L5.29546 5.29474M1.17473 9.41547L5.29546 5.29474M5.29546 5.29474L9.26077 9.26005L1.12145 1.12073" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="basket-item__total">
+                                            <div>@if($product->cat_id != 3) 6 x {{ $product->price/6 }} = @endif</div>
+                                        <div>
+                                            <strong>{{ $product->price }}</strong> UZS * <span>
+                                                {{ $cart[$key]['quantity'] }} @if($product->cat_id != 3) блок @else капсула @endif
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="basket-item__open">
+                                        количество
+                                        <svg width="15" height="9" viewBox="0 0 15 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                            <path d="M14 1L7.5 7L1 1" stroke="#217BBE" stroke-width="1.5" stroke-linecap="round"/>
+                                        </svg>
+                                    </div>
+                                    <div class="basket-item__dropdown">
+                                        <div class="order-thin">
+                                            <div class="order-item order-count">
+                                                <div class="order-item__title">
+                                                    Выберите количество блоков
+                                                </div>
+                                                <select id="blok_quantity{{ $product->id }}" onchange="quantity({{ $product->id }})">
+                                                    @for($i=1; $i<5; $i++)
+                                                        <option value="{{ $i }}" @if($cart[$key]['quantity'] == $i) selected @endif>{{ $i }}</option>
+                                                    @endfor
+                                                </select>
+                                            </div>
+                                            <div class="order-item order-print">
+                                                <div class="order-item__title">
+                                                    Печать логотипа
+                                                </div>
+                                                <div class="order-print__btns">
+                                                    <button class="btn @if($cart[$key]['logo'] == 1) active @endif" onclick="logo(1, {{ $product->id }})">С вашим логотипом</button>
+                                                    <button class="btn @if($cart[$key]['logo'] == 0) active @endif" onclick="logo(0, {{ $product->id }})">Без логотипа</button>
+                                                </div>
+                                                <div class="order-print__images">
+                                                    <div>
+                                                        <img src="img/print1.png" alt="img">
+                                                    </div>
+                                                    <div>
+                                                        <img src="img/print2.png" alt="img">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="order-price">
+                                                <div class="order-price__item">
+                                                    <span class="order-price__name">Промежуточный итог</span>
+                                                    <span class="order-price__value" id="order-price__name'+i+'">{{ $product->price*$cart[$key]['quantity'] }}<span>UZS</span></span>
+                                                </div>
+                                            </div>
+                                            {{--<button class="order-add btn">Далее</button>--}}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @endforeach
+                @endif
 			</div>
-			<div class="basket-content" id="basket-content">
+            @if(session()->get('cart'))
+			    <div class="basket-content" id="basket-content">
 				<form action="#" class="basket-form">
 					<div class="basket-form__title">
 						я ... покупатель
@@ -172,7 +279,7 @@
 						<div class="order-item__title">
 							Доставка
 						</div>
-						
+
 						<div class="order-delivery__btns">
 							<button class="btn active">нужно</button>
 							<button class="btn">не нужно</button>
@@ -181,7 +288,7 @@
 					<div class="basket-form__price">
 						<span>Промежуточный итог</span>
 						<span></span>
-						<span><strong id="total_price"></strong> UZS</span>
+						<span><strong>{{ $total_price }}</strong> UZS</span>
 					</div>
 					<div class="basket-form__price">
 						<span>Доставка</span>
@@ -247,6 +354,7 @@
 					</ul>
 				</div>
 			</div>
+            @endif
 		</div>
 	</section>
 	

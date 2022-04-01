@@ -35,31 +35,6 @@ class ProductController extends Controller
     }
 
     public function fetch(Request $request){
-    $arr = [] ;
-    if($request->get('arr')){
-        foreach($request->get('arr') as $key=>$value){
-            $arr[$key] = [
-                'id' => $value,
-                'cat_id' => Product::find($value)->cat_id,
-                'cat_name_ru' => Category::find(Product::find($value)->cat_id)->name_ru,
-                'cat_name_uz' => Category::find(Product::find($value)->cat_id)->name_uz,
-                'cat_name_en' => Category::find(Product::find($value)->cat_id)->name_en,
-                'image' => Product::find($value)->image,
-                'image_path' => Product::find($value)->image_path,
-                'price' => Product::find($value)->price,
-                'name_uz' => Product::find($value)->name_uz,
-                'name_ru' => Product::find($value)->name_ru,
-                'name_en' => Product::find($value)->name_en,
-                'description_uz' => Product::find($value)->description_uz,
-                'description_ru' => Product::find($value)->description_ru,
-                'description_en' => Product::find($value)->description_en,
-                'size' => Product::find($value)->size,
-            ];
-        }
-    }
-    return response()->json([
-        'data' => $arr,
-    ]);
     }
     public function basket(Request $request){
         $arr = [] ;

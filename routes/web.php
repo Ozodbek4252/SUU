@@ -22,6 +22,52 @@ use App\Http\Livewire\Index;
 /// ------------------------ Front End --------------------------
 Route::redirect('/', '/ru');
 
+//_____________________Basket__________________________
+Route::get('/add_basket/{id}', function ($id){
+    $product = \App\Models\Product::find($id);
+    if(!$product) {abort(404);}
+    $cart = session()->get('cart');
+    if(!$cart) { $cart = [ $id => [
+        "id"=>$id,
+        "quantity" => 1,
+        "logo" => 1,
+    ]]; }
+    else{ $cart[$id] = [
+        "id" => $id,
+        "quantity" => 1,
+        "logo" => 1,
+    ]; }
+    session()->put('cart', $cart);
+});
+Route::get('/update_quantity/{id}/{q}', function($id, $q){
+    $cart = session()->get('cart');
+    $cart[$id]['quantity'] = $q;
+    session()->put('cart', $cart);
+});
+Route::get('/update_logo/{bul}/{id}', function($bul, $id){
+    $cart = session()->get('cart');
+    $cart[$id]['logo'] = $bul;
+    session()->put('cart', $cart);
+});
+Route::get('/delete_product/{id}', function ($id){
+    $cart = session()->get('cart');
+    unset($cart[$id]);
+    session()->put('cart', $cart);
+});
+Route::get('cart', function (){
+    return view('front.cart');
+});
+Route::get('/basket_refresh', function (){
+    return view('front.basket_refresh');
+});
+Route::get('price', function (){
+    return view('front.price');
+});
+Route::get('quantity_product_refresh', function(){
+    return view('front.quantity_product');
+});
+//_____________________Basket End______________________
+
 Route::group(['prefix' => '{language}'], function(){
 
     Route::get('/fetch', [ProductController::class, 'fetch']);
@@ -38,8 +84,6 @@ Route::group(['prefix' => '{language}'], function(){
     Route::get('/message',[MessageController::class,'index'])->name('message');
     Route::post('/message/store',[MessageController::class,'store'])->name('message.store');
     Route::get('/message/destroy/{id}',[MessageController::class,'destroy'])->name('message.destroy');
-
-
 
 });
 
