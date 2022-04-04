@@ -60,7 +60,7 @@
                                     </div>
                                     <div class="modal-body">
 
-                                        <a href="{{route('message.destroy', $mess->id)}}" method="post">
+                                        <a href="{{route('message.destroy', [app()->getLocale(), $mess->id] )}}" method="post">
                                             <button type="submit" class="btn btn-danger">O'chirish</button>
                                         </a>
                                     </div>

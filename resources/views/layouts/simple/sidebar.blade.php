@@ -28,25 +28,25 @@
                         <span>Продукты</span>
                     </a>
                     <ul class="sub-menu">
-                        <li><a style="color: #7b8190 !important; " href="{{route('product.create')}}">Добавить</a></li>
-                        <li><a style="color: #7b8190 !important; " href="{{route('product.list')}}">Лист</a></li>
+                        <li><a style="color: #7b8190 !important; " href="{{route('product.create', app()->getLocale())}}">Добавить</a></li>
+                        <li><a style="color: #7b8190 !important; " href="{{route('product.list', app()->getLocale())}}">Лист</a></li>
                     </ul>
                 </li>
                 <li>
-                    <a href="/orders" >
+                    <a href="" >
                         <i class="uil-shopping-basket"></i>
                         <span>Заказы</span>
                     </a>
                 </li>
                 <li>
-                    <a style="color: #7b8190 !important; " href="{{route('message')}}" >
+                    <a style="color: #7b8190 !important; " href="{{route('message', app()->getLocale())}}" >
                         <i  style="color: #7b8190 !important; " class="uil-envelope-alt"></i>
                         <span>Сообшении</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{route('news')}}" >
+                    <a href="{{route('news', app()->getLocale())}}" >
                         <i class="uil-water-glass"></i>
                         <span>News</span>
                     </a>

@@ -39,7 +39,7 @@
                         {{-- <td >{{$products->description_en}}</td> --}}
                         <td >{{$product->photo}}</td>
                         <td>
-                            <form action="{{route('product.edit', $product->id)}}" method="POST">
+                            <form action="{{route('product.edit', [app()->getLocale(), $product->id] )}}" method="POST">
                                 @csrf
                                 @method('POST')
                                 <button type="submit" class="btn btn-primary">Edit</button>
@@ -57,7 +57,7 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <form action="{{route('product.destroy', $product->id)}}" method="POST">
+                                        <form action="{{route('product.destroy', [app()->getLocale(), $product->id] )}}" method="POST">
                                             @csrf
                                             @method('DELETE')
                                             <button type="submit" class="btn btn-danger">O'chirish</button>

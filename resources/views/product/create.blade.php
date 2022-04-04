@@ -6,7 +6,7 @@
         <!-- form start -->
     <div class="card">
         <div class="card-body">
-            <form action="{{route('product.store',  )}}" method="post">
+            <form action="{{route('product.store', app()->getLocale() )}}" method="post">
                 {{ csrf_field() }}
                 <h1>Category</h1>
                 <div class="form-group container-fluid d-flex justify-content-between align-items-end" style="padding: 0px">
@@ -41,9 +41,9 @@
         <div class="card-body">
 
             @if($product != null)
-                <form action="{{route('product.store', $product->id)}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('product.store', [app()->getLocale(), $product->id] )}}" method="post" enctype="multipart/form-data">
             @else
-                <form action="{{route('product.store')}}" method="post" enctype="multipart/form-data">
+                <form action="{{route('product.store', app()->getLocale())}}" method="post" enctype="multipart/form-data">
             @endif
                 {{ csrf_field() }}
                 <h1>Product</h1>

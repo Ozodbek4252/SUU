@@ -54,7 +54,7 @@
 
                 <div class="dropdown-menu dropdown-menu-end">
                     <!-- item-->
-                    <a class="dropdown-item" href="{{ route('profile.show') }}"><i
+                    <a class="dropdown-item" href="{{ route('profile.show', app()->getLocale()) }}"><i
                             class="uil uil-user-circle font-size-18 align-middle text-muted me-1"></i> <span
                             class="align-middle">Профиль</span></a>
                     <a class="dropdown-item" href="{{ route('logout') }}"

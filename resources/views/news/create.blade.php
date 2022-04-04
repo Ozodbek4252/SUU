@@ -9,7 +9,7 @@
                 </div>
             @enderror
 
-            <form action="{{route('news.store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('news.store', app()->getLocale())}}" method="post" enctype="multipart/form-data">
                  <div class="card-body">
                         {{ csrf_field() }}
                         <h1>Add News</h1>

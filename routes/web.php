@@ -11,6 +11,11 @@ use App\Http\Controllers\LogoutController;
 /// ------------------------ Front --------------------------
 Route::redirect('/', '/ru');
 Route::redirect('/home', '/ru');
+Route::redirect('/dashboard', '/ru/dashboard');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
+    return view('dashboard');
+})->name('dashboard');
 
 
 // ------------------- Log Out -------------------
@@ -35,33 +40,30 @@ Route::group(['prefix' => '{language}'], function(){
     Route::post('/message/store',[MessageController::class,'store'])->name('message.store');
     Route::get('/message/destroy/{id}',[MessageController::class,'destroy'])->name('message.destroy');
 
+    
+    
+    
+    // ------------------------------- Dashboard ----------------------------------
+
+    
+    Route::get('/product/list',[ProductController::class,'index'])->name('product.list');
+    Route::get('/product/create',[ProductController::class,'create'])->name('product.create');
+    Route::post('/product/{id?}',[ProductController::class,'store'])->name('product.store');
+    Route::delete('/product/{id}',[ProductController::class,'destroy'])->name('product.destroy');
+    Route::post('/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
+    // Route::post('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
+    
+    Route::get('/news', [NewsController::class,'index'])->name('news');
+    Route::get('/news/create', [NewsController::class,'create'])->name('news.create');
+    Route::post('/news',[NewsController::class,'store'])->name('news.store');
+    
+    // Route::get('/news/{id}',[NewsController::class,'edit'])->name('news.edit');
+    // Route::post('/news/{id}',[NewsController::class,'update'])->name('news/update');
+    // Route::get('/news/{id}',[NewsController::class,'destroy'])->name('news.destroy');
+    //Route::get('/news/{id}/edit', [NewsController::class, 'edit']);
+    
+    
 });
-
-
-
-// ------------------------------- Dashboard ----------------------------------
-Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
-    return view('dashboard');
-})->name('dashboard');
-
-
-Route::get('/product/list',[ProductController::class,'index'])->name('product.list');
-Route::get('/product/create',[ProductController::class,'create'])->name('product.create');
-Route::post('/product/{id?}',[ProductController::class,'store'])->name('product.store');
-Route::delete('/product/{id}',[ProductController::class,'destroy'])->name('product.destroy');
-Route::post('/product/edit/{id}',[ProductController::class,'edit'])->name('product.edit');
-// Route::post('/product/update/{id}',[ProductController::class,'update'])->name('product.update');
-
-Route::get('/news', [NewsController::class,'index'])->name('news');
-Route::get('/news/create', [NewsController::class,'create'])->name('news.create');
-Route::post('/news',[NewsController::class,'store'])->name('news.store');
-
-// Route::get('/news/{id}',[NewsController::class,'edit'])->name('news.edit');
-// Route::post('/news/{id}',[NewsController::class,'update'])->name('news/update');
-// Route::get('/news/{id}',[NewsController::class,'destroy'])->name('news.destroy');
-//Route::get('/news/{id}/edit', [NewsController::class, 'edit']);
-
-
 
 
 

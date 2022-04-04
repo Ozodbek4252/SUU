@@ -20,7 +20,7 @@
                 @endif
             </div>
 
-            <a href="{{route('news.create')}}" class="btn btn-success" style="margin-right: 20px">Add</a>
+            <a href="{{route('news.create', app()->getLocale())}}" class="btn btn-success" style="margin-right: 20px">Add</a>
 
             <table style="font-family: arial, sans-serif;
                     border-collapse: collapse;

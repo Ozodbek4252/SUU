@@ -4,7 +4,7 @@
     <div class="card">
         <div class="card-body">
 
-            <form action="{{route('create.update',$product->id)}}" method="post">
+            <form action="{{route('create.update', [app()->getLocale(), $product->id] )}}" method="post">
                 {{ csrf_field() }}
                 <h1>Product</h1>
                 <div class="form-group container-fluid d-flex justify-content-between align-items-end" style="padding: 0px">
