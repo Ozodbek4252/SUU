@@ -1,11 +1,13 @@
 <!doctype html>
 <html lang="en">
 <head>
+    {{-- <base href="/public"> --}}
     <meta charset="utf-8" />
     <title>{{ config('app.name', 'Laravel') }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta content="Bizning Uylar" name="author" />
     <link rel="shortcut icon" href="{{ asset('/assets/images/favicon.ico') }}">
+    
     @include('layouts.simple.css')
     @yield('style')
     @trixassets

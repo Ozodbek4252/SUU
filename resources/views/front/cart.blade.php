@@ -6,7 +6,7 @@
         <div class="cabinet-order__img">
             <img src="{{ $product->image_path }}/{{ $product->image }}" alt="img">
         </div>
-        <div class="cabinet-order__name">{{ \App\Models\Category::find($product->cat_id)->name_ru }}({{ $product->size }} L)
+        <div class="cabinet-order__name">{{ \App\Models\Category::find($product->cat_id)['name_'.session()->get('locale')] }}({{ $product->size }} L)
             <br> <span>{{ $product->price }} UZS</span>
         </div>
         <div class="basket-item__delete" onclick="deleteProduct({{ $product->id }})">

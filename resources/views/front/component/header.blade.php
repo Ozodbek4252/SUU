@@ -1,6 +1,6 @@
 <header class="header header-static">
     <div class="header-static__logo">
-        <a href="index.blade.php">
+        <a href="/">
             <img src="img/logo-blue.svg" alt="SUU" title="SUU">
         </a>
     </div>

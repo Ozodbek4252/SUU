@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Invoice;
+use App\Models\Message;
 use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
@@ -27,22 +28,44 @@ class OrderController extends Controller
      */
     public function create(Request $request)
     {
+        // dd(session()->get('cart'));
         // dd($request->all());
-        foreach(session()->get('cart') as $key=>$value){
-            $product_id = session()->get('cart')[$key]['id'];
-        }
-        $product = Product::find($product_id);
 
-
-    
         if(session()->get('cart')){
             $invoice = new Invoice();
-
             $invoice->name = Str::random(10);
             // $invoice->delivery = ;
-            // $invoice->sum = ;
+
+            $sum = 0;
+            foreach(session()->get('cart') as $key=>$value){
+                $product_id = session()->get('cart')[$key]['id'];
+                $quantity = session()->get('cart')[$key]['quantity'];
+                $product = Product::find($product_id);
+                $sum = $sum + (int)$product->price * $quantity;
+            }
+            $invoice->sum = $sum;
+            $invoice->save();
+
+            foreach(session()->get('cart') as $key=>$value){
+                $product_id = session()->get('cart')[$key]['id'];
+                $quantity = session()->get('cart')[$key]['quantity'];
+
+                $order = new Order();
+                $order->product_id = $product_id;
+                $order->quantity = $quantity;
+                // $order->logo = ;
+                $order->invoice_id = $invoice->id;
+                $order->save();
+            }
         }
-        // dd($invoice);
+
+        $message = new Message();
+        $message->phone = $request->phone;
+        $message->name = $request->name;
+        $message->status = $request->status;
+        $message->save();
+
+        return redirect()->back();
     }
 
     /**

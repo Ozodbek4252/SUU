@@ -17,7 +17,6 @@
 
     <div class="popup-layer"></div>
 
-	<!-- ОБРАТНАЯ СВЯЗЬ -->
 <form action="{{route('message.store', app()->getLocale())}}" method="post" >
     {{ csrf_field() }}
     <div class="feedback">
@@ -72,7 +71,7 @@
     </div>
 </div>
 
-
+{{-- {{dd(auth()->user()->name)}} --}}
 @if(auth()->user())
     <div class="login">
         <div class="feedback-content">
@@ -117,19 +116,19 @@
         <div class="side-basket__price">
             <div class="order-price">
                 <div class="order-price__item">
-                    <span class="order-price__name">Промежуточный итог</span>
+                    <span class="order-price__name">{{ __('order.honeOrderPrice')}}</span>
                     <span class="order-price__value" id="price">
 
                     </span>
                 </div>
                 <div class="order-price__item">
-                    <span class="order-price__name">Доставка</span>
+                    <span class="order-price__name">{{ __('order.honeOrderDelivery') }}</span>
                     <span class="order-price__value">0 <span>UZS</span></span>
                 </div>
             </div>
             <a href="{{route('order', app()->getLocale())}}">
 				<button class="order-add btn">
-					Оплатить
+					{{ __('order.cartFormPayBtn') }}
 				</button>
     		</a>
         </div>
@@ -349,7 +348,7 @@
 					</div>
 					<div class="header-profile__dropdown header-side__dropdown">
 						<a href="#" class="header-profile__login">Profile</a>
-						<a href="#">Log out</a>
+						<a href="{{route('logout.perform')}}">Log out</a>
 					</div>
 				</li>
 				@endif
