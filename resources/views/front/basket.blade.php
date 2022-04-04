@@ -123,6 +123,7 @@
 
 	<!-- КОРЗИНА -->
     <form action=""></form>
+
 	<section class="basket">
 		<div class="container" id="basket_refresh">
 			<div class="basket-empty">
@@ -347,6 +348,7 @@
 	<script src="js/gsap.min.js"></script>
 	<script src="js/dobpicker.js"></script>
 	<script src="js/main.js"></script>
+
 
 	<script src="/js/basket.js"></script> --}}
 
