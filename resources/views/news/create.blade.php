@@ -3,11 +3,16 @@
 @section('content')
     <div class="card">
         <div class="card-body">
+            @error('image')
+                <div style="padding: .75rem; background: #feb2b2; border-color: #feb2b2; color: #9b2c2c; border-radius: 0.25rem; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);" class="alert alert-success">
+                    {{$message}}
+                </div>
+            @enderror
 
-            <form action="{{route('report/store')}}" method="post" enctype="multipart/form-data">
+            <form action="{{route('news.store')}}" method="post" enctype="multipart/form-data">
                  <div class="card-body">
                         {{ csrf_field() }}
-                        <h1>Report_add</h1>
+                        <h1>Add News</h1>
                         <div class="form-group container-fluid d-flex justify-content-between align-items-end" style="padding: 0px">
                             <div class="" style="width: 80%;" >
                                 <label for="category_add">Name_uz</label>

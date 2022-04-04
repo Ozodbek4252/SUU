@@ -11,60 +11,44 @@
                 </div>
             @endif
 
-            <table style="font-family: arial, sans-serif;
-                    border-collapse: collapse;
-                    width: 100%; margin-top: 10px" >
+            <table style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%; margin-top: 10px" >
                 <tr class="categoryShow">
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;">#</th>
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">#</th>
                     <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Name Uz</th>
-                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Name Ru</th>
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;">Name En</th>
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;">Size</th>
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;">Price</th>
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;">Description Uz</th>
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;">Description Ru</th>
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;">Description En</th>
-
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px;">Photo</th>
-                    <th style="border: 1px solid #dddddd;
-                    text-align: left;
-                    padding: 8px; width: 133px;">Action</th>
+                    {{-- <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Name Ru</th> --}}
+                    {{-- <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Name En</th> --}}
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Size</th>
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Price</th>
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Description Uz</th>
+                    {{-- <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Description Ru</th>
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Description En</th> --}}
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Photo</th>
+                    <th style="border: 1px solid #dddddd; text-align: left; padding: 8px; width: 133px;">Action</th>
                 </tr>
                 <?php $num=1; ?>
-                @foreach($product as $products)
+                @foreach($products as $product)
                     <tr class="categoryShow">
                         <td >{{$num++}}</td>
-                        <td >{{$products->name_uz}}</td>
-                        <td>{{$products->name_ru}}</td>
-                        <td >{{$products->name_en}}</td>
-                        <td >@if($products->size) {{$products->size}} L @endif</td>
-                        <td >{{$products->price}}</td>
-                        <td >{{$products->description_uz}}</td>
-                        <td >{{$products->description_ru}}</td>
-                        <td >{{$products->description_en}}</td>
-                        <td >{{$products->photo}}</td>
-                        <td><a href="{{route('create.edit', $products->id)}}" class="btn btn-primary">Edit</a>
-                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal{{ $products->id }}">Delete</a>
+                        <td >{{$product->name_uz}}</td>
+                        {{-- <td>{{$products->name_ru}}</td> --}}
+                        {{-- <td >{{$products->name_en}}</td> --}}
+                        <td >@if($product->size) {{$product->size}} L @endif</td>
+                        <td >{{$product->price}}</td>
+                        <td >{{$product->description_uz}}</td>
+                        {{-- <td >{{$products->description_ru}}</td> --}}
+                        {{-- <td >{{$products->description_en}}</td> --}}
+                        <td >{{$product->photo}}</td>
+                        <td>
+                            <form action="{{route('product.edit', $product->id)}}" method="POST">
+                                @csrf
+                                @method('POST')
+                                <button type="submit" class="btn btn-primary">Edit</button>
+                            </form>
 
+                            <a class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#myModal{{ $product->id }}">Delete</a>
         {{--                    ////---- yangi usul -----////--}}
                         </td>
-                        <div id="myModal{{ $products->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div id="myModal{{ $product->id }}" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -73,10 +57,11 @@
                                         </button>
                                     </div>
                                     <div class="modal-body">
-
-                                        <a href="{{route('create.destroy', $products->id)}}" method="post">
+                                        <form action="{{route('product.destroy', $product->id)}}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
                                             <button type="submit" class="btn btn-danger">O'chirish</button>
-                                        </a>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

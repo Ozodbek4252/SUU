@@ -317,6 +317,101 @@ body {
 	}
 }
 
+.side-basket {
+	position: fixed;
+	right: 0;
+	width: 25rem;
+	height: 100%;
+	top: 0;
+	z-index: 100;
+	background: #fff;
+	transition: .7s ease-out all;
+	transform: translateX(100%);
+
+	&__layer {
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		z-index: 99;
+		cursor: pointer;
+		background: rgba(0, 0, 0, 0.6);
+		display: none;
+	}
+
+	&__price {
+		border-top: 1px solid #EBEBEB;
+		padding-top: 2rem;
+	}
+
+	&__content {
+		max-height: 70vh;
+		overflow: hidden;
+	}
+
+	&__item {
+		display: flex;
+		align-items: center;
+		position: relative;
+		width: 100%;
+		padding-right: 2rem;
+		padding-bottom: 0.8rem;
+		border-bottom: 1px solid #EBEBEB;
+		margin-bottom: 0.8rem;
+
+		&:last-child {
+			padding-bottom: 0;
+			border-bottom: none;
+		}
+
+		.cabinet-order__img {
+			width: 5rem;
+			height: 5rem;
+			padding: 0.8rem;
+			margin-right: 0.8rem;
+		}
+
+		.basket-item__delete {
+			right: 0;
+			top: 0;
+
+			img {
+				width: 1.8rem;
+				height: 1.8rem;
+			}
+		}
+	}
+
+	.feedback-content {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-between;
+		height: 100%;
+		padding: 2.3rem 0;
+		width: 85%;
+	}
+
+	.order-price {
+		&__item {
+			margin-bottom: 1rem;
+		}
+		
+		&__value {
+			color: @blue;
+			font-size: 1rem;
+		}
+	}
+
+	.order-add {
+		margin-top: 2.5rem;
+	}
+
+	&-show {
+		transform: none;
+	}
+}
+
 
 //___________PRELOADER_____________
 
@@ -3752,6 +3847,17 @@ body {
 	.tel-popup {
 		bottom: 1.5rem;
 		right: 1.5rem;
+	}
+
+	.preloader {
+		&__text {
+			bottom: 5rem;
+		}
+
+		&__percent {
+			bottom: 2rem;
+			right: 1.5rem;
+		}
 	}
 
 	.feedback {

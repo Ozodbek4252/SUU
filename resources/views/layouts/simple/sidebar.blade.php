@@ -23,13 +23,13 @@
             <ul class="metismenu list-unstyled" id="side-menu">
                 <li class="menu-title">Menu</li>
                 <li>
-                    <a href="javascript: void(0);" class="has-arrow waves-effect">
-                        <i class="uil-water-glass"></i>
+                    <a style="color: #7b8190 !important; " href="javascript: void(0);" class="has-arrow waves-effect">
+                        <i  style="color: #7b8190 !important; " class="uil-water-glass"></i>
                         <span>Продукты</span>
                     </a>
                     <ul class="sub-menu">
-                        <li><a href="{{route('create')}}">Добавить</a></li>
-                        <li><a href="{{route('list')}}">Лист</a></li>
+                        <li><a style="color: #7b8190 !important; " href="{{route('product.create')}}">Добавить</a></li>
+                        <li><a style="color: #7b8190 !important; " href="{{route('product.list')}}">Лист</a></li>
                     </ul>
                 </li>
                 <li>
@@ -39,16 +39,16 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('message')}}" >
-                        <i class="uil-envelope-alt"></i>
+                    <a style="color: #7b8190 !important; " href="{{route('message')}}" >
+                        <i  style="color: #7b8190 !important; " class="uil-envelope-alt"></i>
                         <span>Сообшении</span>
                     </a>
                 </li>
 
                 <li>
-                    <a href="{{route('report')}}" >
+                    <a href="{{route('news')}}" >
                         <i class="uil-water-glass"></i>
-                        <span>Report</span>
+                        <span>News</span>
                     </a>
                 </li>
             </ul>

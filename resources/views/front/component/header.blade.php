@@ -8,69 +8,84 @@
         <nav class="header-menu">
             <ul class="menu">
                 <li>
-                    <a href="{{route('home')}}">
-                        Главная
+                    <a href="{{route('home', app()->getLocale())}}">
+                        {{__('navHome')}}
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('about')}}">
-                        О компании
+                    <a href="{{route('about', app()->getLocale())}}">
+                        {{__('navAbout')}}
                     </a>
                 </li>
                 <li>
-                    <a href="index.blade.php#products">
-                        Продукция
+                    <a href="{{route('about', app()->getLocale())}}">
+                        {{__('navProducts')}}
                     </a>
                 </li>
                 <li>
-                    <a href="index.blade.php#services">
-                        Услуги
+                    <a href="#services">
+                        {{__('navServices')}}
                     </a>
                 </li>
                 <li>
-                    <a href="index.blade.php#news">
-                        Новости
+                    <a href="{{route('front.news', app()->getLocale())}}">
+                        {{__('navNews')}}
                     </a>
                 </li>
                 <li>
-                    <a href="#contact" data-menuanchor="contact">
-                        Контакты
+                    <a href="#contact">
+                        {{__('navContact')}}
                     </a>
+                    
                 </li>
             </ul>
         </nav>
         <ul class="header-side">
             <li class="header-lang">
                 <div class="header-lang__open">
+                    @if(app()->getLocale() == 'ru')
                     РУ
+                    @elseif(app()->getLocale()=='en')
+                    EN
+                    @elseif(app()->getLocale()=='uz')
+                    UZ
+                    @else
+                    @endif
                     <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M0.495008 0.690059V1.57506L4.65001 5.73006C4.84501 5.92506 5.16001 5.92506 5.35501 5.73006L9.51001 1.57506V0.690059H8.62501L5.00001 4.31006L1.37501 0.685059L0.495008 0.690059Z" fill="white"/>
                     </svg>
                 </div>
                 <div class="header-lang__dropdown header-side__dropdown">
-                    <a href="#">
+                    <a href="{{ route(Route::currentRouteName(), ['ru', \Request::segment(3)]) }}">
                         РУ
                     </a>
-                    <a href="#">
+                    <a href="{{ route(Route::currentRouteName(), ['uz', \Request::segment(3)]) }}">
                         UZ
                     </a>
-                    <a href="#">
+                    <a href="{{ route(Route::currentRouteName(), ['en', \Request::segment(3)]) }}">
                         EN
                     </a>
                 </div>
             </li>
             <li class="header-basket">
-                <a href="{{route('korzina')}}">
-                    <div class="header-side__btn">
+                <div class="header-side__btn">
+                    <a href="/order">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
                         </svg>
-                    </div>
-                    <span>
-                            16
-                        </span>
-                </a>
+                    </a>
+                </div>
+                <span id="quantity_product">    
+                    <?php
+                    $k = 0;
+                    if(session()->get('cart') != null){
+                        foreach(session()->get('cart') as $key=>$value){
+                        $k++;
+                    }}
+                    ?>{{ $k }}
+                </span>
             </li>
+            @if(auth()->user())
             <li class="header-profile">
                 <div class="header-side__btn">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -78,12 +93,13 @@
                     </svg>
                 </div>
                 <div class="header-profile__dropdown header-side__dropdown">
-{{--                    <a href="#" class="header-profile__login">Profile</a>--}}
-                    <a href="#">Log out</a>
+                    <a href="#" class="header-profile__login">Profile</a>
+                    <a href="{{ route('logout') }}">Log out</a>
                 </div>
             </li>
+            @endif
             <li class="header-tel">
-                <a href="#">
+                <a href="tel:+998911521915">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M17.6275 21.3946C15.9642 21.3946 14.1934 20.9223 12.3665 19.9933C10.6822 19.1353 9.01929 17.9071 7.55514 16.4417C6.09078 14.9762 4.86523 13.3109 4.00852 11.626C3.08001 9.7973 2.6084 8.02739 2.6084 6.36362C2.6084 5.28547 3.6138 4.24334 4.04498 3.84621C4.66616 3.27434 5.64321 2.60596 6.35308 2.60596C6.70672 2.60596 7.11999 2.83705 7.65579 3.33311C8.05573 3.70335 8.50524 4.20464 8.95476 4.78328C9.22627 5.13298 10.5803 6.91754 10.5803 7.77291C10.5803 8.47429 9.78653 8.96312 8.94732 9.4793C8.62186 9.67807 8.28699 9.88426 8.04453 10.0787C7.78526 10.2873 7.73808 10.3969 7.73087 10.4212C8.6227 12.6439 11.3485 15.3697 13.5692 16.2595C13.5893 16.2532 13.6994 16.2099 13.9106 15.9463C14.105 15.7043 14.3123 15.3677 14.5106 15.0435C15.0279 14.2043 15.516 13.4099 16.217 13.4099C17.073 13.4099 18.8574 14.7639 19.206 15.0354C19.7859 15.4852 20.2865 15.9351 20.6574 16.3344C21.1528 16.8702 21.3839 17.2841 21.3839 17.6371C21.3839 18.3483 20.716 19.3279 20.1454 19.9522C19.7475 20.386 18.7049 21.3949 17.6263 21.3949L17.6275 21.3946Z" fill="white"/>
                     </svg>

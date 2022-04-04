@@ -6,46 +6,40 @@
             </div>
             <div class="footer-logo">
                 <img src="img/logo.svg" alt="SUU">
-                <span>Природная питьевая вода</span>
+                <span>{{__('footerTitle')}}</span>
             </div>
             <ul class="footer-menu">
                 <li>
-                    <a href="#">Главная</a>
+                    <a href="{{route('home', app()->getLocale())}}">{{__('navHome')}}</a>
                 </li>
-
                 <li>
-                    <a href="{{route('about')}}">О компании</a>
+                    <a href="{{route('about', app()->getLocale())}}">{{__('navAbout')}}</a>
                 </li>
-
                 <li>
-                    <a href="#">Продукция</a>
+                    <a href="{{route('about', app()->getLocale())}}">{{__('navProducts')}}</a>
                 </li>
-
                 <li>
-                    <a href="#">Услуги</a>
+                    <a href="#">{{__('navServices')}}</a>
                 </li>
-
                 <li>
-                    <a href="#">Новости</a>
+                    <a href="{{route('front.news', app()->getLocale())}}">{{__('navNews')}}</a>
                 </li>
-
                 <li>
-                    <a href="#">Контакты</a>
+                    <a href="#">{{__('navContact')}}</a>
                 </li>
-
             </ul>
             <div class="footer-info">
                 <div class="footer-info__item">
                     <div class="footer-info__name">
-                        Адрес:
+                        {{__('footerAddress')}}:
                     </div>
                     <div class="footer-info__value">
-                        100174, г. Ташкент, Алмазарский р-н,
+                        {{__('footerAddressInfo')}}
                     </div>
                 </div>
                 <div class="footer-info__item">
                     <div class="footer-info__name">
-                        Телефон:
+                        {{__('footerPhone')}}:
                     </div>
                     <div class="footer-info__value">
                         <a href="tel:+998911521915">+99891 152 19 15</a>
@@ -53,7 +47,7 @@
                 </div>
                 <div class="footer-info__item">
                     <div class="footer-info__name">
-                        Почта:
+                        {{__('footerMail')}}:
                     </div>
                     <div class="footer-info__value">
                         <a href="mailto:info@suuuzbekistan.uz">info@suuuzbekistan.uz</a>
@@ -61,7 +55,7 @@
                 </div>
                 <div class="footer-info__item">
                     <div class="footer-info__name">
-                        Мы в соц. сетях:
+                        {{__('footerSocial')}}:
                     </div>
                     <div class="footer-info__value">
                         <ul>
@@ -97,35 +91,3 @@
         </div>
     </div>
 </footer>
-
-<script src="js/jquery-3.4.1.min.js"></script>
-<script src="js/jquery.inputmask.min.js"></script>
-<script src="js/owl.carousel.js"></script>
-<script src="js/wow.min.js"></script>
-<script src="js/jquery.ripples-min.js"></script>
-<script src="js/gsap.min.js"></script>
-<script src="js/dobpicker.js"></script>
-<script src="js/main.js"></script>
-
-<script>
-    $('#fullPage').fullpage({
-    anchors: ['main', 'about', 'products', 'services', 'news', 'contact'],
-    onLeave:function(origin,destination,direction) {
-
-    const section = destination.item;
-    const text = section.querySelectorAll('.section__text');
-    const main = section.querySelectorAll('.section__main')
-    const title = section.querySelector('.section__title');
-    title.innerHTML = title.textContent.replace(/\S/g, "<span class='letter'>$&</span>");
-    const newTitle = section.querySelectorAll('.letter')
-    const tl = new TimelineMax();
-    tl.staggerFrom(newTitle, .5, {
-    opacity: 0,
-    ease: Power4.easeInOut
-    }, 0.07, 0);
-    tl.fromTo(text, .7, { y: "50", opacity: 0 }, { y: "0", opacity: 1 }, .6);
-    tl.fromTo(main, .7, { x: "-50", opacity: 0 }, { x: "0", opacity: 1 }, .9);
-
-    }
-    })
-</script>

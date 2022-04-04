@@ -128,6 +128,19 @@ $('.popup-layer').click(function() {
 })
 
 
+//____________SIDE-BASKET_________
+
+$('.products-list__basket').click(function() {
+    $('.side-basket__layer').fadeIn(500)
+    $('.side-basket').addClass('side-basket-show')
+}) 
+
+$('.side-basket__layer').click(function() {
+    $(this).fadeOut(500)
+    $('.side-basket').removeClass('side-basket-show')
+})
+
+
 $(document).ready(function() {
     $.dobPicker({
         daySelector: '#dobday',
@@ -226,7 +239,7 @@ $('.cabinet-menu li').click(function() {
 
 //___________ORDER__________
 
-$('.order-item .btn').click(function() {
+$('body').on('click', '.order-item .btn', function() {
     $(this).parent().find('.btn').removeClass('active')
     $(this).addClass('active')
 })
@@ -234,7 +247,8 @@ $('.order-item .btn').click(function() {
 
 //____________BASKET_________
 
-$('.basket-item__open').click(function() {
+$('body').on('click', '.basket-item__open', function() {
+    console.log(this)
     $(this).toggleClass('active')
     $(this).parent().toggleClass('basket-item-active')
     $(this).parent().find('.basket-item__dropdown').slideToggle(600)

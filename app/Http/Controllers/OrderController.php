@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Invoice;
 use Illuminate\Http\Request;
 use App\Models\Order;
+use App\Models\Product;
+use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
@@ -14,7 +17,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        return view('front.basket');
     }
 
     /**
@@ -22,9 +25,24 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Request $request)
     {
-        //
+        // dd($request->all());
+        foreach(session()->get('cart') as $key=>$value){
+            $product_id = session()->get('cart')[$key]['id'];
+        }
+        $product = Product::find($product_id);
+
+
+    
+        if(session()->get('cart')){
+            $invoice = new Invoice();
+
+            $invoice->name = Str::random(10);
+            // $invoice->delivery = ;
+            // $invoice->sum = ;
+        }
+        // dd($invoice);
     }
 
     /**

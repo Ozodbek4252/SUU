@@ -6,62 +6,6 @@
 
 	<div class="popup-layer"></div>
 
-	<div class="feedback">
-		<div class="feedback-content">
-			<div class="feedback__title">
-				Оставить заявку
-			</div>
-			<div class="feedback__text">
-				Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
-			</div>
-			<div class="feedback-form">
-				<input type="text" placeholder="Имя">
-				<input type="text" placeholder="Фамилия">
-				<input type="tel" placeholder="Телефон" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$">
-				<textarea placeholder="Текст"></textarea>
-				<div class="feedback-form__check">
-					<label>
-						<input type="checkbox">
-						<span>Я прочитал согласие с политикой конфиденциальности</span>
-					</label>
-				</div>
-				<button type="submit" class="btn">Оставить заявку</button>
-			</div>
-		</div>
-	</div>
-
-	<!-- АВТОРИЗАЦИЯ -->
-
-	<div class="login">
-		<div class="feedback-content">
-			<div class="feedback__title">
-				Зарегистрироваться
-			</div>
-			<div class="feedback__text">
-				Вам необходимо зарегистрироваться для заказа в компании <strong>suu.uzbekistan</strong>
-			</div>
-			<div class="feedback-form">
-				<div class="feedback-date">
-					<select id="dobday"></select>
-					<select id="dobmonth"></select>
-					<select id="dobyear"></select>
-				</div>
-				<input type="text" placeholder="Имя">
-				<input type="text" placeholder="Фамилия">
-				<input type="email" placeholder="Ваш электронный адрес">
-				<p>Пароль</p>
-				<input type="password" placeholder="Новый пароль">
-				<input type="password" placeholder="Подтвердите пароль">
-				<div class="feedback-form__check">
-					<label>
-						<input type="checkbox">
-						<span>Я прочитал согласие с политикой конфиденциальности</span>
-					</label>
-				</div>
-				<button type="submit" class="btn">Оставить заявку</button>
-			</div>
-		</div>
-	</div>
 
 	<!-- МОБИЛЬНОЕ МЕНЮ -->
 
@@ -137,11 +81,6 @@
 	</div>
 
 
-	<!-- ХЭДЕР СТАТИЧЕСКИЙ, ОТЛИЧАЕТСЯ ОТ ГЛАВНОГО -->
-
-
-
-
 
 	<!-- О НАС -->
 
@@ -149,11 +88,12 @@
 		<div class="container">
 			<div class="about-main__content">
 				<h1 class="about__title section__title">
-					ПРИРОДНАЯ ПИТЬЕВАЯ ВОДА
+					{{-- ПРИРОДНАЯ ПИТЬЕВАЯ ВОДА --}}
+					{{__('title')}}
 				</h1>
 				<div class="about__text section__text">
 					<img src="img/logo-gray.svg" alt="SUU">
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
+					{{__('aboutTopText')}}
 				</div>
 			</div>
 		</div>
@@ -190,19 +130,17 @@
 			</span>
 		</div>
 		<div class="about-products__title">
-			Продукты
+			{{__('aboutProduct')}}
 		</div>
 	</section>
 	<section class="about-equip">
 		<div class="about-equip__info wow fadeInLeft" data-wow-delay=".5s">
 			<div class="container">
 				<h2 class="about-equip__title section__title">
-					Наше оборудование
+					{{__('aboutEquipment')}}
 				</h2>
 				<div class="about-equip__text section__text">
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.В наше время все заботятся о своем здоровье и потребляют только чистую воду В наше время все заботятся о своем здоровье и потребляют только чистую воду.
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду
-					В наше время все заботятся о своем здоровье и потребляют только чистую воду
+					{{__('aboutEquipmentText')}}
 				</div>
 			</div>
 		</div>
@@ -212,7 +150,7 @@
 	</section>
 	<section class="about-video">
 		<h2 class="about-video__title section__title">
-			О компании
+			{{__('aboutTitle')}}
 		</h2>
 		<div class="about-video__wrap">
 			<div class="about-video__left wow fadeInLeft" data-wow-delay=".5s" data-wow-duration="1.5s">
@@ -230,9 +168,6 @@
 
 
 
-	<!-- ФУТЕР -->
-
-
-
+	@include('front.component.scripts')
 
 @endsection
