@@ -22,7 +22,7 @@
 
             <a href="{{route('news.create', app()->getLocale())}}" class="btn btn-success" style="margin-right: 20px">Add</a>
 
-            <table style="font-family: arial, sans-serif;
+            <table class="table" style="font-family: arial, sans-serif;
                     border-collapse: collapse;
                     width: 100%; margin-top: 10px" >
                 <tr class="categoryShow">

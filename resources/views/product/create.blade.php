@@ -107,10 +107,10 @@
                     </div>
                     <div class="form-group" style="width: 80%; padding-right: 5px; padding-left: 5px">
                         <label for="exampleInputEmail1">Category_id</label>
-                        <select name="cat_id" id="" class="form-control" >
+                        <select name="category_id" id="" class="form-control" >
                             <option value="{{null}}" >Select</option>
                             @foreach(\App\Models\Category::all() as $product_category)
-                                <option @if($product != null) @if($product->cat_id == $product_category->id) selected @endif @endif value="{{ $product_category->id }}">{{ $product_category->name_uz }}</option>
+                                <option @if($product != null) @if($product->category_id == $product_category->id) selected @endif @endif value="{{ $product_category->id }}">{{ $product_category->name_uz }}</option>
                             @endforeach
                         </select>
                     </div>

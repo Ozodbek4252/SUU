@@ -42,10 +42,10 @@ class ProductController extends Controller
             foreach($request->get('arr') as $key=>$value){
                 $arr[$key] = [
                     'id' => $value,
-                    'cat_id' => Product::find($value)->cat_id,
-                    'cat_name_ru' => Category::find(Product::find($value)->cat_id)->name_ru,
-                    'cat_name_uz' => Category::find(Product::find($value)->cat_id)->name_uz,
-                    'cat_name_en' => Category::find(Product::find($value)->cat_id)->name_en,
+                    'category_id' => Product::find($value)->category_id,
+                    'cat_name_ru' => Category::find(Product::find($value)->category_id)->name_ru,
+                    'cat_name_uz' => Category::find(Product::find($value)->category_id)->name_uz,
+                    'cat_name_en' => Category::find(Product::find($value)->category_id)->name_en,
                     'image' => Product::find($value)->image,
                     'image_path' => Product::find($value)->image_path,
                     'price' => Product::find($value)->price,
@@ -96,7 +96,7 @@ class ProductController extends Controller
             }
         }
         
-        if($req->cat_id!=null || $req->image!=null || $req->name_uz!=null || $req->name_ru!=null ||
+        if($req->category_id!=null || $req->image!=null || $req->name_uz!=null || $req->name_ru!=null ||
             $req->name_en!=null || $req->description_uz!=null || $req->description_ru!=null || $req->description_en!=null ||
             $req->size!=null){
                 
@@ -114,7 +114,7 @@ class ProductController extends Controller
 
             $product->image = $img_name;
             $product->image_path = $img_path;
-            $product->cat_id = $req->cat_id;
+            $product->category_id = $req->category_id;
             $product->name_uz = $req->name_uz;
             $product->name_ru = $req->name_ru;
             $product->name_en = $req->name_en;

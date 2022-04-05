@@ -40,7 +40,7 @@
                     </div>
                     <div class="form-group" style="width: 80%; padding-right: 5px;">
                         <label for="exampleInputEmail1">Category_id</label>
-                        <select name="cat_id" id="" class="form-control">
+                        <select name="category_id" id="" class="form-control">
                             <option value="">ghjgj</option>
                             <option value="">ghjgj</option>
                             <option value="">ghjgj</option>

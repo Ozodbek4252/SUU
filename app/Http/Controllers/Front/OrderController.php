@@ -1,12 +1,13 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Front;
 
+use App\Http\Controllers\Controller;
 use App\Models\Invoice;
 use App\Models\Message;
-use Illuminate\Http\Request;
 use App\Models\Order;
 use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 
 class OrderController extends Controller
@@ -29,7 +30,6 @@ class OrderController extends Controller
     public function create(Request $request)
     {
         // dd(session()->get('cart'));
-        // dd($request->all());
 
         if(session()->get('cart')){
             $invoice = new Invoice();
@@ -59,11 +59,13 @@ class OrderController extends Controller
             }
         }
 
-        $message = new Message();
-        $message->phone = $request->phone;
-        $message->name = $request->name;
-        $message->status = $request->status;
-        $message->save();
+        if($request->status == 'new'){
+            $message = new Message();
+            $message->invoice_id = $invoice->id;
+            $message->phone = $request->phone;
+            $message->name = $request->name;
+            $message->save();
+        }
 
         return redirect()->back();
     }

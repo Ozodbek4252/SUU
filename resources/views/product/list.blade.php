@@ -11,7 +11,7 @@
                 </div>
             @endif
 
-            <table style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%; margin-top: 10px" >
+            <table class="table" style="font-family: arial, sans-serif; border-collapse: collapse; width: 100%; margin-top: 10px" >
                 <tr class="categoryShow">
                     <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">#</th>
                     <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Name Uz</th>

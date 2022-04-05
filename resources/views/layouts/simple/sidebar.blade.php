@@ -33,7 +33,7 @@
                     </ul>
                 </li>
                 <li>
-                    <a href="" >
+                    <a href="{{route('invoice', app()->getLocale())}}" >
                         <i class="uil-shopping-basket"></i>
                         <span>Заказы</span>
                     </a>

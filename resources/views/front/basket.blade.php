@@ -151,7 +151,7 @@
                             </div>
                             <div class="basket-item__wrap">
                                 <div class="basket-item__size" id="basket-item__size'+i+'">
-                                    @if($product->cat_id != 3)
+                                    @if($product->category_id != 3)
                                         {{ $product->price/6 }}
                                     @else
                                         {{ $product->price }}
@@ -160,7 +160,7 @@
                                 <div class="basket-item__info">
                                     <div class="basket-item__head">
                                         <h2 class="basket-item__name">
-                                            {{ \App\Models\Category::find($product->cat_id)['name_'.app()->getLocale()] }} ({{ $product->size }}L)
+                                            {{ \App\Models\Category::find($product->category_id)['name_'.app()->getLocale()] }} ({{ $product->size }}L)
                                         </h2>
                                         <div class="basket-item__price">{{__('cartPrice')}}
                                             <span>
@@ -185,10 +185,10 @@
                                         </svg>
                                     </div>
                                     <div class="basket-item__total">
-                                            <div>@if($product->cat_id != 3) 6 x {{ $product->price/6 }} = @endif</div>
+                                            <div>@if($product->category_id != 3) 6 x {{ $product->price/6 }} = @endif</div>
                                         <div>
                                             <strong>{{ $product->price }}</strong> UZS * <span>
-                                                {{ $cart[$key]['quantity'] }} @if($product->cat_id != 3) блок @else капсула @endif
+                                                {{ $cart[$key]['quantity'] }} @if($product->category_id != 3) блок @else капсула @endif
                                             </span>
                                         </div>
                                     </div>
@@ -250,7 +250,7 @@
                 </div>
                 <select name="status" class="basket-form__select">
                   <option value="new" selected>{{__('cartFormOption1')}}</option>
-                  <option value="stand">{{__('cartFormOption2')}}</option>
+                  <option value="constant">{{__('cartFormOption2')}}</option>
                 </select>
                 <div class="form-half">
                   <input name="name" type="text" placeholder="{{__('homePlaceholderInputName')}}">

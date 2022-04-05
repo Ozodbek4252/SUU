@@ -21,7 +21,7 @@
                 </div>
                 <div class="basket-item__wrap">
                     <div class="basket-item__size" id="basket-item__size'+i+'">
-                        @if($product->cat_id != 3)
+                        @if($product->category_id != 3)
                             {{ $product->price/6 }}
                         @else
                             {{ $product->price }}
@@ -30,7 +30,7 @@
                     <div class="basket-item__info">
                         <div class="basket-item__head">
                             <h2 class="basket-item__name">
-                                {{ \App\Models\Category::find($product->cat_id)['name_'.session()->get('locale')] }} ({{ $product->size }}L)
+                                {{ \App\Models\Category::find($product->category_id)['name_'.session()->get('locale')] }} ({{ $product->size }}L)
                             </h2>
                             <div class="basket-item__price">итог 
                                 <span>
@@ -54,10 +54,10 @@
                             </svg>
                         </div>
                         <div class="basket-item__total">
-                            <div id="capsula'+i+'">@if($product->cat_id != 3) 6 x {{ $product->price/6 }} = @endif</div>
+                            <div id="capsula'+i+'">@if($product->category_id != 3) 6 x {{ $product->price/6 }} = @endif</div>
                             <div>
                                 <strong id="price'+i+'">{{ $product->price }}</strong> UZS * <span id="capsula_name">
-                                                {{ $cart[$key]['quantity'] }} @if($product->cat_id != 3) блок @else капсула @endif
+                                                {{ $cart[$key]['quantity'] }} @if($product->category_id != 3) блок @else капсула @endif
                                             </span>
                             </div>
                         </div>

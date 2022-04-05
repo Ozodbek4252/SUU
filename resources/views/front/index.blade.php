@@ -576,7 +576,7 @@
 									{{__('homeProductCat1')}}
 								</div>
 								<ul class="products-list">
-									@foreach(\App\Models\Product::where('cat_id', 2)->get() as $data)
+									@foreach(\App\Models\Product::where('category_id', 2)->get() as $data)
 										<li>
 											<div class="products-list__img @if($data->size == 1.5) products-list__img-big @elseif($data->size == 1) products-list__img-medium @elseif($data->size == 0.5) products-list__img-small @endif">
 												<img src="{{ $data->image_path }}/{{ $data->image }}" alt="nogaz">
@@ -599,7 +599,7 @@
 								</div>
 								
 								<ul class="products-list">
-									@foreach(\App\Models\Product::where('cat_id', 1)->get() as $data)
+									@foreach(\App\Models\Product::where('category_id', 1)->get() as $data)
 										<li>
 											<div class="products-list__img @if($data->size == 1.5) products-list__img-big @elseif($data->size == 1) products-list__img-medium @elseif($data->size == 0.5) products-list__img-small @endif">
 												<img src="{{ $data->image_path }}/{{ $data->image }}" alt="nogaz">
@@ -620,7 +620,7 @@
 									{{__('homeProductCat3')}}
 								</div>
 								<ul class="products-list">
-									@foreach(\App\Models\Product::where('cat_id', 3)->get() as $data)
+									@foreach(\App\Models\Product::where('category_id', 3)->get() as $data)
 										<li>
 											<div class="products-list__img products-list__img-cooler">
 												<img src="{{ $data->image_path }}/{{ $data->image }}" alt="nogaz">
