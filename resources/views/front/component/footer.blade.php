@@ -16,16 +16,16 @@
                     <a href="{{route('about', app()->getLocale())}}">{{__('navAbout')}}</a>
                 </li>
                 <li>
-                    <a href="{{route('about', app()->getLocale())}}">{{__('navProducts')}}</a>
+                    <a href="/">{{__('navProducts')}}</a>
                 </li>
                 <li>
-                    <a href="#">{{__('navServices')}}</a>
+                    <a href="/">{{__('navServices')}}</a>
                 </li>
                 <li>
                     <a href="{{route('front.news', app()->getLocale())}}">{{__('navNews')}}</a>
                 </li>
                 <li>
-                    <a href="#">{{__('navContact')}}</a>
+                    <a href="/">{{__('navContact')}}</a>
                 </li>
             </ul>
             <div class="footer-info">

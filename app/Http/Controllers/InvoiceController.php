@@ -10,8 +10,8 @@ use Illuminate\Http\Request;
 class InvoiceController extends Controller
 {
     public function index(){
-        $invoice = Invoice::all();
-        return view('invoice.index', ['invoice' => $invoice]);
+        $invoices = Invoice::paginate(20);
+        return view('invoice.index', ['invoices' => $invoices]);
     }
     
     public function orders($lang, $id){

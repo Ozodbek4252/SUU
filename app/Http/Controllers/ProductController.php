@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Slider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -18,7 +19,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $products = Product::orderBy('id', 'asc')->get();
+        $products = Product::orderBy('id', 'asc')->paginate(20);
 
         return view('product.list', compact('products'));
     }
@@ -34,35 +35,35 @@ class ProductController extends Controller
         return view('product.create', ['product'=> $product]);
     }
 
-    public function fetch(Request $request){
-    }
-    public function basket(Request $request){
-        $arr = [] ;
-        if($request->get('arr')){
-            foreach($request->get('arr') as $key=>$value){
-                $arr[$key] = [
-                    'id' => $value,
-                    'category_id' => Product::find($value)->category_id,
-                    'cat_name_ru' => Category::find(Product::find($value)->category_id)->name_ru,
-                    'cat_name_uz' => Category::find(Product::find($value)->category_id)->name_uz,
-                    'cat_name_en' => Category::find(Product::find($value)->category_id)->name_en,
-                    'image' => Product::find($value)->image,
-                    'image_path' => Product::find($value)->image_path,
-                    'price' => Product::find($value)->price,
-                    'name_uz' => Product::find($value)->name_uz,
-                    'name_ru' => Product::find($value)->name_ru,
-                    'name_en' => Product::find($value)->name_en,
-                    'description_uz' => Product::find($value)->description_uz,
-                    'description_ru' => Product::find($value)->description_ru,
-                    'description_en' => Product::find($value)->description_en,
-                    'size' => Product::find($value)->size,
-                ];
-            }
-        }
-        return response()->json([
-            'data' => $arr,
-        ]);
-        }
+//    public function fetch(Request $request){
+//    }
+//    public function basket(Request $request){
+//        $arr = [] ;
+//        if($request->get('arr')){
+//            foreach($request->get('arr') as $key=>$value){
+//                $arr[$key] = [
+//                    'id' => $value,
+//                    'category_id' => Product::find($value)->category_id,
+//                    'cat_name_ru' => Category::find(Product::find($value)->category_id)->name_ru,
+//                    'cat_name_uz' => Category::find(Product::find($value)->category_id)->name_uz,
+//                    'cat_name_en' => Category::find(Product::find($value)->category_id)->name_en,
+//                    'image' => Product::find($value)->image,
+//                    'image_path' => Product::find($value)->image_path,
+//                    'price' => Product::find($value)->price,
+//                    'name_uz' => Product::find($value)->name_uz,
+//                    'name_ru' => Product::find($value)->name_ru,
+//                    'name_en' => Product::find($value)->name_en,
+//                    'description_uz' => Product::find($value)->description_uz,
+//                    'description_ru' => Product::find($value)->description_ru,
+//                    'description_en' => Product::find($value)->description_en,
+//                    'size' => Product::find($value)->size,
+//                ];
+//            }
+//        }
+//        return response()->json([
+//            'data' => $arr,
+//        ]);
+//        }
 
     /**
      * Store a newly created resource in storage.
@@ -70,8 +71,9 @@ class ProductController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $req)
+    public function store(Request $req, $lang)
     {
+        
         if($req->btn == "Delete"){
             $category = Category::find($req->cat_name);
             $category->delete();
@@ -92,7 +94,7 @@ class ProductController extends Controller
                     $category->save();
                 }
                 return redirect()->back();
-
+                
             }
         }
         
@@ -102,15 +104,19 @@ class ProductController extends Controller
                 
                 $validatedData = $req->validate([
                     'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+                    'image_slider' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
                 ]);
+
             $img_name = Str::random(10).'.'.$req->file('image')->getClientOriginalExtension();
             $img_path = '/images/product';
             $req->image->move(public_path('/images/product'), $img_name);
-            // if(isset($id)){
-                // $product = Product::find($id);
-            // }else{
-                $product = new Product;
-            // }
+
+            $img_slider_name = Str::random(10).'.'.$req->file('image_slider')->getClientOriginalExtension();
+            $img_slider_path = '/images/product';
+            $req->image_slider->move(public_path('/images/product'), $img_slider_name);
+
+            $product = new Product;
+            $slider = new Slider;
 
             $product->image = $img_name;
             $product->image_path = $img_path;
@@ -124,9 +130,16 @@ class ProductController extends Controller
             $product->size = $req->size;
             $product->price = $req->price;
             $product->save();
-        }
 
-        return redirect()->route('product.list');
+            $slider->product_id = $product->id;
+            $slider->image = $img_slider_name;
+            $slider->image_path = $img_slider_path;
+            $slider->save();
+        }
+        
+        session()->flash('message','Product added successfully.');
+
+        return redirect()->route('product.list', app()->getLocale());
     }
 
     /**
@@ -146,10 +159,11 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($lang, $id)
     {
+        $categories = Category::all();
         $product = Product::find($id);
-        return view('product.create',compact('product'));
+        return view('product.edit', ['product'=>$product, 'categories'=>$categories]);
     }
 
     /**
@@ -159,22 +173,48 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product,$id)
+    public function update(Request $req, $lang, $id)
     {
-        Product::where('id', $id)
-            ->update([
-                    'photo'=>$request->input('photo'),
-                    'name_uz' => $request->input('name_uz'),
-                    'name_ru'=>$request->input('name_ru'),
-                    'name_en'=>$request->input('name_en'),
-                    'description_uz'=>$request->input('description_uz'),
-                    'description_ru'=>$request->input('description_ru'),
-                    'description_en'=>$request->input('description_en'),
-                    'size'=>$request->input('size'),
-                    'price'=>$request->input('price')]
-            );
+        $validatedData = $req->validate([
+            'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048',
+        ]);
 
-        return redirect('/list');
+        $img_name = Str::random(10).'.'.$req->file('image')->getClientOriginalExtension();
+        $img_path = '/images/product';
+        $req->image->move(public_path('/images/product'), $img_name);
+        
+        $img_slider_name = Str::random(10).'.'.$req->file('image_slider')->getClientOriginalExtension();
+        $img_slider_path = '/images/product';
+        $req->image_slider->move(public_path('/images/product'), $img_slider_name);
+        
+        $product = Product::find($id);
+        $slider = Slider::where('product_id', $product->id)->first();
+
+        $product->image = $img_name;
+        $product->image_path = $img_path;
+        $product->category_id = $req->category_id;
+        $product->name_uz = $req->name_uz;
+        $product->name_ru = $req->name_ru;
+        $product->name_en = $req->name_en;
+        $product->description_uz = $req->description_uz;
+        $product->description_ru = $req->description_ru;
+        $product->description_en = $req->description_en;
+        $product->size = $req->size;
+        $product->price = $req->price;
+        $product->save();
+        
+        if($slider == null){
+            $slider = new Slider;
+            $slider->product_id = $product->id;
+            $slider->image = $img_slider_name;
+            $slider->image_path = $img_slider_path;
+            $slider->save();
+        }
+        
+        session()->flash('message','Product updated successfully.');
+        
+        
+        return redirect()->route('product.list', app()->getLocale());
     }
 
     /**
@@ -183,7 +223,7 @@ class ProductController extends Controller
      * @param  \App\Models\Product  $product
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Product $product,$id)
+    public function destroy(Product $products, $lang, $id)
     {
         $product = Product::find($id);
         

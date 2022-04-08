@@ -22,34 +22,35 @@
 		</div>
 		<ul class="menu">
 			<li>
-				<a href="#main" data-menuanchor="main">
-					Главная
+				<a href="{{route('home', app()->getLocale())}}">
+					{{__('navHome')}}
 				</a>
 			</li>
 			<li>
-				<a href="#about" data-menuanchor="about">
-					О компании
+				<a href="{{route('about', app()->getLocale())}}">
+					{{__('navAbout')}}
 				</a>
 			</li>
 			<li>
-				<a href="#products" data-menuanchor="products">
-					Продукция
+				<a href="/">
+					{{__('navProducts')}}
 				</a>
 			</li>
 			<li>
-				<a href="#services" data-menuanchor="services">
-					Услуги
+				<a href="/">
+					{{__('navServices')}}
 				</a>
 			</li>
 			<li>
-				<a href="#news" data-menuanchor="news">
-					Новости
+				<a href="{{route('front.news', app()->getLocale())}}">
+					{{__('navNews')}}
 				</a>
 			</li>
 			<li>
-				<a href="#contact" data-menuanchor="contact">
-					Контакты
+				<a href="/">
+					{{__('navContact')}}
 				</a>
+				
 			</li>
 		</ul>
 		<ul class="side__follow">
@@ -70,9 +71,15 @@
 			</li>
 		</ul>
 		<div class="mobile-menu__lang">
-			<a href="#">РУ</a>
-			<a href="#">UZ</a>
-			<a href="#">EN</a>
+			<a href="{{ route(Route::currentRouteName(), ['ru', \Request::segment(3)]) }}">
+				РУ
+			</a>
+			<a href="{{ route(Route::currentRouteName(), ['uz', \Request::segment(3)]) }}">
+				UZ
+			</a>
+			<a href="{{ route(Route::currentRouteName(), ['en', \Request::segment(3)]) }}">
+				EN
+			</a>
 		</div>
 	</div>
 
@@ -87,43 +94,63 @@
 					{{__('newsTitleText')}}
 				</div>
 			</div>
-			<div class="news-wrap">
-				@foreach($news as $news)
-				<a class="news-carousel__item" href="{{route('single-news', [app()->getLocale(), $news->id] )}}">
-						<div class="news-carousel__img">
-							<img src="{{$news->image_path}}/{{$news->image}}" alt="news">
+			<?php 
+			$load = session()->get('load') ;
+			$load['load'] = 3;
+			?>
+			<div id="news-wrap">
+				<div class="news-wrap">
+					@foreach(App\Models\News::orderBy('id', 'desc')->take($load['load'])->get() as $news)
+						<div class="news-carousel__item">
+							<div class="news-carousel__img">
+								<img src="{{$news->image_path}}/{{$news->image}}" alt="news">
+							</div>
+							<div class="news-carousel__text">
+								@if(app()->getLocale()=='uz')
+									{{$news->name_uz}}
+								@elseif(app()->getLocale()=='ru')
+									{{$news->name_ru}}
+								@elseif(app()->getLocale()=='en')
+									{{$news->name_en}}
+								@else
+								@endif
+							</div>
+							<div class="news-carousel__info">
+								<span>
+									{{explode(".", $news->updated_at->format('d.m.Y'))[0].'.'
+									.$months[explode(".", $news->updated_at->format('d.m.Y'))[1]].'.'.
+									explode(".", $news->updated_at->format('d.m.Y'))[2]
+									}}
+								</span>
+								<span><img src="img/eye-gray.svg" alt="ico">{{$news->view}}</span>
+							</div>
+							<a href="{{route('single-news', [app()->getLocale(), $news->id] )}}"></a>
 						</div>
-						<div class="news-carousel__text">
-							@if(app()->getLocale()=='uz')
-								{{$news->name_uz}}
-							@elseif(app()->getLocale()=='ru')
-								{{$news->name_ru}}
-							@elseif(app()->getLocale()=='en')
-								{{$news->name_en}}
-							@else
-							@endif
-						</div>
-						<div class="news-carousel__info">
-							<span>
-								{{explode(".", $news->updated_at->format('d.m.Y'))[0].'.'
-								.$months[explode(".", $news->updated_at->format('d.m.Y'))[1]].'.'.
-								explode(".", $news->updated_at->format('d.m.Y'))[2]
-								}}
-							</span>
-							<span><img src="img/eye-gray.svg" alt="ico">20</span>
-						</div>
-						<a href="#"></a>
-				</a>
-				@endforeach
-			</div>
-			<div class="news-more">
-				<a href="#">
-					<img src="img/more.svg" alt="ico">
-					{{__('newsButton')}}
-				</a>
+					@endforeach
+				</div>
+				<div class="news-more">
+					<a onclick="load({{ $load['load'] }})">
+						<img src="img/more.svg" alt="ico">
+						{{__('newsButton')}}
+					</a>
+				</div>
 			</div>
 		</div>
 	</section>
+	<script>
+		function load($q){
+			$k = $q+3;
+			console.log($k);
+			$.ajax({
+				type: 'get',
+				url:'/load/'+$k,
+				dataType: 'json',
+				success: function(){
+					$("#news-wrap").load('/load');
+				}
+			});
+		}
+	</script>
 
 @endsection
 

@@ -168,6 +168,4 @@
 
 
 
-	@include('front.component.scripts')
-
 @endsection

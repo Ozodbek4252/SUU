@@ -55,7 +55,38 @@ class HomeController extends Controller
         
     public function singleNews_index($language, $id)
     {
+        $users = session()->get('users');
+
+        if(!$users){
+                $users[$_SERVER['REMOTE_ADDR']] = $_SERVER['REMOTE_ADDR'];
+        }
+        session()->put('users', $users);
         $news = News::find($id);
-        return view('front.news-single', ['news'=>$news]);
+        if(!$users){
+            if($news->view==null){
+                $news->view = 1;
+            }else{
+                $news->view = $news->view + 1;
+            }
+            $news->save();
+        }
+
+        $months = array(
+            "01"=>"Yan",
+            "02"=>"Feb", 
+            "03"=>"Mar",
+            "04"=>"Apr",
+            "05"=>"May",
+            "06"=>"Iyn",
+            "07"=>"Iyl",
+            "08"=>"Aug",
+            "09"=>"Sen",
+            "10"=>"Okt",
+            "11"=>"Noy",
+            "12"=>"Dek",
+        );
+        $news = News::find($id);
+        $all_news = News::all();
+        return view('front.news-single', ['news'=>$news, 'all_news'=>$all_news, 'months'=>$months]);
     }
 }

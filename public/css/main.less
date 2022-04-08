@@ -654,7 +654,8 @@ body {
 			align-items: center;
 
 			svg {
-				width: 1.2rem;
+				width: 1.5rem;
+				display: block;
 			}
 		}
 
@@ -723,6 +724,10 @@ body {
 	&-tel a {
 		display: flex;
 		align-items: center;
+
+		svg {
+			width: 1.5rem;
+		}
 	}
 
 	&-profile__dropdown {
@@ -911,6 +916,7 @@ body {
 			height: 25rem;
 			margin-bottom: 3rem;
 
+
 			&::after {
 				content: '';
 				position: absolute;
@@ -922,6 +928,7 @@ body {
 				width: 19rem;
 			}
 
+
 			img {
 				height: 100%;
 				object-fit: contain;
@@ -931,6 +938,7 @@ body {
 		&__info {
 			background: @blue;
 			padding: 1.2rem;
+			width: 20rem;
 		}
 
 		&__name {
@@ -940,7 +948,6 @@ body {
 
 		&__desc {
 			margin-bottom: 2rem;
-			white-space: nowrap;
 		}
 
 		&__size {
@@ -1440,10 +1447,9 @@ body {
 	&-choose {
 		display: flex;
 		align-items: flex-end;
-		margin: -4rem  -7rem 0 ;
+		margin: -4rem  0 0;
 
 		&__name {
-			text-align: center;
 			color: #79c4fc;
 			font-weight: 600;
 			font-size: 1.6rem;
@@ -1452,11 +1458,16 @@ body {
 
 		&__item {
 			margin-right: 4rem;
-		}
 
-		&:last-child {
-			.products-choose__name {
-				padding-left: 5rem;
+			&:last-child {
+				.products-choose__name{
+					text-align: center;
+					padding-left: 3rem;
+				}
+
+				.products-list__size {
+					padding-left: 3rem;
+				}
 			}
 		}
 	}
@@ -1476,6 +1487,7 @@ body {
 		}
 
 		&__img {
+			margin-bottom: 1rem;
 
 			img {
 				width: 100%;
@@ -1485,20 +1497,26 @@ body {
 
 			&-big {
 				height: 16rem;
+				width: 9rem;
 			}
 
 			&-medium {
 				height: 12rem;
-				margin-bottom: 1rem;
+				width: 7rem;
 			}
 
 			&-small {
 				height: 9rem;
-				margin-bottom: 1.5rem;
+				width: 5rem;
+
+				img{
+					object-position: left;
+				}
 			}
 
 			&-cooler {
 				height: 23rem;
+				margin-bottom: -1rem;
 			}
 
 		}
@@ -1506,15 +1524,15 @@ body {
 		
 		&__size {
 			font-weight: 600;
+			text-align: center;
 			font-size: 1.6rem;
-			text-align: right;
-			margin-top: -1rem;
+			margin-top: -.5rem;
 		}
 
 		&__basket {
-			position: absolute;
+			.AbsoluteCenterX();
+			left: 60%;
 			bottom: 3rem;
-			left: 50%;
 			width: 8rem;
 			z-index: 10;
 			opacity: 0;
@@ -1662,7 +1680,7 @@ body {
 
 			img {
 				height: 100%;
-				object-fit: cover;
+				object-fit: contain;
 				width: 100%;
 			}
 		}
@@ -3322,12 +3340,13 @@ body {
 			width: 100%;
 			transform: none;
 			top: auto;
-			bottom: 12vh;
+			bottom: 10vh;
 			right: 0;
 	
 			&__img {
 				height: 15rem;
 				position: relative;
+				margin-bottom: 1rem;
 	
 				&::after {
 					bottom: -1rem;
@@ -3352,7 +3371,7 @@ body {
 	
 		&-animation {
 			width: 100vw;
-			bottom: 5vh;
+			bottom: 0;
 			height: 20rem;
 			right: -5rem;
 	
@@ -3562,9 +3581,9 @@ body {
 		}
 
 		&-choose {
-			margin-left: -4.5rem;
 			flex-wrap: wrap;
 			margin-top: 0;
+			padding-left: 1rem;
 
 			&__item {
 				margin-top: 1.5rem;
@@ -3578,21 +3597,26 @@ body {
 		&-list {
 
 			&__img {
+
 				&-big {
 					height: 10rem;
+					width: 6rem;
 				}
 
 				&-medium {
 					height: 7.5rem;
+					width: 5rem;
 				}
 
 				&-small {
 					height: 5rem;
+					width: 4rem;
 				}
 
 				&-cooler {
 					height: 12rem;
 					margin-left: 2rem;
+					width: 7rem;
 				}
 			}
 
@@ -3650,6 +3674,8 @@ body {
 
 		&__btn {
 			margin-left: 0;
+			position: relative;
+			z-index: 10;
 		}
 
 		&-arrows {
@@ -3968,6 +3994,7 @@ body {
 
 			&__info {
 				padding: 0.7rem;
+				width: 17rem;
 			}
 
 			&__name {
@@ -4143,21 +4170,19 @@ body {
 		}
 
 		&-choose {
-			margin-left: -6.5rem;
 
 			&__item {
 				margin-right: 0;
-				padding-left: 3rem;
 				margin-top: -0.5rem;
 
 				&:first-child {
 					width: 100%;
+					margin-bottom: 1rem;
 				}
 			}
 
 			&__name {
 				font-size: 1.2rem;
-				padding-left: 3rem;
 				text-align: left;
 			}
 		}
@@ -4179,6 +4204,11 @@ body {
 
 				&-small {
 					height: 4rem;
+
+					img {
+						object-position: center;
+					}
+					
 				}
 
 				&-cooler {
@@ -4485,6 +4515,10 @@ body {
 
 		&__item:first-child {
 			width: auto;
+		}
+
+		&__item {
+			width: 50%;
 		}
 	}
 

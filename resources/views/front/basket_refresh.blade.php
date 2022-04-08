@@ -22,7 +22,7 @@
                 <div class="basket-item__wrap">
                     <div class="basket-item__size" id="basket-item__size'+i+'">
                         @if($product->category_id != 3)
-                            {{ $product->price/6 }}
+                            {{ round($product->price/6, 2) }}
                         @else
                             {{ $product->price }}
                         @endif
@@ -30,16 +30,23 @@
                     <div class="basket-item__info">
                         <div class="basket-item__head">
                             <h2 class="basket-item__name">
-                                {{ \App\Models\Category::find($product->category_id)['name_'.session()->get('locale')] }} ({{ $product->size }}L)
+                                {{ \App\Models\Category::find($product->category_id)['name_'.session()->get('lan')] }} ({{ $product->size }}L)
+                                {{--@if($lan == 'ru')--}}
+                                {{--{{ \App\Models\Category::find($product->category_id)->name_ru }} ({{ $product->size }}L)--}}
+                                {{--@elseif($lan == 'uz')--}}
+                                    {{--{{ \App\Models\Category::find($product->category_id)->name_uz }} ({{ $product->size }}L)--}}
+                                {{--@elseif($lan == 'en')--}}
+                                    {{--{{ \App\Models\Category::find($product->category_id)->name_en }} ({{ $product->size }}L)--}}
+                                {{--@endif--}}
                             </h2>
-                            <div class="basket-item__price">итог 
+                            <div class="basket-item__price">итог
                                 <span>
                                     <strong id="price_product">{{ $product->price*$cart[$key]['quantity'] }}</strong> UZS
                                 </span>
                             </div>
                         </div>
                         <div class="basket-item__text">
-                            {{ $product['description_'.session()->get('locale')] }}
+                            {{ $product['description_'.session()->get('lan')] }}
                         </div>
                         <div class="basket-item__logo btn">
                                         <span>
@@ -54,7 +61,7 @@
                             </svg>
                         </div>
                         <div class="basket-item__total">
-                            <div id="capsula'+i+'">@if($product->category_id != 3) 6 x {{ $product->price/6 }} = @endif</div>
+                            <div id="capsula'+i+'">@if($product->category_id != 3) 6 x  {{ round($product->price/6, 2) }} = @endif</div>
                             <div>
                                 <strong id="price'+i+'">{{ $product->price }}</strong> UZS * <span id="capsula_name">
                                                 {{ $cart[$key]['quantity'] }} @if($product->category_id != 3) блок @else капсула @endif

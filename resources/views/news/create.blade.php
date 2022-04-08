@@ -10,13 +10,13 @@
             @enderror
 
             <form action="{{route('news.store', app()->getLocale())}}" method="post" enctype="multipart/form-data">
-                 <div class="card-body">
+                <div class="card-body">
                         {{ csrf_field() }}
                         <h1>Add News</h1>
                         <div class="form-group container-fluid d-flex justify-content-between align-items-end" style="padding: 0px">
                             <div class="" style="width: 80%;" >
                                 <label for="category_add">Name_uz</label>
-                                <input type="text" class="form-control" id="category_add" name="name_uz" placeholder="Add category ...">
+                                <input type="text"class="form-control" id="category_add" name="name_uz" placeholder="Add category ...">
                             </div>
                             <div class="" style="width: 80%; padding: 0 5px;" >
                                 <label for="category_add">Name_ru</label>
@@ -50,7 +50,7 @@
                                 <button type="submit" class="btn btn-primary" style="margin: 10px 10px 15px 20px">Submit</button>
                             </div>
                         </div>
-                 </div>
+                </div>
             </form>
         </div>
     </div>

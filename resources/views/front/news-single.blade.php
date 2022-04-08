@@ -1,25 +1,25 @@
-
 @extends('front.layout.app')
 
 @section('content')
-
-	<!-- НОВОСТИ -->
-
 	<section class="news-single">
 		<div class="container">
 			<div class="news-single__title">
-				{{-- {{$news->name_uz}}  --}}
+				<?php 
+					$name = 'name_'.''.app()->getLocale();
+					$description = 'description_'.''.app()->getLocale();
+					?>
+				{{$news->$name}}				
 			</div>
 			<div class="news-single__img water-anim">
 				{{-- <img src="{{$news->image_path}}/{{$news->image}}" alt="img"> --}}
 			</div>
 			<div class="news-single__content">
 				<p>
-					{{$news->description_uz}}
+					{{$news->$description}}
 				</p>
-				<img src="img/news1.jpg" alt="img">
+				<img src="{{$news->image_path}}/{{$news->image}}" alt="img">
 				<p>
-					Темп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самом Темп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самомТемп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самомТемп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самомТемп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самом
+					{{-- Темп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самом Темп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самомТемп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самомТемп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самомТемп развития компании на самом максимальном уровне, что является одним из важных плюсов Темп развития компании на самом максимальном уровне, что является одним из важных плюсовТемп развития компании на самом --}}
 				</p>
 				<div class="news-single__follow">
 					<ul>
@@ -54,63 +54,29 @@
 					Рекомендуемые
 				</div>
 				<div class="news-single__more-content">
+					@foreach($all_news as $all_news)
 					<div class="news-carousel__item">
 						<div class="news-carousel__img">
-							<img src="img/news2.jpg" alt="news">
+							<img src="{{$all_news->image_path}}/{{$all_news->image}}" alt="news">
 						</div>
 						<div class="news-carousel__text">
-							В наше время все заботятся о своем здоровье и потребляют 
+							{{$all_news->$name}} 
 						</div>
 						<div class="news-carousel__info">
-							<span>13.Сент.2021</span>
+							<span>
+								{{explode(".", $news->updated_at->format('d.m.Y'))[0].'.'
+								.$months[explode(".", $news->updated_at->format('d.m.Y'))[1]].'.'.
+								explode(".", $news->updated_at->format('d.m.Y'))[2]
+								}}
+							</span>
 							<span><img src="img/eye-gray.svg" alt="ico">20</span>
 						</div>
 						<a href="#"></a>
 					</div>
-					<div class="news-carousel__item">
-						<div class="news-carousel__img">
-							<img src="img/news2.jpg" alt="news">
-						</div>
-						<div class="news-carousel__text">
-							В наше время все заботятся о своем здоровье и потребляют 
-						</div>
-						<div class="news-carousel__info">
-							<span>13.Сент.2021</span>
-							<span><img src="img/eye-gray.svg" alt="ico">20</span>
-						</div>
-						<a href="#"></a>
-					</div>
-					<div class="news-carousel__item">
-						<div class="news-carousel__img">
-							<img src="img/news2.jpg" alt="news">
-						</div>
-						<div class="news-carousel__text">
-							В наше время все заботятся о своем здоровье и потребляют 
-						</div>
-						<div class="news-carousel__info">
-							<span>13.Сент.2021</span>
-							<span><img src="img/eye-gray.svg" alt="ico">20</span>
-						</div>
-						<a href="#"></a>
-					</div>
-					<div class="news-carousel__item">
-						<div class="news-carousel__img">
-							<img src="img/news2.jpg" alt="news">
-						</div>
-						<div class="news-carousel__text">
-							В наше время все заботятся о своем здоровье и потребляют 
-						</div>
-						<div class="news-carousel__info">
-							<span>13.Сент.2021</span>
-							<span><img src="img/eye-gray.svg" alt="ico">20</span>
-						</div>
-						<a href="#"></a>
-					</div>
+					@endforeach
 				</div>
 			</div>
 		</div>
 	</section>
 	
-	
-	{{-- @include('front.component.scripts') --}}
 @endsection

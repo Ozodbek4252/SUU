@@ -248,7 +248,6 @@ $('body').on('click', '.order-item .btn', function() {
 //____________BASKET_________
 
 $('body').on('click', '.basket-item__open', function() {
-    console.log(this)
     $(this).toggleClass('active')
     $(this).parent().toggleClass('basket-item-active')
     $(this).parent().find('.basket-item__dropdown').slideToggle(600)

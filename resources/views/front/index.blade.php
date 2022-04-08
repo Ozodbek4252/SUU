@@ -14,7 +14,7 @@
 	<title>SUU</title>
 </head>
 <body>
-
+<?php session()->put('lan', app()->getLocale());?>
     <div class="popup-layer"></div>
 
 <form action="{{route('message.store', app()->getLocale())}}" method="post" >
@@ -45,7 +45,7 @@
 </form>
 
 <!-- PRELOADER -->
-<div class="preloader">
+{{-- <div class="preloader">
     <div class="preloader-logo">
         <svg width="276" height="345" class="preloader-logo__drop" viewBox="0 0 276 345" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M138 0C46.0575 78.4875 0 146.28 0 203.55C0 289.455 65.55 345 138 345C210.45 345 276 289.455 276 203.55C276 146.28 229.943 78.4875 138 0Z" fill="url(#paint0_linear_26_16)"/>
@@ -69,7 +69,7 @@
     <div class="preloader__percent">
         <span>0</span>%
     </div>
-</div>
+</div> --}}
 
 {{-- {{dd(auth()->user()->name)}} --}}
 @if(auth()->user())
@@ -137,7 +137,7 @@
 
 <aside class="side">
     <div class="side__logo">
-        <a href="index.html">
+        <a href="/">
             <img src="img/logo.svg" alt="SUU" title="SUU">
         </a>
     </div>
@@ -159,7 +159,7 @@
         </li>
     </ul>
     <div class="side__copy">
-        &copy; 2021 «SUU.UZBEKISTAN»
+        &copy; 2022 «SUU.UZBEKISTAN»
     </div>
 </aside>
 
@@ -167,7 +167,7 @@
 <div class="mobile-menu">
     <div class="mobile-menu__head">
         <div class="mobile-menu__logo">
-            <a href="index.html">
+            <a href="/">
                 <img src="img/logo.svg" alt="SUU" title="SUU">
             </a>
         </div>
@@ -289,11 +289,11 @@
 				<li class="header-lang">
 					<div class="header-lang__open">
 						@if(app()->getLocale() == 'ru')
-						РУ
+							РУ
 						@elseif(app()->getLocale()=='en')
-						EN
+							EN
 						@elseif(app()->getLocale()=='uz')
-						UZ
+							UZ
 						@else
 						@endif
 						<svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -303,16 +303,25 @@
 					<div class="header-lang__dropdown header-side__dropdown">
 						@if(app()->getLocale() != 'ru')
 							<a href="{{ route(Route::currentRouteName(), 'ru') }}">
+								<?php 
+									App::setLocale(Session::get('locale'))
+									?>
 								РУ
 							</a>
 						@endif
 						@if(app()->getLocale() != 'uz')
 							<a href="{{ route(Route::currentRouteName(), 'uz') }}">
+								<?php 
+									App::setLocale(Session::get('locale'))
+									?>
 								UZ
 							</a>
 						@endif
 						@if(app()->getLocale() != 'en')
 							<a href="{{ route(Route::currentRouteName(), 'en') }}">
+								<?php 
+									App::setLocale(Session::get('locale'))
+									?>
 								EN
 							</a>
 						@endif
@@ -409,7 +418,7 @@
 							</div>
 						</div>
 						<div class="main-btns">
-							<a href="#" class="btn">
+							<a href="{{route('about', app()->getLocale())}}" class="btn">
 								{{__('homeMainButtonMore')}}
 							</a>
 							<a href="#" class="btn btn-trans feedback-open">
@@ -418,18 +427,19 @@
 						</div>
 					</div>
 				</div>
+					
 				<div class="main-carousel owl-carousel">
 					@foreach($products as $product)
 						<div class="main-carousel__item">
 							<div class="main-carousel__img">
-								<img data-src="{{$product->image_path}}/{{$product->image}}" alt="SUU" class="owl-lazy">
+								<img data-src="{{$product->slider->image_path}}/{{$product->slider->image}}" alt="SUU" class="owl-lazy">
 							</div>
 							<div class="main-carousel__info">
 								<div class="main-carousel__name">
 									SUU
 								</div>
 								<div class="main-carousel__desc">
-									{{$product->name_uz}}
+									{{$product['name_'.app()->getLocale()]}}
 								</div>
 								<div class="main-carousel__size">
 									{{$product->size}} l
@@ -437,7 +447,6 @@
 							</div>
 						</div>
 					@endforeach
-
 				</div>
 				<div class="main-animation">
 					<div class="main-animation__item">
@@ -593,11 +602,9 @@
 							</div>
 							
 							<div class="products-choose__item">
-							
 								<div class="products-choose__name">
 									{{__('homeProductCat2')}}
 								</div>
-								
 								<ul class="products-list">
 									@foreach(\App\Models\Product::where('category_id', 1)->get() as $data)
 										<li>
@@ -729,9 +736,9 @@
 											explode(".", $news->updated_at->format('d.m.Y'))[2]
 											}}
 										</span>
-										<span><img src="img/eye.svg" alt="ico">20</span>
+										<span><img src="img/eye.svg" alt="ico">{{$news->view}}</span>
 									</div>
-									<a href="#"></a>
+									<a href="{{route('single-news', [app()->getLocale(), $news->id] )}}"></a>
 								</div>
 							@endforeach
 						</div>
@@ -789,8 +796,59 @@
 <div class="tel-popup feedback-open">
     <img src="img/tel-popup.png" alt="ico">
 </div>
+    <script src="/js/jquery-3.4.1.min.js"></script>
+    <script>
+        function addBasket(id){
+            $.ajax({
+                type: 'get',
+                url:'/add_basket/' + id,
+                dataType: 'json',
+                success: function () {
+                    $('#side-basket__content').load('/cart');
+                    $("#price").load('/price');
+                    $("#quantity_product").load('/quantity_product_refresh');
+                }
+            });
+        }
+        function deleteProduct(id) {
+            $.ajax({
+                type: 'get',
+                url:'/delete_product/'+id,
+                dataType: 'json',
+                success: function () {
+                    $('#side-basket__content').load('/cart');
+                    $("#price").load('/price');
+                    $("#quantity_product").load('/quantity_product_refresh');
+                    $("#basket_refresh").load('/basket_refresh');
+                }
+            })
+        }
 
-<script src="/js/jquery-3.4.1.min.js"></script>
+        // function deleteProduct(id) {
+            // console.log('work');
+            // fetch('/delete_product/'+id);
+            // $('#side-basket__content').load('/cart');
+            // $("#price").load('/price');
+            // $("#basket_refresh").load('/basket_refresh');
+            // $("#quantity_product").load('/quantity_product_refresh');
+        // }
+
+        function quantity(k) {
+            q = $("#blok_quantity"+k).val();
+            fetch('/update_quantity/'+k+'/'+q);
+            $("#basket_refresh").load('/basket_refresh');
+            $("#total_price").load('/total_sum');
+        }
+
+        function logo(bul, id) {
+            fetch('/update_logo/'+bul+'/'+id);
+            $("#basket_refresh").load('/basket_refresh');
+        }
+
+        function refresh(){
+            $('#side-basket__content').load('/cart');
+        }
+    </script>
 <script src="/js/jquery.inputmask.min.js"></script>
 <script src="/js/owl.carousel.js"></script>
 <script src="/js/fullpage.min.js"></script>
@@ -801,11 +859,12 @@
 <script src="/js/gsap.min.js"></script>
 <script src="/js/dobpicker.js"></script>
 <script src="/js/main.js"></script>
-<script src="/js/basket.js"></script>
+
 
 <script>
     $('#fullPage').fullpage({
         anchors: ['main', 'about', 'products', 'services', 'news', 'contact'],
+		scrollingSpeed: 1000,
         onLeave:function(origin,destination,direction) {
 
             const section = destination.item;

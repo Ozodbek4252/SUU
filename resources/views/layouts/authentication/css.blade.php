@@ -17,3 +17,6 @@
 <link id="color" rel="stylesheet" href="{{asset('/adminAssets/css/color-1.css')}}" media="screen">
 <!-- Responsive css-->
 <link rel="stylesheet" type="text/css" href="{{asset('/adminAssets/css/responsive.css')}}">
+
+
+

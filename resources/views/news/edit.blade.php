@@ -5,8 +5,9 @@
         <div class="card-body">
 
             <div class="card-body">
-                <form action="{{route('news.update', [app()->getLocale(), $news->id])}}" method="post">
+                <form action="{{route('news.update', [app()->getLocale(), $news->id])}}" method="post" enctype="multipart/form-data">
                     {{ csrf_field() }}
+                    @method('PUT')
                     <h1>News</h1>
                     <div class="form-group container-fluid d-flex justify-content-between align-items-end" style="padding: 0px">
                         <div class="" style="width: 80%;" >
@@ -44,12 +45,10 @@
 
                         <div class="" style="width: 15%;" >
                             <label for="category_add">Photo</label>
-                            <input type="file" class="form-control" id="" name="photo" value="{{$news->photo}}">
+                            <input type="file" class="form-control" id="" name="image" value="{{$news->photo}}">
                         </div>
 
                         <div><button type="submit" class="btn btn-primary" style="margin: 10px 10px 15px 20px">Submit</button></div>
-
-                        {{--                    <input value="Add" class="bg-primary" style="width: 19%; height: 40px; font-size: 16px; color: #fff; border: none; border-radius: 5px;" type="submit">--}}
 
                     </div>
                 </form>

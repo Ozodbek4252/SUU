@@ -1,14 +1,10 @@
 <div class="vertical-menu">
 
     <!-- LOGO -->
-    <div class="navbar-brand-box">
-        <a href="/" class="logo logo-dark">
-            <x-jet-application-mark class="w-25 mt-3" />
+    <div class="navbar-brand-box" style="margin-bottom: 20px;">
+        <a href="/dashboard" class="logo logo-dark mt-3" style="position: absolute; right: 50%;">
+            <img src="/img/logo-blue.svg" alt="SUU" title="SUU" height="80px">
         </a>
-
-        {{--<a href="/" class="logo logo-light flex">--}}
-        {{--<x-jet-application-mark class="block h-9 w-auto" />--}}
-        {{--</a>--}}
     </div>
 
     <button type="button" class="btn btn-sm px-3 font-size-16 header-item waves-effect vertical-menu-btn">
@@ -48,7 +44,7 @@
                 <li>
                     <a href="{{route('news', app()->getLocale())}}" >
                         <i class="uil-water-glass"></i>
-                        <span>News</span>
+                        <span>Новости</span>
                     </a>
                 </li>
             </ul>

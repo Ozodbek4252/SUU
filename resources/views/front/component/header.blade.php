@@ -18,12 +18,12 @@
                     </a>
                 </li>
                 <li>
-                    <a href="{{route('about', app()->getLocale())}}">
+                    <a href="/">
                         {{__('navProducts')}}
                     </a>
                 </li>
                 <li>
-                    <a href="#services">
+                    <a href="/">
                         {{__('navServices')}}
                     </a>
                 </li>
@@ -33,7 +33,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="#contact">
+                    <a href="/">
                         {{__('navContact')}}
                     </a>
                     

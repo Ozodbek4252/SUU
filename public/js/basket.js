@@ -5,19 +5,19 @@ function addBasket(id){
     $("#quantity_product").load('/quantity_product_refresh');
 }
 
-function deleteProduct(id) {
-    fetch('/delete_product/'+id);
-    $('#side-basket__content').load('/cart');
-    $("#price").load('/price');
-    $("#basket_refresh").load('/basket_refresh');
-    $("#quantity_product").load('/quantity_product_refresh');
-}
+// function deleteProduct(id) {
+//     fetch('/delete_product/'+id);
+//     $('#side-basket__content').load('/cart');
+//     $("#price").load('/price');
+//     $("#basket_refresh").load('/basket_refresh');
+//     $("#quantity_product").load('/quantity_product_refresh');
+//     refresh();
+// }
 
 function quantity(k) {
     q = $("#blok_quantity"+k).val();
     fetch('/update_quantity/'+k+'/'+q);
     $("#basket_refresh").load('/basket_refresh');
-    
     $("#total_price").load('/total_sum');
 }
 

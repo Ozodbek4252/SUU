@@ -1,3 +1,4 @@
+
 @foreach(session()->get('cart') as $key => $item)
     <?php
         $product = \App\Models\Product::find($key);
@@ -6,7 +7,7 @@
         <div class="cabinet-order__img">
             <img src="{{ $product->image_path }}/{{ $product->image }}" alt="img">
         </div>
-        <div class="cabinet-order__name">{{ \App\Models\Category::find($product->category_id)['name_'.session()->get('locale')] }}({{ $product->size }} L)
+        <div class="cabinet-order__name">{{ \App\Models\Category::find($product->category_id)['name_'.session()->get('lan')] }}({{ $product->size }} L)
             <br> <span>{{ $product->price }} UZS</span>
         </div>
         <div class="basket-item__delete" onclick="deleteProduct({{ $product->id }})">
@@ -14,3 +15,5 @@
         </div>
     </div>
 @endforeach
+
+

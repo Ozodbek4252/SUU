@@ -23,11 +23,12 @@ class LangServiceProvider extends ServiceProvider
     {
         view()->composer('*', function ($view)
         {
-            if (session()->get('locale') == '') {
+            if (\Request::segment(1) == '') {
                 session()->put('locale', 'ru');
                 app()->setLocale('ru');
             } else {
-                app()->setLocale(session()->get('locale'));
+                app()->setLocale(\Request::segment(1));
+                session()->put('locale', \Request::segment(1));
             }
             $lan = session()->get('locale');
 

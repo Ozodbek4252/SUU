@@ -75,6 +75,7 @@
     </div>
 </div>
 <div class="rightbar-overlay"></div>
+
 @include('layouts.simple.script')
 @yield('scripts')
 @livewireScripts

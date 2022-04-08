@@ -8,9 +8,9 @@
 
 
 	<!-- АВТОРИЗАЦИЯ -->
-	<?php
-		session()->put('locale', Request::segment(1))
-	?>
+        <?php
+		    session()->put('lan', app()->getLocale());
+	    ?>
 	<div class="login">
 		<div class="feedback-content">
 			<div class="feedback__title">
@@ -126,13 +126,15 @@
 
 	<section class="basket">
 		<div class="container" id="basket_refresh">
+
+    @if(!session()->get('cart'))
 			<div class="basket-empty">
-                @if(!session()->get('cart'))
                     {{__('ВАША КОРЗИНА ПУСТА')}}
-                @endif
 			</div>
 
-			<div class="basket-list" id="basket-list">
+      @endif
+
+			<div class="basket-list">
                 <?php $total_price = 0 ?>
                 @if(session()->get('cart') != null)
                     @foreach(session()->get('cart') as $key=>$value)
@@ -150,9 +152,9 @@
                                 <img src="{{ $product->image_path }}/{{ $product->image }}" alt="img">
                             </div>
                             <div class="basket-item__wrap">
-                                <div class="basket-item__size" id="basket-item__size'+i+'">
+                                <div class="basket-item__size">
                                     @if($product->category_id != 3)
-                                        {{ $product->price/6 }}
+                                        {{ round($product->price/6, 2) }}
                                     @else
                                         {{ $product->price }}
                                     @endif
@@ -185,7 +187,7 @@
                                         </svg>
                                     </div>
                                     <div class="basket-item__total">
-                                            <div>@if($product->category_id != 3) 6 x {{ $product->price/6 }} = @endif</div>
+                                            <div>@if($product->category_id != 3) 6 x  {{ round($product->price/6, 2) }} = @endif</div>
                                         <div>
                                             <strong>{{ $product->price }}</strong> UZS * <span>
                                                 {{ $cart[$key]['quantity'] }} @if($product->category_id != 3) блок @else капсула @endif
