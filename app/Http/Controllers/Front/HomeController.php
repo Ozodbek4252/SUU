@@ -10,6 +10,15 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {
     public function index(){
+        
+        if (session()->get('locale') == '') {
+            session()->put('locale', 'ru');
+            app()->setLocale('ru');
+        } else {
+            app()->setLocale(session()->get('locale'));
+        }
+        $lan = session()->get('locale');
+        
         $products = Product::all();
         $news = News::orderBy('id', 'DESC')->get();
         $months = array(
@@ -26,7 +35,7 @@ class HomeController extends Controller
             "11"=>"Noy",
             "12"=>"Dek",
         );
-        return view('front.index', ['products'=>$products, 'news'=>$news, 'months' => $months]);
+        return view('front.index', ['products'=>$products, 'news'=>$news, 'months' => $months, 'lan' => $lan]);
     }
 
     public function  about(){

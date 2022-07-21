@@ -56,20 +56,20 @@
                     </svg>
                 </div>
                 <div class="header-lang__dropdown header-side__dropdown">
-                    <a href="{{ route(Route::currentRouteName(), ['ru', \Request::segment(3)]) }}">
+                    <a href="/languages/ru">
                         РУ
                     </a>
-                    <a href="{{ route(Route::currentRouteName(), ['uz', \Request::segment(3)]) }}">
+                    <a href="/languages/uz">
                         UZ
                     </a>
-                    <a href="{{ route(Route::currentRouteName(), ['en', \Request::segment(3)]) }}">
+                    <a href="/languages/en">
                         EN
                     </a>
                 </div>
             </li>
             <li class="header-basket">
                 <div class="header-side__btn">
-                    <a href="/order">
+                    <a href="{{Route('order', app()->getLocale())}}">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M14 6V4H10V6H14ZM4 9V18C4 18.55 4.45 19 5 19H19C19.55 19 20 18.55 20 18V9C20 8.45 19.55 8 19 8H5C4.45 8 4 8.45 4 9ZM20 6C21.11 6 22 6.89 22 8V19C22 20.11 21.11 21 20 21H4C2.89 21 2 20.11 2 19L2.01 8C2.01 6.89 2.89 6 4 6H8V4C8 2.89 8.89 2 10 2H14C15.11 2 16 2.89 16 4V6H20Z" fill="white"/>
                         </svg>

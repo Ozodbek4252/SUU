@@ -342,6 +342,26 @@ body {
   -webkit-transform: none;
           transform: none;
 }
+.feedback-done,
+.login-done {
+  display: none;
+  text-align: center;
+}
+.feedback-done .feedback__title,
+.login-done .feedback__title {
+  font-weight: 700;
+  margin-bottom: 2rem;
+}
+.feedback__img,
+.login__img {
+  margin-bottom: 2.5rem;
+}
+.feedback__img img,
+.login__img img {
+  width: 5.5rem;
+  -webkit-filter: drop-shadow(0px 4px 100px rgba(122, 217, 120, 0.6));
+          filter: drop-shadow(0px 4px 100px rgba(122, 217, 120, 0.6));
+}
 .side-basket {
   position: fixed;
   right: 0;
@@ -434,6 +454,46 @@ body {
 .side-basket-show {
   -webkit-transform: none;
           transform: none;
+}
+.sended {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 999;
+  background: rgba(33, 123, 190, 0.5);
+  -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+  display: none;
+}
+.sended__close {
+  position: absolute;
+  top: 1.5rem;
+  right: 1.5rem;
+  cursor: pointer;
+}
+.sended__close svg {
+  width: 1.5rem;
+}
+.sended-content {
+  width: 30rem;
+  padding: 3.5rem;
+  background: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -webkit-box-shadow: 16px 24px 48px rgba(0, 0, 0, 0.08);
+          box-shadow: 16px 24px 48px rgba(0, 0, 0, 0.08);
+  border-radius: 1.6rem;
+}
+.sended .feedback-done {
+  display: block;
+}
+.sended .feedback__text {
+  color: #000;
 }
 .preloader {
   position: fixed;
@@ -1813,8 +1873,14 @@ body {
   margin-bottom: 4rem;
   max-width: 43rem;
 }
+.news-single__img {
+  text-align: center;
+}
 .news-single__img img {
   width: 100%;
+  max-height: 70vh;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .news-single__content {
   max-width: 48rem;
@@ -1831,6 +1897,9 @@ body {
   display: block;
   width: 100%;
   margin: 2rem 0;
+  max-height: 30rem;
+  -o-object-fit: contain;
+     object-fit: contain;
 }
 .news-single__follow {
   margin: 2rem 0;
@@ -1930,7 +1999,7 @@ body {
   z-index: 10;
 }
 .contact__bottle img {
-  height: 15rem;
+  height: 17.5rem;
 }
 .contact__map {
   position: absolute;
@@ -3567,6 +3636,9 @@ body {
   }
   .side__copy {
     margin-left: -1rem;
+  }
+  .sended-content {
+    width: 92%;
   }
   .header-static__logo {
     width: 5rem;

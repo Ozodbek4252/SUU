@@ -15,33 +15,36 @@
 </head>
 <body>
 <?php session()->put('lan', app()->getLocale());?>
-    <div class="popup-layer"></div>
+    <div class="popup-layer"  @if (session()->has('messageSent')) style="display: block;" @endif></div>
 
 <form action="{{route('message.store', app()->getLocale())}}" method="post" >
     {{ csrf_field() }}
-    <div class="feedback">
+    {{-- <div class="feedback">
         <div class="feedback-content">
             <div class="feedback__title">
-                {{__('homeInputTitle')}}
+                {{__('order.homeInputTitle')}}
             </div>
             <div class="feedback__text">
-                {{__('homeInputTitleText')}} <strong>suu.uzbekistan</strong>
+                {{__('order.homeInputTitleText')}} <strong>suu.uzbekistan</strong>
             </div>
             <div class="feedback-form">
-                <input type="text" placeholder="{{__('homePlaceholderInputName')}}" name="name" >
-                <input type="text" placeholder="{{__('homePlaceholderInputLastName')}}" name="last_name" >
-                <input type="tel" placeholder="{{__('homePlaceholderInputPhone')}}" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$" name="phone">
-                <textarea placeholder="{{__('homePlaceholderInputText')}}" name="message"></textarea>
+                <input type="text" placeholder="{{__('order.homePlaceholderInputName')}}" name="name" >
+                <input type="text" placeholder="{{__('order.homePlaceholderInputLastName')}}" name="last_name" >
+                <input type="tel" placeholder="{{__('order.homePlaceholderInputPhone')}}" class="form__tel" maxlength="19" required="" pattern="^[0-9-+\s()]*$" name="phone">
+                <textarea placeholder="{{__('order.homePlaceholderInputText')}}" name="message"></textarea>
                 <div class="feedback-form__check">
                     <label>
                         <input type="checkbox">
-                        <span>{{__('homeInputChech')}}</span>
+                        <span>{{__('order.homeInputChech')}}</span>
                     </label>
                 </div>
-                <button type="submit" class="btn">{{__('homeInputButton')}}</button>
+                <button type="submit" class="btn">{{__('order.homeInputButton')}}</button>
             </div>
         </div>
-    </div>
+    </div> --}}
+
+		@include('front.component.feedback')
+
 </form>
 
 <!-- PRELOADER -->
@@ -64,7 +67,7 @@
         </svg>
     </div>
     <div class="preloader__text">
-        {{__('preloader')}}
+        {{__('order.preloader')}}
     </div>
     <div class="preloader__percent">
         <span>0</span>%
@@ -116,7 +119,7 @@
         <div class="side-basket__price">
             <div class="order-price">
                 <div class="order-price__item">
-                    <span class="order-price__name">{{ __('order.honeOrderPrice')}}</span>
+                    <span class="order-price__name">{{ __('honeOrderPrice')}}</span>
                     <span class="order-price__value" id="price">
 
                     </span>
@@ -164,88 +167,7 @@
 </aside>
 
 <!------------------------- Mobile Menu ------------------------->
-<div class="mobile-menu">
-    <div class="mobile-menu__head">
-        <div class="mobile-menu__logo">
-            <a href="/">
-                <img src="img/logo.svg" alt="SUU" title="SUU">
-            </a>
-        </div>
-        <div class="mobile-menu__close">
-            <div class="header-mobile header-mobile__open">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-        </div>
-    </div>
-    <ul class="menu">
-        <li>
-            <a href="#main" data-menuanchor="main">
-                {{__('navHome')}}
-            </a>
-        </li>
-        <li>
-            <a href="#about" data-menuanchor="about">
-                {{__('navAbout')}}
-            </a>
-        </li>
-        <li>
-            <a href="#products" data-menuanchor="products">
-                {{__('navProducts')}}
-            </a>
-        </li>
-        <li>
-            <a href="#services" data-menuanchor="services">
-                {{__('navServices')}}
-            </a>
-        </li>
-        <li>
-            <a href="#news" data-menuanchor="news">
-                {{__('navNews')}}
-            </a>
-        </li>
-        <li>
-            <a href="#contact" data-menuanchor="contact">
-                {{__('navContact')}}
-            </a>
-        </li>
-    </ul>
-    <ul class="side__follow">
-        <li>
-            <a href="#" target="_blank" rel="_nofollow">
-                <img src="img/fb.svg" alt="Facebook">
-            </a>
-        </li>
-        <li>
-            <a href="#" target="_blank" rel="_nofollow">
-                <img src="img/inst.svg" alt="Instagram">
-            </a>
-        </li>
-        <li>
-            <a href="#" target="_blank" rel="_nofollow">
-                <img src="img/tg.svg" alt="Telegram">
-            </a>
-        </li>
-    </ul>
-    <div class="mobile-menu__lang">
-        @if(app()->getLocale() != 'ru')
-			<a href="{{ route(Route::currentRouteName(), 'ru') }}">
-				РУ
-			</a>
-		@endif
-		@if(app()->getLocale() != 'uz')
-			<a href="{{ route(Route::currentRouteName(), 'uz') }}">
-				UZ
-			</a>
-		@endif
-		@if(app()->getLocale() != 'en')
-			<a href="{{ route(Route::currentRouteName(), 'en') }}">
-				EN
-			</a>
-		@endif
-    </div>
-</div>
+@include('front.component.mobile-menu')
 
 
 <!--------------------------- Header --------------------------->
@@ -255,32 +177,33 @@
 				<ul class="menu">
 					<li>
 						<a href="#main" data-menuanchor="main">
-							{{__('navHome')}}
+							{{__('order.navHome')}}
 						</a>
 					</li>
 					<li>
 						<a href="#about" data-menuanchor="about">
-							{{__('navAbout')}}
+
+							{{__('order.navAbout')}}
 						</a>
 					</li>
 					<li>
 						<a href="#products" data-menuanchor="products">
-							{{__('navProducts')}}
+							{{__('order.navProducts')}}
 						</a>
 					</li>
 					<li>
 						<a href="#services" data-menuanchor="services">
-							{{__('navServices')}}
+							{{__('order.navServices')}}
 						</a>
 					</li>
 					<li>
 						<a href="#news" data-menuanchor="news">
-							{{__('navNews')}}
+							{{__('order.navNews')}}
 						</a>
 					</li>
 					<li>
 						<a href="#contact" data-menuanchor="contact">
-							{{__('navContact')}}
+							{{__('order.navContact')}}
 						</a>
 					</li>
 				</ul>
@@ -302,7 +225,7 @@
 					</div>
 					<div class="header-lang__dropdown header-side__dropdown">
 						@if(app()->getLocale() != 'ru')
-							<a href="{{ route(Route::currentRouteName(), 'ru') }}">
+							<a href="languages/ru">
 								<?php 
 									App::setLocale(Session::get('locale'))
 									?>
@@ -310,7 +233,7 @@
 							</a>
 						@endif
 						@if(app()->getLocale() != 'uz')
-							<a href="{{ route(Route::currentRouteName(), 'uz') }}">
+							<a href="languages/uz">
 								<?php 
 									App::setLocale(Session::get('locale'))
 									?>
@@ -318,7 +241,7 @@
 							</a>
 						@endif
 						@if(app()->getLocale() != 'en')
-							<a href="{{ route(Route::currentRouteName(), 'en') }}">
+							<a href="languages/en">
 								<?php 
 									App::setLocale(Session::get('locale'))
 									?>
@@ -327,6 +250,7 @@
 						@endif
 					</div>
 				</li>
+				
 				<li class="header-basket">
 					<div class="header-side__btn">
                         <a href="{{route('order', app()->getLocale())}}">
@@ -382,23 +306,23 @@
 			<div class="container">
 				<div class="main-wrap">
 					<h1 class="section__title">
-						{{__('homeMainTitle')}}
+						{{ __('order.homeMainTitle') }}
 					</h1>
 					<div class="section__text">
-						{{__('homeMainTitleText')}}
+						{{ __('order.homeMainTitleText') }}
 					</div>
 					<div class="section__main">
 						<div class="main-elements">
 							<h3 class="main-elements__title">
-								{{__('homeMainTitleElements')}}
+								{{__('order.homeMainTitleElements')}}
 							</h3>
 							<div class="main-elements__wrap">
 								<div class="main-elements__item">
 									<div class="main-elements__name">
-										{{__('homeMainTitleElement_name_1')}}
+										{{__('order.homeMainTitleElement_name_1')}}
 									</div>
 									<div class="main-elements__weight">
-										30 <span style="font-size: 16px;">{{__('homeMainTitleElement_weight')}}</span>
+										30 <span style="font-size: 16px;">{{__('order.homeMainTitleElement_weight')}}</span>
 									</div>
 									<div class="main-elements__percent">
 										10 %
@@ -406,10 +330,10 @@
 								</div>
 								<div class="main-elements__item">
 									<div class="main-elements__name">
-										{{__('homeMainTitleElement_name_2')}}
+										{{__('order.homeMainTitleElement_name_2')}}
 									</div>
 									<div class="main-elements__weight">
-										30 <span style="font-size: 16px;">{{__('homeMainTitleElement_weight')}}</span>
+										30 <span style="font-size: 16px;">{{__('order.homeMainTitleElement_weight')}}</span>
 									</div>
 									<div class="main-elements__percent">
 										10 %
@@ -419,10 +343,10 @@
 						</div>
 						<div class="main-btns">
 							<a href="{{route('about', app()->getLocale())}}" class="btn">
-								{{__('homeMainButtonMore')}}
+								{{__('order.homeMainButtonMore')}}
 							</a>
 							<a href="#" class="btn btn-trans feedback-open">
-								{{__('homeMainButtonSubmit')}}
+								{{__('order.homeMainButtonSubmit')}}
 							</a>
 						</div>
 					</div>
@@ -485,14 +409,14 @@
 					<div class="about-content">
 						<div class="section-content">
 							<h2 class="section__title">
-								{{__('homeAboutTitle')}} «SUU.UZBEKISTAN»
+								{{__('order.homeAboutTitle')}} «SUU.UZBEKISTAN»
 							</h2>
 							<div class="section__text">
-								{{__('homeAboutTitleText')}}
+								{{__('order.homeAboutTitleText')}}
 							</div>
 						</div>
 						<a href="{{route('about', app()->getLocale())}}" class="about__btn btn">
-							{{__('aboutTitle')}}
+							{{__('order.aboutTitle')}}
 						</a>
 					</div>
 					<div class="section__main">
@@ -511,10 +435,10 @@
 									01
 								</div>
 								<div class="about-list__name">
-									{{__('homeAboutCard1')}}
+									{{__('order.homeAboutCard1')}}
 								</div>
 								<div class="about-list__desc">
-									{{__('homeAboutCard1Text')}}
+									{{__('order.homeAboutCard1Text')}}
 								</div>
 							</div>
 							<div class="about-list__item">
@@ -531,10 +455,10 @@
 									02
 								</div>
 								<div class="about-list__name">
-									{{__('homeAboutCard2')}}
+									{{__('order.homeAboutCard2')}}
 								</div>
 								<div class="about-list__desc">
-									{{__('homeAboutCard2Text')}}
+									{{__('order.homeAboutCard2Text')}}
 								</div>
 							</div>
 							<div class="about-list__item">
@@ -551,10 +475,10 @@
 									03
 								</div>
 								<div class="about-list__name">
-									{{__('homeAboutCard3')}}
+									{{__('order.homeAboutCard3')}}
 								</div>
 								<div class="about-list__desc">
-									{{__('homeAboutCard3Text')}}
+									{{__('order.homeAboutCard3Text')}}
 								</div>
 							</div>
 						</div>
@@ -568,21 +492,21 @@
 					<div class="products-content">
 						<div class="section-content">
 							<h2 class="section__title">
-								{{__('homeProductTitle')}}
+								{{__('order.homeProductTitle')}}
 							</h2>
 							<div class="section__text">
-								{{__('homeProductTitleText')}}
+								{{__('order.homeProductTitleText')}}
 							</div>
 						</div>
 						<a href="#" class="products__btn btn feedback-open">
-							{{__('homeProductButton')}}
+							{{__('order.homeProductButton')}}
 						</a>
 					</div>
 					<div class="section__main">
 						<div class="products-choose">
 							<div class="products-choose__item">
 								<div class="products-choose__name">
-									{{__('homeProductCat1')}}
+									{{__('order.homeProductCat1')}}
 								</div>
 								<ul class="products-list">
 									@foreach(\App\Models\Product::where('category_id', 2)->get() as $data)
@@ -603,7 +527,7 @@
 							
 							<div class="products-choose__item">
 								<div class="products-choose__name">
-									{{__('homeProductCat2')}}
+									{{__('order.homeProductCat2')}}
 								</div>
 								<ul class="products-list">
 									@foreach(\App\Models\Product::where('category_id', 1)->get() as $data)
@@ -624,7 +548,7 @@
 										
 							<div class="products-choose__item">
 								<div class="products-choose__name">
-									{{__('homeProductCat3')}}
+									{{__('order.homeProductCat3')}}
 								</div>
 								<ul class="products-list">
 									@foreach(\App\Models\Product::where('category_id', 3)->get() as $data)
@@ -652,20 +576,20 @@
 				<div class="section-wrap">
 					<div class="services__title">
 						<h2 class="section__title">
-							{{__('homeServiceTitle')}}
+							{{__('order.homeServiceTitle')}}
 						</h2>
 						<a href="#" class="services__btn btn feedback-open">
-							{{__('homeServiceButton')}}
+							{{__('order.homeServiceButton')}}
 						</a>
 					</div>
 					<div class="section__main">
 						<div class="services-content">
 							<div class="services-item">
 								<h3 class="services-item__title">
-									{{__('homeService1Title')}}
+									{{__('order.homeService1Title')}}
 								</h3>
 								<div class="services-item__text">
-									{{__('homeService1TitleText')}}	
+									{{__('order.homeService1TitleText')}}	
 								</div>
 								<div class="services-item__bottles">
 									<img src="img/services1.png" alt="bottle">
@@ -674,10 +598,10 @@
 							</div>
 							<div class="services-item">
 								<h3 class="services-item__title">
-									{{__('homeService2Title')}}
+									{{__('order.homeService2Title')}}
 								</h3>
 								<div class="services-item__text">
-									{{__('homeService2TitleText')}}
+									{{__('order.homeService2TitleText')}}
 								</div>
 								<div class="services-item__truck">
 									<img src="img/truck.png" alt="truck">
@@ -694,14 +618,14 @@
 					<div class="news-content">
 						<div class="section-content">
 							<h2 class="section__title">
-								{{__('homeNewsTitle')}}
+								{{__('order.homeNewsTitle')}}
 							</h2>
 							<div class="section__text">
-								{{__('homeNewsTitleText')}}
+								{{__('order.homeNewsTitleText')}}
 							</div>
 						</div>
 						<a href="{{route('front.news', app()->getLocale())}}" class="news__btn btn">
-							{{__('homeNewsButton')}}
+							{{__('order.homeNewsButton')}}
 						</a>
 					</div>
 					<div class="section__main">
@@ -751,12 +675,12 @@
 				<div class="section-wrap">
 					<div class="contact-content">
 						<h2 class="section__title">
-							{{__('homeContactTitle')}}
+							{{__('order.homeContactTitle')}}
 						</h2>
 						<div class="section__main">
 							<div class="contact-item">
 								<div class="contact-item__name">
-									{{__('homeContactForExportImport')}}:
+									{{__('order.homeContactForExportImport')}}:
 								</div>
 								<div class="contact-item__value">
 									<a href="mailto:SUU.UZBEKISTAN@suu.uz">SUU.UZBEKISTAN@suu.uz</a>
@@ -764,7 +688,7 @@
 							</div>
 							<div class="contact-item">
 								<div class="contact-item__name">
-									{{__('homeContactPhone')}}:
+									{{__('order.homeContactPhone')}}:
 								</div>
 								<div class="contact-item__value">
 									<a href="tel:+998911529721">+998 91 152 97 21 </a>
@@ -773,7 +697,7 @@
 							</div>
 							<div class="contact-item">
 								<div class="contact-item__name">
-									{{__('homeContactMail')}}:
+									{{__('order.homeContactMail')}}:
 								</div>
 								<div class="contact-item__value">
 									<a href="mailto:info@SUU.UZBEKISTAN.uz">info@SUU.UZBEKISTAN.uz

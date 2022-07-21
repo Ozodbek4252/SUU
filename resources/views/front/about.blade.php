@@ -9,81 +9,11 @@
 
 	<!-- МОБИЛЬНОЕ МЕНЮ -->
 
-	<div class="mobile-menu">
-		<div class="mobile-menu__head">
-			<div class="mobile-menu__logo">
-				<a href="index.blade.php">
-					<img src="img/logo.svg" alt="SUU" title="SUU">
-				</a>
-			</div>
-			<div class="mobile-menu__close">
-				<div class="header-mobile header-mobile__open">
-					<span></span>
-					<span></span>
-					<span></span>
-				</div>
-			</div>
-		</div>
-		<ul class="menu">
-			<li>
-				<a href="#main" data-menuanchor="main">
-					Главная
-				</a>
-			</li>
-			<li>
-				<a href="#about" data-menuanchor="about">
-					О компании
-				</a>
-			</li>
-			<li>
-				<a href="#products" data-menuanchor="products">
-					Продукция
-				</a>
-			</li>
-			<li>
-				<a href="#services" data-menuanchor="services">
-					Услуги
-				</a>
-			</li>
-			<li>
-				<a href="#news" data-menuanchor="news">
-					Новости
-				</a>
-			</li>
-			<li>
-				<a href="#contact" data-menuanchor="contact">
-					Контакты
-				</a>
-			</li>
-		</ul>
-		<ul class="side__follow">
-			<li>
-				<a href="#" target="_blank" rel="_nofollow">
-					<img src="img/fb.svg" alt="Facebook">
-				</a>
-			</li>
-			<li>
-				<a href="#" target="_blank" rel="_nofollow">
-					<img src="img/inst.svg" alt="Instagram">
-				</a>
-			</li>
-			<li>
-				<a href="#" target="_blank" rel="_nofollow">
-					<img src="img/tg.svg" alt="Telegram">
-				</a>
-			</li>
-		</ul>
-		<div class="mobile-menu__lang">
-			<a href="#">РУ</a>
-			<a href="#">UZ</a>
-			<a href="#">EN</a>
-		</div>
-	</div>
+	@include('front.component.mobile-menu')
 
 
 
 	<!-- О НАС -->
-
 	<section class="about-main">
 		<div class="container">
 			<div class="about-main__content">
@@ -103,6 +33,7 @@
 			<img src="img/about-left-ice.png" alt="img" class="ice">
 			<img src="img/about-left.png" alt="img" class="water">
 		</div>
+
 		<div class="about-water__bottle">
 			<img src="img/about-bottle.png" alt="img">
 		</div>

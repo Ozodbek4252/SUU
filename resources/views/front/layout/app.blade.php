@@ -49,18 +49,8 @@
             })
         }
 
-        // function deleteProduct(id) {
-        // console.log('work');
-        // fetch('/delete_product/'+id);
-        // $('#side-basket__content').load('/cart');
-        // $("#price").load('/price');
-        // $("#basket_refresh").load('/basket_refresh');
-        // $("#quantity_product").load('/quantity_product_refresh');
-        // }
-
         function quantity(k) {
             q = $("#blok_quantity"+k).val();
-            // fetch('/update_quantity/'+k+'/'+q);
             $.ajax({
                 type: 'get',
                 url:'/update_quantity/'+k+'/'+q,
@@ -70,8 +60,6 @@
                     $("#total_price").load('/total_sum');
                 }
             });
-            // $("#basket_refresh").load('/basket_refresh');
-            // $("#total_price").load('/total_sum');
         }
 
         function logo(bul, id) {
@@ -83,15 +71,67 @@
                     $("#basket_refresh").load('/basket_refresh');
                 }
             });
-            // fetch('/update_logo/'+bul+'/'+id);
-            // $("#basket_refresh").load('/basket_refresh');
         }
 
         function refresh(){
             $('#side-basket__content').load('/cart');
         }
     </script>
-    {{--<script src="/js/basket.js"></script>--}}
+
+        <script>
+            function changestatus(status){
+                $('#delivery').val(status);
+            }
+            function changewallet(type){
+                $('#wallet').val(type);
+            }
+        </script>
+
+    <script type="text/javascript">
+        
+        function sendMessage() {
+            var token = $("input#token").val();
+            var status = $("input#status").val();
+            var name = $("input#name").val();
+            var phone = $("input#phone").val();
+            var delivery = $("input#delivery").val();
+            var cash = $("textarea#cash").val();
+            var card = $("input#card").val();
+            var wallet = $("input#wallet").val();
+
+            console.log(status, name, phone, delivery, cash, card, wallet);
+            if (name != '') {
+                if (phone != '') {
+                    $('.feedback-done').show();
+                    $.ajax({
+                        type: "get",
+                        url: "/order/make",
+                        data: {
+                            '_token': token,
+                            status: status,
+                            name: name,
+                            phone: phone,
+                            delivery: delivery,
+                            cash: cash,
+                            card: card,
+                            wallet: wallet
+                        },
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        failure: function (errMsg) {
+                        }
+                    });
+                
+                }
+                else {
+                    document.getElementById("phone").placeholder = "Введите номер телефона";
+                }
+            }else {
+                document.getElementById("name").placeholder = "Введите ваше имя";
+            }
+        }
+    </script>
+
 	<script src="/js/jquery.inputmask.min.js"></script>
 	<script src="/js/owl.carousel.js"></script>
 	<script src="/js/wow.min.js"></script>

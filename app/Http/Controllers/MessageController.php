@@ -39,11 +39,12 @@ class MessageController extends Controller
     {
 //        dd('sdmfnvd');
         $mess = new Message;
-//        $mess->order_id = $request->order_id;
         $mess->name = $request->name;
         $mess->last_name = $request->last_name;
         $mess->phone = $request->phone;
         $mess->message = $request->message;
+        
+        session()->flash('messageSent','Message sent successfully.');
 
         $mess->save();
         return redirect()->back();

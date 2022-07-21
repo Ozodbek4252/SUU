@@ -19,6 +19,7 @@ class OrderController extends Controller
      */
     public function index()
     {
+        app()->setLocale(session()->get('lan'));
         return view('front.basket');
     }
 
@@ -27,10 +28,13 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function make()
+    {
+        dd('asd');
+    }
+    
     public function create(Request $request)
     {
-        // dd(session()->get('cart'));
-
         if(session()->get('cart')){
             $invoice = new Invoice();
             $invoice->name = Str::random(10);

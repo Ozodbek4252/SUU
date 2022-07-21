@@ -268,6 +268,23 @@ $('.basket-form__choose').on('input', function() {
 })
 
 
+//_____________SENDED__________
+
+$('.sended__close').click(e => {
+    e.preventDefault()
+    $('.sended').fadeOut(700)
+})
+
+
+$('.sended').click(e => {
+    let div = $(".sended-content");
+    if (!div.is(e.target) 
+        && div.has(e.target).length === 0) { 
+        $('.sended').fadeOut(600); 
+    }
+})
+
+
 //_____________INPUTMASK__________
 
 
